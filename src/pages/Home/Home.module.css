@@ -2,3 +2,23 @@
     margin-top: 1.5rem;
     text-align: center;
 }
+
+.btn__lg {
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    margin: .5rem .25rem;
+    transition: background .15s;
+    font-size: 1rem;
+    border-radius: 1rem;
+    padding: .6rem 1rem;
+} 
+
+.btn__info {
+    background-color: var(--color-info);
+    color: var(--color-background);
+}
+
+.btn__info:hover {
+    background-color: var(--color-info-hover);
+}
