@@ -1,12 +1,12 @@
-import HeaderHome from '../../components/Headers/HeaderHome';
+import HomeHeader from '../../components/Headers/HomeHeader/HomeHeader';
 import styles from './Home.module.css';
 
 
 const Home = () => {
 
     return (
-            <HeaderHome>
-            </HeaderHome>
+            <HomeHeader>
+            </HomeHeader>
     );
 };
 

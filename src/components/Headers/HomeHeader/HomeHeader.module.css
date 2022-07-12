@@ -1,5 +1,5 @@
 .header {
-    background: url(/public/assets/images/hero.jpg) no-repeat top/cover;
+    background: url(../assets/images/hero.jpg) no-repeat top/cover;
     height: 65vh;
     position: relative;
 }
