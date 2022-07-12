@@ -1,0 +1,71 @@
+.recipe {
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    min-height: 21rem;
+    padding: .25rem;
+    transition: all .2s;
+}
+
+.recipe__image {
+    height: 13rem;
+    transition: -webkit-transform .3s;
+    transition: transform .3s;
+    transition: transform .3s, -webkit-transform .3s;
+    width: 100%;
+}
+
+.recipe:hover .recipe__image {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+}
+
+.recipe__name {
+    margin: .5rem 0;
+    min-height: 2rem;
+    padding: 0 .5rem;
+    text-overflow: clip;
+}
+
+.recipe__owner {
+    align-items: center;
+    display: flex;
+    height: 2.5rem;
+    margin-top: .5rem;
+}
+
+.recipe__owner img {
+    border-radius: 50%;
+    height: 100%;
+    margin-right: .5rem;
+    width: 2.5rem;
+}
+
+.btn {
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: .9rem;
+    margin: .5rem .25rem;
+    padding: .4rem .75rem;
+    border-radius: 1rem;
+    transition: background .15s;
+}
+
+.btn__danger {
+    background-color: var(--color-danger);
+    color: var(--color-background);
+}
+
+.btn__danger:hover {
+    background-color: var(--color-danger-hover);
+}
+
+.btn__info {
+    background-color: var(--color-info);
+    color: var(--color-background);
+}
+
+.btn__info:hover {
+    background-color: var(--color-info-hover);
+}
