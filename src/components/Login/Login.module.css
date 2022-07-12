@@ -1,0 +1,35 @@
+.auth {
+    box-shadow: var(--box-shadow);
+    border-radius: 4px;
+    margin: 3rem auto 4rem;
+    max-width: 550px;
+    padding: 1rem;
+}
+
+.auth h2 {
+    margin: .5rem 0;
+}
+
+.primary {
+    color: var(--color-primary);
+}
+
+.btn__primary {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+}
+
+.btn__primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn__lg {
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    margin: .5rem .25rem;
+    transition: background .15s;
+    font-size: 1rem;
+    border-radius: 1rem;
+    padding: .6rem 1rem;
+}
