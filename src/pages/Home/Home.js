@@ -4,6 +4,7 @@ import Main from '../../components/Common/Main/Main';
 import HomeHeader from '../../components/Headers/Home-header/HomeHeader';
 import HomeSearch from '../../components/Headers/Home-search/HomeSearch';
 import Nav from '../../components/Nav/Nav';
+import RecipeList from '../../components/Recipe/Recipe-list/RecipeList';
 import styles from './Home.module.css';
 
 
@@ -18,6 +19,10 @@ const Home = () => {
             <Main>
                 <Cuisines />
                 <Groups />
+                <RecipeList />
+                <section className={styles.see__more}>
+                    <a className={`${styles.btn__lg} ${styles.btn__info}`} href="#">See more</a>
+                </section>
             </Main>
         </>
     );
