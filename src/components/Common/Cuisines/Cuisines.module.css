@@ -1,0 +1,63 @@
+.cuisines {
+    border-bottom: 1px solid var(--color-border);
+    padding: 2rem;
+}
+
+.cuisines>div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+}
+
+@media only screen and  (max-width:640px) {
+    .cuisines>div {
+        grid-gap: .5rem;
+        display: grid;
+        gap: .5rem;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.cuisines__text {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: .25rem 0;
+}
+
+.cuisine {
+    height: 7.5rem;
+    margin: .5rem 0;
+    width: 7.5rem;
+}
+
+.cuisine__container {
+    display: block;
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.cuisine__container:hover .cuisine__image {
+    opacity: .7;
+}
+
+.cuisine__image {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    height: 100%;
+    opacity: 1;
+    transition: all .5s;
+    width: 100%;
+}
+
+.cuisine__name {
+    color: var(--color-background);
+    font-size: .9rem;
+    left: 50%;
+    position: absolute;
+    text-transform: uppercase;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
