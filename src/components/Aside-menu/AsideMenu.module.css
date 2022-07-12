@@ -1,0 +1,27 @@
+@media (max-width:500px) {
+    .profile__aside {
+        padding: 0 .5rem;
+    }
+}
+
+.profile__aside p {
+    border-left: 2px solid var(--color-background);
+    cursor: pointer;
+    font-size: .9rem;
+    margin: .2rem 0;
+    padding: .5rem;
+    transition: all .2s;
+}
+
+.profile__aside p.active {
+    background: var(--aside-active);
+    border-left: 2px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.profile__aside__text {
+    font-size: 1.1rem;
+    font-size: 300;
+    text-transform: uppercase;
+    color: var(--color-aside);
+}
