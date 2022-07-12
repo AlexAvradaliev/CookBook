@@ -7,7 +7,7 @@ const Groups = () => {
     <section className={styles.groups} id="groups">
       <div>
         {groupsData.map((group, i) => (
-          <article className={styles.group}>
+          <article className={styles.group} key={i} >
             <a key={i} href="#">
               <img src={group.img} alt={group.name} />
               <p>{group.name}</p>
