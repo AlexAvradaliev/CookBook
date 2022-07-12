@@ -1,0 +1,6 @@
+.main__header {
+    border-bottom: 1px solid var(--color-border);
+    margin: 0 auto;
+    max-width: 1140px;
+    padding: .25rem
+}
