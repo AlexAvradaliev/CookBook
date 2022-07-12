@@ -1,0 +1,15 @@
+.header {
+    background: url(/public/assets/images/hero.jpg) no-repeat top/cover;
+    height: 65vh;
+    position: relative;
+}
+
+.header:before {
+    background-color: var(--color-header);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
