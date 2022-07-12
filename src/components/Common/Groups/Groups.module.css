@@ -1,0 +1,69 @@
+.groups {
+    background: url(./Assets/images/groups-bg.webp) bottom/cover;
+    border-bottom: 1px solid var(--color-border);
+    display: grid;
+    grid-template-columns: 60% 40%;
+    padding: 1rem 1rem 2rem;
+}
+
+@media (max-width:900px) {
+    .groups {
+        background: none;
+        grid-template-columns: 1fr;
+    }
+
+    .groups h2 {
+        display: none;
+    }
+}
+
+.groups>div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+@media (max-width:640px) {
+    .groups>div {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.group {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    height: 11rem;
+    margin: .5rem .25rem;
+    transition: -webkit-transform .4s ease;
+    transition: transform .4s ease;
+    transition: transform .4s ease, -webkit-transform .4s ease;
+    width: 10rem;
+}
+
+.group img {
+    height: 7.5rem;
+    width: 100%;
+}
+
+.group p {
+    padding: .5rem;
+}
+
+.group:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+.groups__text {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: .25rem 0;
+    margin-top: 2rem;
+}
