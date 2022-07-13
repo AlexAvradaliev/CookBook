@@ -1,0 +1,63 @@
+recipe__details__rating {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 10px 0px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recipe__details__rating>h2 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    display: flex;
+    margin: 0.25rem 0;
+    justify-content: center;
+}
+
+.rating__stars__elements {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    overflow: hidden;
+    flex-direction: row-reverse;
+    position: relative;
+}
+
+.rating__stars__feedback {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    flex-direction: row-reverse;
+    position: relative;
+    justify-content: center;
+}
+
+.rating-0 {
+    filter: grayscale(100%);
+}
+
+.rating__stars__elements>input {
+    display: none;
+}
+
+.rating__stars__elements>label {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background-image: url(assets/images/emptyStar.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    transition: .3s;
+}
+
+.rating__stars__elements>input:checked~label,
+.rating__stars__elements>input:checked~label~label {
+    background-image: url(assets/images/fullStar.svg);
+}
+
+
+.rating__stars__elements>input:not(:checked)~label:hover,
+.rating__stars__elements>input:not(:checked)~label:hover~label {
+    background-image: url(assets/images/fullStar.svg);
+}
