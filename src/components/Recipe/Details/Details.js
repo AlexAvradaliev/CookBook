@@ -1,6 +1,6 @@
-import styles from './Login.module.css';
+import styles from './Details.module.css';
 
-const Login = () => {
+const Details = () => {
 
     return (
         <>
@@ -90,4 +90,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Details;
