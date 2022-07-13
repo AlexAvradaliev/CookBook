@@ -1,0 +1,15 @@
+.profile__content__nothing {
+    margin: 2rem 0 4rem;
+    text-align: center;
+}
+
+.profile__content__nothing img {
+    height: 8rem;
+    width: 8rem;
+}
+
+.profile__content__nothing p {
+    font-size: 1.1rem;
+    font-size: 300;
+    margin: 2rem 0;
+}
