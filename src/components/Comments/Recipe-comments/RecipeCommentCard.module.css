@@ -1,0 +1,40 @@
+.comment__recipe__image {
+    height: 3rem;
+    margin-right: .5rem;
+    width: 3rem;
+}
+
+.comment__recipe__image img {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+}
+
+.comment__recipe__createdAt {
+    color: var(--color-details);
+    font-weight: 400;
+    margin-left: .25rem;
+}
+
+.comment__recipe__name {
+display: flex;
+align-items: center;
+}
+
+.btn__danger {
+    background-color: var(--color-danger);
+    color: var(--color-background);
+}
+
+.btn__danger:hover {
+    background-color: var(--color-danger-hover);
+}
+
+.btn__info {
+    background-color: var(--color-info);
+    color: var(--color-background);
+}
+
+.btn__info:hover {
+    background-color: var(--color-info-hover);
+}
