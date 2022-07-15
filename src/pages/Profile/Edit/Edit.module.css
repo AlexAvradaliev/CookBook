@@ -1,0 +1,13 @@
+.profile__grids {
+    grid-gap: 2rem;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 25% auto;
+    padding: 1rem 0;
+}
+
+@media (max-width:500px) {
+    .profile__grids {
+        grid-template-columns: 1fr;
+    }
+}
