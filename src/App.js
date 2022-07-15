@@ -9,6 +9,7 @@ import Comment from './pages/Profile/Comment/Comment';
 import EditProfile from './pages/Profile/Edit/Edit';
 import Create from './pages/Recipe/Create/Create';
 import MyRecipe from './pages/Recipe/My-recipe/MyRecipe';
+import RecipeDetails from './pages/Recipe/Recipe-details/RecipeDetails';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path='/profile/:userId/comments' element={<Comment />} />
         <Route path='/profile/:userId/edit' element={<EditProfile />} />
         <Route path='/profile/:userId/create-recipe' element={<Create />} />
+        <Route path='/recipe/:recipeId' element={<RecipeDetails />} />
       </Routes>
       <Footer />
     </>
