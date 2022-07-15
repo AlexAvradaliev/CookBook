@@ -1,0 +1,40 @@
+.profile__grids {
+    grid-gap: 2rem;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 25% auto;
+    padding: 1rem 0;
+}
+
+@media (max-width:500px) {
+    .profile__grids {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width:500px) {
+    .profile__content {
+        padding: 0 .5rem;
+    }
+}
+
+.profile__content__text {
+    font-size: 1.1rem;
+    font-size: 300;
+    text-transform: uppercase;
+    color: var(--color-aside);
+}
+
+.profile__content__container {
+    grid-gap: 2rem;
+    display: grid;
+    gap: 2rem;
+    margin: 1rem 0;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width:1024px) {
+    .profile__content__container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
