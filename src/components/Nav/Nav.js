@@ -12,23 +12,23 @@ const Nav = (props) => {
     return (
         <nav className={styles.header__nav}>
             <h3 className={logo}>
-                <a href="#" >Cook Book</a>
+                <a href="/" >Cook Book</a>
             </h3>
             <section>
                 <ul className={styles.user__logged}>
                     <li>
-                        <a className={styleUser} href="#">
+                        <a className={styleUser} href="/profile/:userId">
                             <img src="/assets/images/user.webp" alt="Alex" />
                             <p>Alex Alex </p>
                         </a>
                     </li>
                     <li>
-                        <a className={`${styles.btn} ${styles.btn__primary}`} id="login" href="#">
+                        <a className={`${styles.btn} ${styles.btn__primary}`} id="login" href="/login">
                             Login
                         </a>
                     </li>
                     <li>
-                        <a className={`${styles.btn} ${styles.btn__primary}`} id="register" href="#">
+                        <a className={`${styles.btn} ${styles.btn__primary}`} id="register" href="/register">
                             Regiser
                         </a>
                     </li>

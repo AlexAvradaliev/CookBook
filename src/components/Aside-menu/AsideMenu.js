@@ -9,16 +9,16 @@ const AsideMenu = () => {
                 <p className={styles.profile__aside__text}>Activity</p>
 
                 <li>
-                    <a href="#"><p>Recipes</p></a>
+                    <a href="/profile/userId"><p>Recipes</p></a>
                 </li>
                 <li>
-                    <a href="#"><p>Comments</p></a>
+                    <a href="/profile/:userId/comments"><p>Comments</p></a>
                 </li>
                 <li>
-                    <a href="#"><p>Create Recipe</p></a>
+                    <a href="/profile/:userId/create-recipe"><p>Create Recipe</p></a>
                 </li>
                 <li>
-                    <a href="#"><p className={styles.active}>Edit Profile</p></a>
+                    <a href="/profile/:userId/edit"><p className={styles.active}>Edit Profile</p></a>
                 </li>
             </ul>
         </aside>
