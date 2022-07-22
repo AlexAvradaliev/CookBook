@@ -1,49 +1,25 @@
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap);
 
-:root {
-    --color-primary: #ed5a6b;
-    --color-primary-hover: #ea4356;
-    --color-info: #17a2b8;
-    --color-info-hover: #148ea1;
-    --color-danger: #dc3545;
-    --color-danger-hover: #d32535;
-    --color-cancel: rgba(0, 0, 0, 0.5);
-    --color-cancel-hover: rgba(0, 0, 0, 0.4);
-    --color-gray: #e5e5e5;
-    --color-background: #f2f2f2;
-    --color-icon: #e16120;
-    --color-border: #ccc;
-    --color-details: #4d4d4d;
-    --color-text-black: #000;
-    --color-aside: #737373;
-    --color-icon-hover: #e7814d;
-    --color-white: rgb(255, 255, 255);
-    --color-header:rgba(0, 0, 0, .35);
-    --user-logged: rgba(0, 0, 0, .1);
-    --box-shadow: 0 10px 13px -7px rgba(0, 0, 0, .2), 0 10px 13px -7px rgba(0, 0, 0, .2);
-    --aside-active:transparent linear-gradient(270deg, #f8e1e4, rgba(251, 246, 247, 0) 92.47%) repeat scroll 0 0;
-}
-
 *,
 :after,
 :before {
     box-sizing: inherit;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 html {
     font-size: 1rem;
-    line-height: 1.6
+    line-height: 1.6;
 }
 
 li {
     list-style: none;
 }
 body {
-    background-color: var(--color-background);
+    background: linear-gradient(135deg, #f3f4f6, #d1d5db);
     box-sizing: border-box;
-    font-family: Poppins, sans-serif
+    font-family: Poppins, sans-serif;
 }
 
 fieldset {
@@ -51,45 +27,48 @@ fieldset {
 }
 
 a {
-    color: var(--color-text-black);
-    text-decoration: none
+    color: #000;
+    text-decoration: none;
 }
 
 img {
     object-fit: cover;
-    width: 100%
+    width: 100%;
 }
 
 i {
-    color: var(--color-icon)
+    color: #e16120;
 }
 
 input,
 textarea {
-    border: 2px solid var(--color-background);
+    border: 2px solid transparent;
     border-radius: 4px;
     display: block;
     font-family: inherit;
     font-size: inherit;
-    margin-bottom: 1rem;
     padding: .5rem 1rem;
     transition: all .3s;
     width: 100%;
-    resize: none    
+    resize: none;
 }
 
 input:focus,
 textarea:focus {
-    border: 2px solid var(--color-primary);
-    outline: none
+    outline: none;
 }
 
 input.search {
     border-radius: 4rem;
-    padding: .75rem 2.5rem
+    padding: .75rem 2.5rem;
 }
 
 input[type=file] {
-    display: none
+    display: none;
 }
 
+ input.error__border,
+ label.error__label{
+    border-color: #d32f2f;
+    color: #d32f2f;
+}

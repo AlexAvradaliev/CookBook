@@ -1,28 +1,66 @@
-import styles from'./Edit.module.css';
+import ErrorMessage from '../../Common/Error-message/ErrorMessage';
+import styles from './Edit.module.css';
 
 const Edit = () => {
 
     return (
         <section className={styles.profile__content}>
-            <p className={styles.profile__content__text}>Edit profile</p>
-
             <div className={styles.profile__content__edit}>
-                <p className={styles.profile__content__edit__text}>Edit account information</p>
-                <form>
-                    <input type="text" />
-                    <input type="text" />
-                    <input type="text" />
-                    <button className={`${styles.btn__primary} ${styles.btn__lg}`}>Update details</button>
-                </form>
-                <div className={styles.btn__gray}>Change password <i className="fas fa-chevron-up"></i>
-                </div>
-                <form className={styles.profile__content__edit__form}>
-                    <input type="password" placeholder="Current password" className={styles.profile__content__edit__form__input} />
-                    <input type="password" placeholder="New password" />
-                    <input type="password" placeholder="Confirm password" />
-                    <button className={`${styles.btn__primary} ${styles.btn__lg}`}>Change password </button>
-                </form>
+                <article className={styles.main}>
+                    <section className={styles.container}>
+                        <p className={styles.profile__content__edit__text}>Edit account information</p>
+                        <form className={styles.content}>
 
+                            <section className={styles.user__details}>
+
+                                <article className={styles.input__box}>
+                                    <input type="text" id="firstName" className={styles.form__input} placeholder=" " autoComplete='off' />
+                                    <label htmlFor="firstName" className={styles.form__label}>First name</label>
+                                <ErrorMessage>text</ErrorMessage>
+                                </article>
+
+                                <article className={styles.input__box}>
+                                    <input type="text" id="lastName" className={styles.form__input} placeholder=" " />
+                                    <label htmlFor="lastName" className={styles.form__label}>Last name</label>
+                                <ErrorMessage>text</ErrorMessage>
+                                </article>
+                                <article className={styles.input__box}>
+                                    <input type="text" id="email" className={styles.form__input} placeholder=" " autoComplete='off' />
+                                    <label htmlFor="email" className={styles.form__label}>Email</label>
+                                <ErrorMessage>text</ErrorMessage>
+                                </article>
+                            </section>
+
+                            <button className={styles.button}>Update details</button>
+                        </form>
+                        <div className={styles.btn__gray}>Change password <i className="fas fa-chevron-up"></i>
+                        </div>
+                        <form className={styles.content}>
+
+                            <section className={styles.user__details}>
+                                <article className={styles.input__box}>
+                                    <input type="password" id="currentPassword" className={styles.form__input} placeholder=" " autoComplete='off' />
+                                    <label htmlFor="currentPassword" className={styles.form__label}>Current password</label>
+                                <ErrorMessage>text</ErrorMessage>
+                                </article>
+
+                                <article className={styles.input__box}>
+                                    <input type="password" id="newPassword" className={styles.form__input} placeholder=" " />
+                                    <label htmlFor="newPassword" className={styles.form__label}>New password</label>
+                                <ErrorMessage>text</ErrorMessage>
+                                </article>
+                                
+                                <article className={styles.input__box}>
+                                    <input type="password" id="confirmPassword" className={styles.form__input} placeholder=" " autoComplete='off' />
+                                    <label htmlFor="confirmPassword" className={styles.form__label}>Confirm password</label>
+                                <ErrorMessage>text</ErrorMessage>
+                                </article>
+                            </section>
+
+                            <button className={styles.button}>Update details</button>
+                        </form>
+                    </section>
+                </article>
             </div>
         </section>
     );

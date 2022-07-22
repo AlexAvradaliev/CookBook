@@ -1,28 +1,30 @@
+import ErrorMessage from '../../../../Common/Error-message/ErrorMessage';
 import styles from './RecipeIngredients.module.css';
 
-const RecipeIngredients = (props) => {
+const RecipeIngredients = () => {
 
     return (
         <article>
-                        <h2 className={styles.create__ingredients__text}>Ingredients</h2>
-                        <form>
-                        <div className={styles.input__wrapper}>
-                                <span>
-                                    <i className="fas fa-plus"></i>
-                                </span>
-                                <input placeholder="Enter ingredients" type="text" />
-                            </div>
-                        </form>
-                        <ul>
-                            <div className={styles.create__ingredients__multiple}>
-                                <li>
-                                    <i className="fas fa-dot-circle"></i>{" "}
-                                    Bring the 
-                                </li>
-                                <i className={`fas fa-times`}></i>
-                            </div>
-                        </ul>
-                    </article>
+            {/* <form> */}
+
+                <div className={styles.ingredients__wrapper}>
+                    <input type="text" id="ingredients" className={styles.ingredients__wrapper__input} placeholder=" " />
+                    <label htmlFor="ingredients" className={styles.ingredients__wrapper__label}>Ingredients</label>
+                    <i className="fas fa-plus"></i>
+                </div>
+            <ErrorMessage message='text'>error</ErrorMessage>
+
+            {/* </form> */}
+            <ul className={styles.create__ingredients__ul}>
+                <li>
+                    <div>
+                        <i className="fas fa-dot-circle"></i>{" "}
+                        <p>{" "}Bring the</p>
+                    </div>
+                    <i className={`fas fa-times`}></i>
+                </li>
+            </ul>
+        </article>
     );
 };
 

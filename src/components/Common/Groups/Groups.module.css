@@ -1,6 +1,6 @@
 .groups {
     background: url(./Assets/images/groups-bg.webp) bottom/cover;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid #ccc;
     display: grid;
     grid-template-columns: 60% 40%;
     padding: 1rem 1rem 2rem;
@@ -33,18 +33,15 @@
 }
 
 .group {
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border: 1px solid var(--color-border);
+    border: 1px solid #ccc;
     border-radius: 4px;
-    box-shadow: var(--box-shadow);
     cursor: pointer;
     height: 11rem;
     margin: .5rem .25rem;
-    transition: -webkit-transform .4s ease;
     transition: transform .4s ease;
-    transition: transform .4s ease, -webkit-transform .4s ease;
     width: 10rem;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%)
 }
 
 .group img {
@@ -57,7 +54,6 @@
 }
 
 .group:hover {
-    -webkit-transform: scale(1.05);
     transform: scale(1.05);
 }
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import CreateComment from '../../../components/Comments/Create-comment/CreateComment';
 import RecipeCommentCard from '../../../components/Comments/Recipe-comments/RecipeCommentCard';
 import Main from '../../../components/Common/Main/Main';

@@ -1,9 +1,8 @@
 .header__search {
-    color: var(--color-background);
+    color: #f2f2f2;
     left: 50%;
     position: absolute;
     top: 50%;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 50%;
     z-index: 1;
@@ -21,7 +20,7 @@
 }
 
 .header__search div i {
-    color: var(--color-border);
+    color: #ccc;
     font-size: 1.15rem;
     left: 1rem;
     position: absolute;
@@ -29,9 +28,19 @@
     z-index: 2;
 }
 
+.header__search input {
+    border-radius: 4rem;
+    padding: 0.75rem 2.5rem;
+}
+
+.header__search input:focus {
+    border: 2px solid #c084fc;
+}
+
 .header__search__text {
     font-size: 1.5rem;
     font-weight: 300;
     margin: .25rem 0;
     text-align: center;
+    cursor: default;
 }

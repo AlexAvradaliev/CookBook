@@ -1,32 +1,128 @@
-@media (max-width:500px) {
-    .profile__content {
-        padding: 0 .5rem;
-    }
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.profile__content__text {
-    font-size: 1.1rem;
-    font-size: 300;
-    text-transform: uppercase;
-    color: var(--color-aside);
+.container {
+    max-width: 700px;
+    width: 100%;
+    background-color: transparent;
+    padding: 25px 30px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
 }
 
 .profile__content__edit__text {
+    position: relative;
     font-size: 1.1rem;
     font-size: 300;
     margin-top: 1rem;
 }
 
-.profile__content__edit {
-    background-color: #f6f6f6;
-    box-shadow: var(--box-shadow);
-    padding: 1rem;
+.profile__content__edit__text::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    border-radius: 5px;
+    background: linear-gradient(210deg, #d8b4fe, #c084fc);
 }
 
-.profile__content__edit__form {
-    margin-bottom: 1rem;
+ .user__details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
 }
 
-.profile__content__edit__form__input {
+.input__box {
+    position: relative;
+    height: 3rem;
+    margin-bottom: 15px;
+    width: 100%;
     margin-top: 1rem;
+}
+
+.form__label {
+    position: absolute;
+    left: 1rem;
+    top: 0.8rem;
+    padding: 0 0.5rem;
+    cursor: text;
+    transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+    color: #060b23;
+    background-color: transparent;
+    font-size: 0.9rem;
+}
+
+.form__input {
+    height: 45px;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+    border-color: #d8b4fe;
+    border-top: none;
+}
+
+.form__input:focus ~ .form__label, .form__input:not(:placeholder-shown).form__input:not(:focus) ~ .form__label {
+    top: -0.6rem;
+    font-size: 0.8rem;
+    left: 0.8rem;
+    color: #b376f5;
+}
+
+.button {
+    height: 45px;
+    margin-bottom: 3rem;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(210deg, #d8b4fe, #c084fc);
+}
+
+.button:hover {
+    transform: scale(0.99);
+    background: linear-gradient(180deg, #d8b4fe, #c084fc);
+}
+
+@media(max-width: 584px) {
+    .container {
+        max-width: 100%;
+    }
+     .input-box {
+        margin-bottom: 15px;
+        width: 100%;
+    }
+}
+
+.text {
+    text-align: center;
+}
+.text strong {
+    color: #9b59b6;
+}
+
+.btn__gray {
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: .9rem;
+    margin: .5rem .25rem;
+    padding: .4rem .75rem;
+    transition: background .15s;
+    background-color: #bdbbbbcc;
 }

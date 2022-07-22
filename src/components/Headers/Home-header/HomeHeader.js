@@ -4,7 +4,9 @@ const HomeHeader = (props) => {
 
     return (
         <header className={styles.header} id="header">
-            {props.children}
+            <div className={styles.container}>
+                {props.children}
+            </div>
         </header>
     );
 };

@@ -1,6 +1,6 @@
 import styles from './AsideMenu.module.css';
 
-const AsideMenu = (props) => {
+const AsideMenu = () => {
 
     return (
         <aside className={styles.profile__aside}>

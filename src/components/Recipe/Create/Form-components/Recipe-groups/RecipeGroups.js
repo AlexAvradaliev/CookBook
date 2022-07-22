@@ -1,10 +1,12 @@
+import ErrorMessage from '../../../../Common/Error-message/ErrorMessage';
 import styles from './RecipeGroups.module.css';
 
-const RecipeGroups = (props) => {
+const RecipeGroups = () => {
 
     return (
         <fieldset className={styles.create__groups}>
         <p className={styles.create__groups__p}>Select groups</p>
+        <article>
         <div>
             <label className={styles.checkbox__container}>
                 dairy
@@ -32,6 +34,8 @@ const RecipeGroups = (props) => {
                 <span className={styles.checkmark}></span>
             </label>
         </div>
+        <ErrorMessage message='level'>error</ErrorMessage>
+        </article>
     </fieldset>
     );
 };

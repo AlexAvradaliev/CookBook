@@ -1,10 +1,12 @@
+import ErrorMessage from '../../../../Common/Error-message/ErrorMessage';
 import styles from './RecipeCuisine.module.css';
 
-const RecipeCuisine = (props) => {
+const RecipeCuisine = () => {
 
     return (
-        <label htmlFor="cuisine">
-            Select cuisine
+    <article>
+        <label className={styles.cuisine__label} htmlFor="cuisine">
+            <p>Select cuisine</p>
             <select name="cuisine">
                 <option value="Moroccan">Moroccan</option>
                 <option value="Mexican">Mexican</option>
@@ -19,6 +21,8 @@ const RecipeCuisine = (props) => {
                 <option value="Italian">Italian</option>
             </select>
         </label>
+            <ErrorMessage message='text'>error</ErrorMessage>
+            </article>
     );
 };
 

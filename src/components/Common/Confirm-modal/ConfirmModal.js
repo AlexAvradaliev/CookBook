@@ -1,11 +1,13 @@
+import RecipeList from '../../Recipe/Recipe-list/RecipeList';
+import bin from './assets/images/bin.png';
 import styles from './ConfirmModal.module.css';
-import bin from './assets/images/bin.png'
 
 const ConfirmModal = () => {
 
-    return (
-        <modal className={styles.modal}>
-        <section className={styles.modal__content}>
+    return (<>
+      <RecipeList />
+        <div className={styles.modal}>
+        <section className={styles.modal__content} ariaHidden="true">
           <header className={styles.modal__header}>
             <div className={styles.modal__header__container}>
               <img src={bin} />
@@ -24,7 +26,8 @@ const ConfirmModal = () => {
           </footer>
         </section>
         <section className={styles.modal__backdrop}></section>
-    </modal>
+    </div>
+    </>
     );
 };
 

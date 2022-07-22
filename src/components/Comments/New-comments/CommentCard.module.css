@@ -6,9 +6,28 @@
 
 .profile__content__text {
     font-size: 1.1rem;
-    font-size: 300;
+    font-size: 100;
     text-transform: uppercase;
-    color: var(--color-aside);
+    color: #737373;
+}
+
+.comment__header a{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.comment__header h3 {
+    font-weight: 600;
+    font-size: 1rem;
+    color: black;
+    margin-left: 0.5rem;
+}
+
+.comment strong{
+    font-weight: 500;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.9);
 }
 
 .profile__content__container {
@@ -27,15 +46,18 @@
 
 .comment {
     border-radius: 8px;
-    box-shadow: var(--box-shadow);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
     border-radius: 8px;
     margin: 1rem 0;
     padding: .5rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .comment__header {
     align-items: center;
     display: flex;
+    padding-bottom: 1rem;
 }
 
 .comment__header img {

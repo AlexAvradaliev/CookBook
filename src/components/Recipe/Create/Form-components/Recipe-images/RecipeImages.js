@@ -1,6 +1,7 @@
+import ErrorMessage from '../../../../Common/Error-message/ErrorMessage';
 import styles from './RecipeImages.module.css';
 
-const RecipeImages = (props) => {
+const RecipeImages = () => {
 
     return (
         <fieldset>
@@ -10,6 +11,7 @@ const RecipeImages = (props) => {
                 <i className="fa fa-images"></i>
                 Import
             </label>
+        <ErrorMessage message='level'>error</ErrorMessage>
             <section className={styles.create__images}>
             <div  className='create__image'>
               <img src="" alt="" />

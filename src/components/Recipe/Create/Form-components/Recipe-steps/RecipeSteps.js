@@ -1,26 +1,30 @@
+import ErrorMessage from '../../../../Common/Error-message/ErrorMessage';
 import styles from './RecipeSteps.module.css';
 
-const RecipeSteps = (props) => {
+const RecipeSteps = () => {
 
     return (
         <article>
-            <h2 className={styles.create__steps__text}>Steps</h2>
-            <form>
-                <div className={styles.input__wrapper}>
-                    <span>
-                        <i className="fas fa-plus"></i>
-                    </span>
-                    <input placeholder="Enter steps" type="text" />
+            {/* <form> */}
+
+                <div className={styles.steps__wrapper}>
+
+
+                    <input type="text" id="steps" className={styles.steps__wrapper__input} placeholder=" " />
+                    <i className="fas fa-plus"></i>
+                    <label htmlFor="steps" className={styles.steps__wrapper__label}>Steps</label>
                 </div>
-            </form>
+            <ErrorMessage message='text'>error</ErrorMessage>
+
+            {/* </form> */}
             <ul className={styles.create__steps__ul}>
-                <div>
-                    <li>
+                <li>
+                    <div>
                         <i className="fas fa-dot-circle"></i>{" "}
-                        Bring the
-                    </li>
+                        <p>{" "}Bring the</p>
+                    </div>
                     <i className={`fas fa-times`}></i>
-                </div>
+                </li>
             </ul>
         </article>
     );

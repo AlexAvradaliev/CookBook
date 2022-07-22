@@ -1,8 +1,6 @@
-import Main from "../../../components/Common/Main/Main"
-import Header from "../../../components/Headers/Header/Header"
-import Nav from "../../../components/Nav/Nav"
-import Login from "../../../components/Auth/Login/Login"
-import Footer from "../../../components/Footer/Footer"
+import Header from "../../../components/Headers/Header/Header";
+import Nav from "../../../components/Nav/Nav";
+import Login from "../../../components/Auth/Login/Login";
 
 
 function SingIn() {
@@ -11,9 +9,7 @@ function SingIn() {
       <Header>
         <Nav />
       </Header>
-      <Main>
         <Login />
-      </Main>
     </>
   )
 }

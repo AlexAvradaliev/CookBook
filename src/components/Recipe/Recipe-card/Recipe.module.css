@@ -1,22 +1,22 @@
 .recipe {
     border-radius: 8px;
-    box-shadow: var(--box-shadow);
-    cursor: pointer;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -4px rgb(0 0 0 / 10%);
     min-height: 21rem;
     padding: .25rem;
     transition: all .2s;
 }
 
+.recipe a{
+    cursor: pointer;
+}
+
 .recipe__image {
     height: 13rem;
-    transition: -webkit-transform .3s;
     transition: transform .3s;
-    transition: transform .3s, -webkit-transform .3s;
     width: 100%;
 }
 
 .recipe:hover .recipe__image {
-    -webkit-transform: scale(1.03);
     transform: scale(1.03);
 }
 
@@ -39,6 +39,7 @@
     height: 100%;
     margin-right: .5rem;
     width: 2.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .btn {
@@ -53,19 +54,19 @@
 }
 
 .btn__danger {
-    background-color: var(--color-danger);
-    color: var(--color-background);
+    background: linear-gradient(141deg, #fb7185, #be123c);
+    color: #ffffff;
 }
 
 .btn__danger:hover {
-    background-color: var(--color-danger-hover);
+    background: linear-gradient(220deg, #fb7185, #be123c);
 }
 
 .btn__info {
-    background-color: var(--color-info);
-    color: var(--color-background);
+    background: linear-gradient(141deg, #38bdf8, #0284c7);
+    color: #ffffff;
 }
 
 .btn__info:hover {
-    background-color: var(--color-info-hover);
+    background: linear-gradient(220deg, #38bdf8, #0284c7);
 }

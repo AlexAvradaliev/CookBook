@@ -1,10 +1,10 @@
-.cook__time__wrapper {
+.title__wrapper {
     position: relative;
     margin-bottom: 15px;
-    width: calc(100% / 2 - 20px);
+    width: 100% ;
 }
 
-.cook__time__wrapper__input {
+.title__wrapper__input {
     height: 45px;
     width: 100%;
     outline: none;
@@ -17,7 +17,7 @@
     border-top: none;
 }
 
-.cook__time__wrapper__label {
+.title__wrapper__label {
     position: absolute;
     left: 1rem;
     top: 0.8rem;
@@ -29,17 +29,10 @@
     font-size: 1rem;
 }
 
-.cook__time__wrapper__input:focus~.cook__time__wrapper__label,
-.cook__time__wrapper__input:not(:placeholder-shown).cook__time__wrapper__input:not(:focus)~.cook__time__wrapper__label {
+.title__wrapper__input:focus~.title__wrapper__label,
+.title__wrapper__input:not(:placeholder-shown).title__wrapper__input:not(:focus)~.title__wrapper__label {
     top: -0.6rem;
     font-size: 0.8rem;
     left: 0.8rem;
     color: #b376f5;
-
-}
-
-@media(max-width:650px) {
-    .cook__time__wrapper {
-        width: 100%;
-    }
 }

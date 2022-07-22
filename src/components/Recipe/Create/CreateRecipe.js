@@ -1,4 +1,3 @@
-import styles from './CreateRecipe.module.css';
 import RecipeCookTime from './Form-components/Recipe-cookTime/RecipeCookTime';
 import RecipeCuisine from './Form-components/Recipe-cuisine/RecipeCuisine';
 import RecipeDescription from './Form-components/Recipe-description/RecipeDescription';
@@ -6,9 +5,10 @@ import RecipeGroups from './Form-components/Recipe-groups/RecipeGroups';
 import RecipeImages from './Form-components/Recipe-images/RecipeImages';
 import RecipeIngredients from './Form-components/Recipe-ingredients/RecipeIngredients';
 import RecipeLevel from './Form-components/Recipe-level/RecipeLevel';
-import RecipeName from './Form-components/Recipe-name/RecipeName';
+import RecipeTitile from './Form-components/Recipe-title/RecipeTitile';
 import RecipePrepTime from './Form-components/Recipe-prepTime/RecipePrepTime';
 import RecipeSteps from './Form-components/Recipe-steps/RecipeSteps';
+import styles from './CreateRecipe.module.css';
 
 const CreateRecipe = () => {
 
@@ -17,9 +17,12 @@ const CreateRecipe = () => {
             <p className={styles.profile__content__text}>Create recipe</p>
             <div className={styles.create}>
                 <form>
+                    <fieldset>
 
-                    <RecipeName />
-                    <RecipeDescription />
+                        <RecipeTitile />
+                        <RecipeDescription />
+
+                    </fieldset>
 
                     <fieldset className={styles.create__selects}>
 
@@ -28,7 +31,7 @@ const CreateRecipe = () => {
 
                     </fieldset>
 
-                    <fieldset className={styles.create__times}>
+                    <fieldset className={styles.create__time}>
 
                         <RecipePrepTime />
                         <RecipeCookTime />
@@ -45,10 +48,13 @@ const CreateRecipe = () => {
 
                     </fieldset>
 
-                    <button type="submit" className={`${styles.btn__lg} ${styles.btn__primary}`}>Create Recipe</button>
+                    <button type="submit" className={`${styles.button} ${styles.btn__primary}`}>Create Recipe</button>
                 </form>
             </div>
         </section>
+
+
+
     );
 };
 

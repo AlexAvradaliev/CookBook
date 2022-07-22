@@ -1,12 +1,14 @@
+import ErrorMessage from '../../../../Common/Error-message/ErrorMessage';
 import styles from './RecipeCookTime.module.css';
 
-const RecipeCookTime = (props) => {
+const RecipeCookTime = () => {
 
     return (
-        <label htmlFor="cookTime">
-            <p className={styles.create__times__p}>Cooking time</p>
-            <input type="text" placeholder="Ente cooking time" />
-        </label>
+        <article className={styles.cook__time__wrapper}>
+            <input type="text" id="cookTime" className={styles.cook__time__wrapper__input} placeholder=" " />
+            <label htmlFor="cookTime" className={styles.cook__time__wrapper__label}>Cooking time</label>
+            <ErrorMessage message='text'>error</ErrorMessage>
+        </article>
     );
 };
 

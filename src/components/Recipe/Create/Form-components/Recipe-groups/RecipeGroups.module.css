@@ -15,18 +15,15 @@
 .create__groups__p {
     margin: .5rem 0;
     font-size: 1.1rem;
-    font-size: 300;
+    font-weight: 400;
 }
 
 .checkbox__container {
     cursor: pointer;
     display: block;
     font-size: 16px;
-    margin-bottom: 10px;
     padding-left: 30px;
     position: relative;
-    -webkit-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 }
 
@@ -39,12 +36,14 @@
 }
 
 .checkmark {
-    background-color: var(--color-border);
+    background-color: white;
     height: 20px;
     left: 0;
     position: absolute;
     top: 0;
     width: 20px;
+    border-radius: 3px;
+    border: 1px solid #aa5bf8;
 }
 
 .checkmark:after {
@@ -54,7 +53,7 @@
 }
 
 .checkbox__container input:checked~.checkmark {
-    background-color: var(--color-primary);
+    background-color: #aa5bf8;
 }
 
 .checkbox__container input:checked~.checkmark:after {
@@ -62,12 +61,11 @@
 }
 
 .checkbox__container .checkmark:after {
-    border: solid var(--color-white);
+    border: solid #ffffff;
     border-width: 0 3px 3px 0;
-    height: 8px;
-    left: 7px;
-    top: 4px;
-    -webkit-transform: rotate(45deg);
+    height: 11px;
+    left: 6px;
+    top: 2px;
     transform: rotate(45deg);
-    width: 4px;
+    width: 7px;
 }

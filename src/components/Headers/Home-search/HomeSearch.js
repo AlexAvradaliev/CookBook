@@ -1,6 +1,6 @@
 import styles from './HomeSearch.module.css';
 
-const HomeSearch = (props) => {
+const HomeSearch = () => {
 
     return (
         <form className={styles.header__search}>

@@ -19,9 +19,14 @@ const Home = () => {
             <Main>
                 <Cuisines />
                 <Groups />
-                <RecipeList />
-                <section className={styles.see__more}>
-                    <a className={`${styles.btn__lg} ${styles.btn__info}`} href="#">See more</a>
+                <section className={styles.recipes} id="recipes">
+                    <h1 className={styles.recipes__text}>Latest recipes</h1>
+                    <div>
+                        <RecipeList />
+                        <section className={styles.see__more}>
+                            <a className={`${styles.btn__lg} ${styles.btn__info}`} href="#">See more</a>
+                        </section>
+                    </div>
                 </section>
             </Main>
         </>

@@ -10,7 +10,7 @@ const Recipe = () => {
                 alt="Carrot and Pear Sauce" />
             <p className={styles.recipe__name}>Carrot and Pear Sauce </p>
             <div className={styles.recipe__owner}>
-                <img src="assets/images/user.webp"
+                <img src="/assets/images/user.webp"
                     alt="alex" />
                 <p>Alex Alex</p>
             </div>

@@ -1,11 +1,11 @@
-import styles from './Edit.module.css';
+import styles from './ImageHeader.module.css';
 
-const Edit = () => {
+const ImageHeader = () => {
 
     return (
         <section className={styles.profile}>
             <article className={styles.profile__image}>
-                <img src="assets/images/alex.jpg"
+                <img src="/assets/images/user.webp"
                     alt="Alex" />
                 <p>Alex Alex </p>
                 <label>
@@ -17,4 +17,4 @@ const Edit = () => {
     );
 };
 
-export default Edit;
+export default ImageHeader;

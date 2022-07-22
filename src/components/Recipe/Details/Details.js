@@ -20,7 +20,7 @@ const Details = () => {
                         </div>
                     </header>
                     <section className={styles.recipe__details__generic__owner}>
-                        <img src="assets/images/alex.jpg"
+                        <img src="/assets/images/user.webp"
                             alt="Quick Moroccan Couscous" />
                         <p>Alex Alex</p>
                     </section>

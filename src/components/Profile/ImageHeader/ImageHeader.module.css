@@ -9,12 +9,12 @@
 }
 
 .profile>* {
-    color: var(--color-background);
+    color: #f2f2f2;
     z-index: 1;
 }
 
 .profile:before {
-    background-color: var(--color-header);
+    background-color: rgba(0, 0, 0, .35);
     content: "";
     height: 100%;
     left: 0;
@@ -47,9 +47,9 @@
 }
 
 .profile__image label i {
-    color: var(--color-primary);
+    color: #ed5a6b;
 }
 
 .profile__image label:hover {
-    color: var(--color-primary-hover);
+    color: #ea4356;
 }

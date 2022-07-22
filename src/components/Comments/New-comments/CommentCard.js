@@ -8,9 +8,9 @@ const CommentCard = () => {
                         <a href="#">
                             <img src="https://res.cloudinary.com/dmalpxwu4/image/upload/v1644681246/Recipes/recipes/pybsvkpkmary5gxmx7tp.jpg"
                                 alt="Arizona Cactus and Beans" />
-                            <p>
-                                <h3>Arizona Cactus and Beans</h3>
-                            </p>
+                            <h3 className={styles.profile__content__text}>
+                                Arizona Cactus and Beans
+                            </h3>
                         </a>
                     </header>
                     <section>

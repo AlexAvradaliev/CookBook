@@ -1,3 +1,17 @@
+.comment__card__wrapper {
+    display: flex;
+    align-items: flex-start;
+    margin-left: 0.5rem;
+    flex-direction: column;
+}
+
+.comment__card__image__wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 1rem;
+}
+
 .comment__recipe__image {
     height: 3rem;
     margin-right: .5rem;
@@ -8,33 +22,57 @@
     border-radius: 50%;
     height: 100%;
     width: 100%;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .comment__recipe__createdAt {
-    color: var(--color-details);
+    color: #4d4d4d;
     font-weight: 400;
     margin-left: .25rem;
 }
 
 .comment__recipe__name {
-display: flex;
-align-items: center;
+    display: flex;
+    align-items: flex-start;
+    margin-left: 0.5rem;
+    flex-direction: column;
+}
+
+.comment__card__button__wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+    align-items: flex-start;
+    align-content: center;
+    flex-wrap: nowrap;
+}
+
+.btn {
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: .9rem;
+    margin: .5rem .25rem;
+    padding: .4rem .75rem;
+    border-radius: 1rem;
+    transition: background .15s;
 }
 
 .btn__danger {
-    background-color: var(--color-danger);
-    color: var(--color-background);
+    background: linear-gradient(141deg, #fb7185, #be123c);
+    color: #ffffff;
 }
 
 .btn__danger:hover {
-    background-color: var(--color-danger-hover);
+    background: linear-gradient(220deg, #fb7185, #be123c);
 }
 
 .btn__info {
-    background-color: var(--color-info);
-    color: var(--color-background);
+    background: linear-gradient(141deg, #38bdf8, #0284c7);
+    color: #ffffff;
 }
 
 .btn__info:hover {
-    background-color: var(--color-info-hover);
+    background: linear-gradient(220deg, #38bdf8, #0284c7);
 }

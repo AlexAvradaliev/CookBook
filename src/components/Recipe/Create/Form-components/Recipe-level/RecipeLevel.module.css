@@ -1,0 +1,21 @@
+.level__label{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.level__label select{
+    padding: 0.3rem 3rem 0.3rem 0px;
+    font-size: 0.9rem;
+}
+
+.level__label select option{
+    font-size: 0.9rem;
+
+}
+
+.level__label p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 400;
+}

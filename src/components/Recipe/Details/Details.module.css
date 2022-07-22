@@ -7,7 +7,7 @@
 
 .recipe__details__generic {
     grid-gap: 2rem;
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid #ccc;
     display: grid;
     gap: 2rem;
     grid-template-columns: repeat(2, 1fr);
@@ -48,6 +48,7 @@
     height: 3rem;
     margin-right: .75rem;
     width: 3rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .recipe__details__generic__badge {
@@ -66,8 +67,8 @@
 }
 
 .badge__info {
-    background-color: var(--color-info);
-    color: var(--color-background);
+    background-color: #17a2b8;
+    color: #f2f2f2;
 }
 
 .recipe__details__generic__information {
@@ -86,12 +87,12 @@
 }
 
 .recipe__details__generic__information>div p {
-    color: var(--color-text-black);
+    color: #000;
     font-weight: 300;
 }
 
 .recipe__details__generic__information>div:not(:last-child) {
-    border-right: .1rem solid var(--color-text-black);
+    border-right: .1rem solid #000;
 }
 
 .recipe__details__generic__images {
@@ -111,9 +112,8 @@
 }
 
 .recipe__details__generic__images__select img {
-    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border: 2px solid var(--color-background);
+    border: 2px solid #f2f2f2;
     height: 5.2rem;
     margin: 0 0 0 .2rem;
     opacity: 1;
@@ -122,7 +122,7 @@
 }
 
 .recipe__details__generic__images__select img:hover {
-    border: 2px solid var(--color-primary);
+    border: 2px solid #d8b4fe;
     border-radius: 4px;
     cursor: pointer;
     opacity: .8;
@@ -146,6 +146,6 @@
 }
 
 .recipe__details__depth ul {
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid #ccc;
     padding-bottom: 1rem;
 }
