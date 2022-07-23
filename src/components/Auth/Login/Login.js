@@ -1,10 +1,19 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import showPassword from '../assets/images/show-password.svg';
 import hidePassword from '../assets/images/hide-password.svg';
 import ErrorMessage from '../../Common/Error-message/ErrorMessage';
+
 import styles from './Login.module.css';
 
 const Login = () => {
+
+    const [toggle, setToggle] = useState(true);
+
+    const onToggleClick = () => {
+        setToggle(state => !state)
+    }
 
     return (
         <main className={styles.main}>
@@ -23,10 +32,26 @@ const Login = () => {
 
                             <article className={styles.input__box}>
                                 <i class="fas fa-lock"></i>
-                                <input type="password" id="password" className={styles.form__input} placeholder=" " />
+                                <input
+                                    type={
+                                        toggle
+                                            ? 'password'
+                                            : 'text'
+                                    }
+                                    id="password"
+                                    className={styles.form__input}
+                                    placeholder=" "
+                                    autoFocus
+                                />
                                 <label htmlFor="password" className={styles.form__label}>Password</label>
-                                {/* <img src={showPassword} alt='show'/> */}
-                                <img src={hidePassword} alt='hide' />
+                                <img
+                                    src={toggle
+                                        ? showPassword
+                                        : hidePassword
+                                    }
+                                    alt='hide'
+                                    onClick={onToggleClick}
+                                />
                             </article>
 
                         </section>
