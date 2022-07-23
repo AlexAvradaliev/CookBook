@@ -1,10 +1,12 @@
+import { Link } from 'react-router-dom';
+
 import styles from './Recipe.module.css';
 
 const Recipe = () => {
 
     return (
         <article className={styles.recipe}>
-        <a href="#">
+        <Link to="#">
             <img className={styles.recipe__image}
                 src="https://res.cloudinary.com/dmalpxwu4/image/upload/v1644681073/Recipes/recipes/bj5n2rrfqximbb28zbtj.jpg"
                 alt="Carrot and Pear Sauce" />
@@ -14,7 +16,7 @@ const Recipe = () => {
                     alt="alex" />
                 <p>Alex Alex</p>
             </div>
-        </a>
+        </Link>
         <button className={`${styles.btn} ${styles.btn__info}`}>Update</button>
         <button className={`${styles.btn} ${styles.btn__danger}`}>Delete</button>
     </article>

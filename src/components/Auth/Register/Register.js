@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import showPassword from '../assets/images/show-password.svg';
 import hidePassword from '../assets/images/hide-password.svg';
 import ErrorMessage from '../../Common/Error-message/ErrorMessage';
@@ -25,14 +27,14 @@ const Register = () => {
                                 <label htmlFor="lastName" className={styles.form__label}>Last name</label>
                                 <ErrorMessage message='text'>error</ErrorMessage>
                             </article>
-                     
+
                             <article className={`${styles.input__box} ${styles.xl}`}>
                                 <i class="fas fa-envelope"></i>
                                 <input type="text" id="email" className={styles.form__input} placeholder=" " autoFocus autoComplete='off' />
                                 <label htmlFor="email" className={styles.form__label}>Email</label>
                                 <ErrorMessage message='text'>error</ErrorMessage>
                             </article>
-       
+
                             <article className={styles.input__box}>
                                 <i class="fas fa-lock"></i>
                                 <input type="password" id="password" className={styles.form__input} placeholder=" " autoFocus />
@@ -58,9 +60,9 @@ const Register = () => {
                         <p>
                             Already have an account?
                             {' '}
-                            <a href="/register">
+                            <Link to="/register">
                                 <strong className={styles.primary}>Login</strong>
-                            </a>
+                            </Link>
                         </p>
                     </fieldset>
 

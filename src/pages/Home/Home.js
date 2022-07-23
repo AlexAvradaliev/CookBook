@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import Cuisines from '../../components/Common/Cuisines/Cuisines';
 import Groups from '../../components/Common/Groups/Groups';
 import Main from '../../components/Common/Main/Main';
@@ -24,7 +26,7 @@ const Home = () => {
                     <div>
                         <RecipeList />
                         <section className={styles.see__more}>
-                            <a className={`${styles.btn__lg} ${styles.btn__info}`} href="#">See more</a>
+                            <Link className={`${styles.btn__lg} ${styles.btn__info}`} to="#">See more</Link>
                         </section>
                     </div>
                 </section>

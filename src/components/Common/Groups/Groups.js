@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom';
+
 import styles from './Groups.module.css';
 import groupsData from './GroupsData';
 
@@ -8,10 +10,10 @@ const Groups = () => {
       <div>
         {groupsData.map((group, i) => (
           <article className={styles.group} key={i} >
-            <a key={i} href="#">
+            <Link to="#" key={i}>
               <img src={group.img} alt={group.name} />
               <p>{group.name}</p>
-            </a>
+            </Link>
           </article>
         ))}
       </div>

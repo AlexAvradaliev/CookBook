@@ -13,7 +13,7 @@
     transition: all .2s;
 }
 
-.profile__aside p.active {
+.active>p {
     background: linear-gradient(210deg, #d8b4fe70, #c084fc12);;
     border-left: 2px solid #c084fc;
     color: #aa5bf8;

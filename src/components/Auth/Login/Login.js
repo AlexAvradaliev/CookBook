@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import showPassword from '../assets/images/show-password.svg';
 import hidePassword from '../assets/images/hide-password.svg';
 import ErrorMessage from '../../Common/Error-message/ErrorMessage';
@@ -35,9 +36,9 @@ const Login = () => {
                     </fieldset>
                     <fieldset className={styles.text}>
                         <p>New to Cook Book?
-                            <a href="/register">
+                            <Link to="/register">
                                 <strong className={styles.primary}>Create account</strong>
-                            </a>
+                            </Link>
                         </p>
                     </fieldset>
                 </form>
