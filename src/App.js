@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
+import { AuthProvider } from './components/Auth/context/AuthContext';
+
 import Home from './pages/Home/Home'
 import './App.css';
 import Footer from './components/Footer/Footer';
@@ -13,7 +15,7 @@ import RecipeDetails from './pages/Recipe/Recipe-details/RecipeDetails';
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
@@ -25,7 +27,7 @@ function App() {
         <Route path='/recipe/:recipeId' element={<RecipeDetails />} />
       </Routes>
       <Footer />
-    </>
+    </AuthProvider>
 
   );
 }
