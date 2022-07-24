@@ -1,13 +1,17 @@
 import { Link } from 'react-router-dom';
 
+import { useAuthContext } from '../../context/AuthContext';
+import Guest from './Buttons/Guest/Guest';
+import Logged from './Buttons/Logged/Logged';
+
 import styles from './Nav.module.css';
 
-const Nav = (props) => {
-    const styleUser = props.homeStyles
-        ? `${styles.user__logged__outer__home}`
-        : `${styles.user__logged__outer}`;
+const Nav = ({
+    homeStyles,
+}) => {
+    const { user } = useAuthContext();
 
-        const logo = props.homeStyles
+    const logo = homeStyles
         ? `${styles.logo__home}`
         : `${styles.logo}`;
 
@@ -18,25 +22,11 @@ const Nav = (props) => {
             </h3>
             <section>
                 <ul className={styles.user__logged}>
-                    <li>
-                        <Link className={styleUser} to="/profile/:userId">
-                            <img src="/assets/images/user.webp" alt="Alex" />
-                            <p>Alex Alex </p>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className={`${styles.btn} ${styles.btn__primary}`} id="login" to="/login">
-                            Login
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className={`${styles.btn} ${styles.btn__primary}`} id="register" to="/register">
-                            Regiser
-                        </Link>
-                    </li>
-                    <li>
-                        <button className={`${styles.btn__lg} ${styles.btn__primary}`}>Logout</button>
-                    </li>
+
+                    {user?._id
+                        ? <Logged homeStyles={homeStyles} />
+                        : <Guest />
+                    }
                 </ul>
             </section>
         </nav>
