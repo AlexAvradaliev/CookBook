@@ -4,19 +4,29 @@ const title = {
     firstName: 'First name',
     lastName: 'Last name',
     password: 'Password',
-    repassword: 'Confirm password'
 };
 
-export const inputText = (name, value, max, min) => {
+const minLength = {
+    firstName: 1,
+    lastName: 1,
+    password: 6,
+};
+
+const maxLength = {
+    firstName: 12,
+    lastName: 12,
+};
+
+export const inputText = (name, value) => {
     value = value.trim();
     if (value.length === 0) {
         return { [name]: ["Required"] };
 
-    } else if (value.length > max) {
-        return { [name]: [`The ${title[name]} can be maximum ${max} characters`] };
+    } else if (value.length > maxLength[name]) {
+        return { [name]: [`The ${title[name]} can be maximum ${maxLength[name]} characters`] };
 
-    } else if (value.length < min) {
-        return { [name]: [`The ${title[name]} can be minimum ${min} characters`] };
+    } else if (value.length < minLength[name]) {
+        return { [name]: [`The ${title[name]} can be minimum ${minLength[name]} characters`] };
     };
 };
 
@@ -29,4 +39,14 @@ export const inputEmail = (name, value) => {
     } else if (!email) {
         return { [name]: [`Email must be a be valid`] };
     };
+};
+
+export const confirmPassword = (name, value, password) => {
+    value = value.trim();
+    if (value.length === 0) {
+        return { [name]: ["Required"] };
+
+    } else if (value != password) {
+        return { [name]: [`The Passwords don\'t match`] };
+    }
 };
