@@ -1,3 +1,5 @@
+import { EditProfileProvider } from '../../../components/Profile/Edit/context/editProfileContext';
+
 import AsideMenu from '../../../components/Aside-menu/AsideMenu';
 import Main from '../../../components/Common/Main/Main';
 import Header from '../../../components/Headers/Header/Header';
@@ -17,7 +19,9 @@ function EditProfile() {
                 <ImageHeader />
                 <section className={styles.profile__grids}>
                     <AsideMenu />
-                    <Edit />
+                    <EditProfileProvider>
+                        <Edit />
+                    </EditProfileProvider>
                 </section>
             </Main>
         </>

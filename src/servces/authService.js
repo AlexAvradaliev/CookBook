@@ -50,7 +50,7 @@ export const register = async (userData) => {
 export const changeUserData = async (userData, token) => {
 
     const response = await fetch(`${BASE_URL}/api/auth/changeUserData`, {
-        method: 'PATCH',
+        method: 'put',
         headers: {
             'content-type': 'application/json',
             'x-authorization': token
@@ -58,7 +58,11 @@ export const changeUserData = async (userData, token) => {
         body: JSON.stringify(userData)
     });
     const jsonRes = await response.json();
-    return jsonRes;
+    if (response.ok) {
+        return jsonRes;
+    } else {
+        throw jsonRes;
+    };
 };
 
 export const changePassword = async (data, token) => {
@@ -72,5 +76,9 @@ export const changePassword = async (data, token) => {
         body: JSON.stringify(data)
     });
     const jsonRes = await response.json();
-    return jsonRes;
+    if (response.ok) {
+        return jsonRes;
+    } else {
+        throw jsonRes;
+    };
 };

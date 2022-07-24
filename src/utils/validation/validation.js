@@ -4,12 +4,16 @@ const title = {
     firstName: 'First name',
     lastName: 'Last name',
     password: 'Password',
+    currentPassword: 'Current Password',
+    newPassword: 'New Password',
 };
 
 const minLength = {
     firstName: 1,
     lastName: 1,
     password: 6,
+    currentPassword: 6,
+    newPassword: 6,
 };
 
 const maxLength = {
