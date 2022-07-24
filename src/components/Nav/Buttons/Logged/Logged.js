@@ -7,7 +7,7 @@ import styles from './Logged.module.css';
 
 const Logged = (props) => {
     const { user, logout } = useAuthContext();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const styleUser = props.homeStyles
         ? `${styles.user__logged__outer__home}`
@@ -17,16 +17,16 @@ const Logged = (props) => {
         authService.logout(user.accessToken)
             .then(() => {
                 logout();
-                navigate('/')
-            })
-    }
+                navigate('/');
+            });
+    };
 
     return (
         <>
             <li>
-                <Link className={styleUser} to="/profile/:userId">
-                    <img src="/assets/images/user.webp" alt="Alex" />
-                    <p>Alex Alex </p>
+                <Link className={styleUser} to={`/profile/${user?._id}`}>
+                    <img src={user?.photo} alt={user?.firstName} />
+                    <p>{user?.firstName} {" "} {user?.lastName}</p>
                 </Link>
             </li>
             <li>
