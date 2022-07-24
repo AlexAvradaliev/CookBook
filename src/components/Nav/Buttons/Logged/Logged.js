@@ -13,6 +13,14 @@ const Logged = (props) => {
         ? `${styles.user__logged__outer__home}`
         : `${styles.user__logged__outer}`;
 
+    const onClickLogout = () => {
+        authService.logout(user.accessToken)
+            .then(() => {
+                logout();
+                navigate('/')
+            })
+    }
+
     return (
         <>
             <li>
@@ -22,7 +30,12 @@ const Logged = (props) => {
                 </Link>
             </li>
             <li>
-                <button className={`${styles.btn__lg} ${styles.btn__primary}`}>Logout</button>
+                <button
+                    className={`${styles.btn__lg} ${styles.btn__primary}`}
+                    onClick={onClickLogout}
+                >
+                    Logout
+                </button>
             </li>
         </>
     );
