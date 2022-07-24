@@ -10,7 +10,11 @@ export const login = async(userData) => {
         body: JSON.stringify( userData )
     });
     const jsonRes = await response.json();
-    return jsonRes;
+    if(response.ok){
+        return jsonRes;
+    } else{
+        throw jsonRes;
+    };  
 };
 
 export const logout = async(token) => {
