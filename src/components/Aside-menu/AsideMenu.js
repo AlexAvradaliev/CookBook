@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+import {useAuthContext} from '../../context/AuthContext'
+
 import styles from './AsideMenu.module.css';
 
 const AsideMenu = () => {
     const location = useLocation();
+
+    const { user } = useAuthContext();
 
     const [active, setActive] = useState('');
     const includes = (name) => location.pathname.includes(name)
@@ -31,16 +35,16 @@ const AsideMenu = () => {
                 <p className={styles.profile__aside__text}>Activity</p>
 
                 <li>
-                    <Link to="/profile/userId" className={active === "recipes" ? `${styles.active}` : ''}><p>Recipes</p></Link>
+                    <Link to={`/profile/${user?._id}`} className={active === "recipes" ? `${styles.active}` : ''}><p>Recipes</p></Link>
                 </li>
                 <li>
-                    <Link to="/profile/:userId/comments" className={active === "comments" ? `${styles.active}` : ''}><p>Comments</p></Link>
+                    <Link to={`/profile/${user?._id}/comments`} className={active === "comments" ? `${styles.active}` : ''}><p>Comments</p></Link>
                 </li>
                 <li>
-                    <Link to="/profile/:userId/create-recipe" className={active === "createRecipe" ? `${styles.active}` : ''}><p>Create Recipe</p></Link>
+                    <Link to={`/profile/${user?._id}/create-recipe`}  className={active === "createRecipe" ? `${styles.active}` : ''}><p>Create Recipe</p></Link>
                 </li>
                 <li>
-                    <Link to="/profile/:userId/edit" className={active === "editProfile" ? `${styles.active}` : ''}><p>Edit Profile</p></Link>
+                    <Link to={`/profile/${user?._id}/edit`} className={active === "editProfile" ? `${styles.active}` : ''}><p>Edit Profile</p></Link>
                 </li>
             </ul>
         </aside>
