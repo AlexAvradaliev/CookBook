@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-import { KEY_LOCALSTORAGE } from '../../../constants/constants';
+import { KEY_LOCALSTORAGE } from '../constants/constants';
 
 
 export const AuthContext = createContext();
