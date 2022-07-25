@@ -1,10 +1,19 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import styles from './Recipe.module.css';
 
 const Recipe = ({
     recipeInfo,
 }) => {
+
+    const location = useLocation();
+    const [showButtons, setShowButtons] = useState(false);
+    useEffect(() => {
+        if (location.pathname.includes('profile')) {
+            setShowButtons(true);
+        };
+    }, [location]);
 
     return (
         <article className={styles.recipe}>
@@ -26,8 +35,14 @@ const Recipe = ({
                     </p>
                 </div>
             </Link>
-            <button className={`${styles.btn} ${styles.btn__info}`}>Update</button>
-            <button className={`${styles.btn} ${styles.btn__danger}`}>Delete</button>
+            
+            {showButtons && (
+                <>
+                    <button className={`${styles.btn} ${styles.btn__info}`}>Update</button>
+                    <button className={`${styles.btn} ${styles.btn__danger}`}>Delete</button>
+                </>
+            )}
+
         </article>
     );
 };
