@@ -1,13 +1,33 @@
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
+import * as recipeService from '../../../servces/recipeService';
+
 import styles from './Details.module.css';
 
 const Details = () => {
 
+    const { recipeId } = useParams();
+
+    const [recipe, setRecipe] = useState({});
+    const [activeImage, setActiveImage] = useState(0);
+
+    useEffect(() => {
+        recipeService.getOneById(recipeId)
+            .then(result => {
+                setRecipe(result);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, [recipeId]);
+    
     return (
         <>
             <section className={styles.recipe__details__generic}>
                 <article>
                     <header>
-                        <h1 className={styles.recipe__details__generic__text}>Quick Moroccan Couscous</h1>
+                        <h1 className={styles.recipe__details__generic__text}>{recipe?.name}</h1>
                         <div className={styles.recipe__details__generic__rating}>
                             <span>
                                 <i className="fas fa-star"></i>
@@ -20,71 +40,88 @@ const Details = () => {
                         </div>
                     </header>
                     <section className={styles.recipe__details__generic__owner}>
-                        <img src="/assets/images/user.webp"
-                            alt="Quick Moroccan Couscous" />
-                        <p>Alex Alex</p>
+                        <img
+                            src={recipe._ownerId?.photo}
+                            alt={recipe._ownerId?.firstName}
+                        />
+                        <p>{recipe._ownerId?.firstName} {' '} {recipe._ownerId?.lastName}</p>
                     </section>
                     <section className={styles.recipe__details__generic__badge}>
-                        <figure className={`${styles.badge} ${styles.badge__info}`}><p>Moroccan</p></figure>
-                        <figure className={`${styles.badge} ${styles.badge__info}`}><p>grains</p></figure>
-                        <figure className={`${styles.badge} ${styles.badge__info}`}><p>vegetables</p></figure>
-                        <figure className={`${styles.badge} ${styles.badge__info}`}><p>protein foods</p></figure>
+
+                        <figure className={`${styles.badge} ${styles.badge__info}`}>
+                            <p>{recipe?.cuisine}</p>
+                        </figure>
+
+                        {recipe.groups?.map((gr) => (
+                            <figure key={gr} className={`${styles.badge} ${styles.badge__info}`}>
+                                <p>{gr}</p>
+                            </figure>
+                        ))}
+
                     </section>
                     <section className={styles.recipe__details__generic__information}>
                         <div>
-                            <h2>8</h2>
+                            <h2>{recipe?.ingredients && recipe?.ingredients.length}</h2> 
                             <p>Ingredients</p>
                         </div>
                         <div>
-                            <h2>10</h2>
+                            <h2>{recipe?.prepTime}</h2>
                             <p>Minutes to prepare</p>
                         </div>
                         <div>
-                            <h2>35</h2>
+                            <h2>{recipe?.cookTime}</h2>
                             <p>Minutes to cook</p>
                         </div>
                     </section>
                 </article>
                 <article className={styles.recipe__details__generic__images}>
                     <div className={styles.recipe__details__generic__images__active}>
-                        <img src="https://res.cloudinary.com/dmalpxwu4/image/upload/v1644680344/Recipes/recipes/jhriziazrgr4jromndej.bmp"
-                            alt="Quick Moroccan Couscous" />
+                        <img 
+                        src={recipe.images && recipe.images[activeImage]}
+                        alt={recipe.name} 
+                            />
                     </div>
                     <div className={styles.recipe__details__generic__images__select}>
-                        <img alt=""
-                            src="https://res.cloudinary.com/dmalpxwu4/image/upload/v1644680344/Recipes/recipes/jhriziazrgr4jromndej.bmp" />
-                        <img alt=""
-                            src="https://res.cloudinary.com/dmalpxwu4/image/upload/v1644680326/Recipes/recipes/idmzscdurksyg5gvywgk.jpg" />
-                    </div>
+
+                    {recipe.images &&
+                    recipe.images.map((image, index) => (
+                      <img
+                        alt={recipe?.name}
+                        key={index}
+                        onClick={() => setActiveImage(index)}
+                        src={image}
+                      />
+                    ))}
+
+                     </div>
                 </article>
             </section>
             <section className={styles.recipe__details__depth}>
                 <h2 className={styles.recipe__details__depth__text}>Description</h2>
-                <p>Tried to replicate couscous portion from the Moroccan chicken from Cheesecake Factory®.</p>
+                <p>{recipe?.description}</p>
                 <h2 className={styles.recipe__details__depth__text}>Ingredients</h2>
+
                 <ul>
-                    <li><i className="far fa-dot-circle"></i> 1 tablespoon olive oil</li>
-                    <li><i className="far fa-dot-circle"></i> 2 cups water</li>
-                    <li><i className="far fa-dot-circle"></i> ½ cup chopped yellow onion</li>
-                    <li><i className="far fa-dot-circle"></i> ½ cup chopped oil-packed sun-dried tomatoes</li>
-                    <li><i className="far fa-dot-circle"></i> ½ cup golden raisins</li>
-                    <li><i className="far fa-dot-circle"></i> ¼ teaspoon ground black pepper</li>
-                    <li><i className="far fa-dot-circle"></i> 3 tablespoons lemon juice</li>
-                    <li><i className="far fa-dot-circle"></i> 1 tablespoon butter, softened</li>
+                {recipe.ingredients &&
+                  recipe.ingredients.map((ingredient) => (
+                    <li key={ingredient}>
+                      <i className='far fa-dot-circle'></i> 
+                      {ingredient}
+                    </li>
+                  ))}
                 </ul>
+
                 <h2 className={styles.recipe__details__depth__text}>Steps</h2>
+
                 <ul>
-                    <li><i className="fas fa-utensils"></i> Bring the water to a boil in a saucepan; stir couscous into the
-                        boiling water and cook until couscous absorbs all the water and is cooked through, 10 to 15
-                        minutes.</li>
-                    <li><i className="fas fa-utensils"></i> Heat olive oil in a skillet over medium-low heat; cook and stir
-                        onion, shallot, and garlic in the hot oil until onion is lightly browned, 15 to 20 minutes. Stir
-                        raisins, sun-dried tomatoes, and almonds into onion mixture; cook and stir until heated through,
-                        about 5 minutes.</li>
-                    <li><i className="fas fa-utensils"></i> Stir couscous into onion-raisin mixture; cook and stir until
-                        heated through, about 5 minutes. Season couscous mixture with salt and pepper; add lemon juice.
-                        Remove skillet from heat and stir butter into couscous mixture.</li>
-                </ul>
+                {recipe.steps &&
+                  recipe.steps.map((step) => (
+                    <li key={step}>
+                      <i className='fas fa-utensils'></i> {step}
+                    </li>
+                  ))}
+                  </ul>
+
             </section>
         </>
     );

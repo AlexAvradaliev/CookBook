@@ -15,3 +15,15 @@ export const getAll = async (term = '', page = '', category) => {
     };
 
 };
+
+export const getOneById = async (id) => {
+    try {
+        let result = await fetch(`${BASE_URL}/api/recipe/${id}`);
+    let jsonResult = await result.json();
+    
+    return jsonResult;
+    } catch (err) {
+        console.log(err);
+    };
+    
+};
