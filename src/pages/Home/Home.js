@@ -1,4 +1,7 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+import * as recipeService from '../../servces/recipeService';
 
 import Cuisines from '../../components/Common/Cuisines/Cuisines';
 import Groups from '../../components/Common/Groups/Groups';
@@ -9,8 +12,20 @@ import Nav from '../../components/Nav/Nav';
 import RecipeList from '../../components/Recipe/Recipe-list/RecipeList';
 import styles from './Home.module.css';
 
+const maxRecipes = 8;
 
 const Home = () => {
+
+    const [recipes, setRecipes] = useState([]);
+
+    useEffect(() => {
+
+        recipeService.getAll('', 1)
+            .then(res => setRecipes(res.recipes))
+            .catch(err => {
+                console.log(err);
+            });
+    }, []);
 
     return (
         <>
@@ -24,11 +39,11 @@ const Home = () => {
                 <section className={styles.recipes} id="recipes">
                     <h1 className={styles.recipes__text}>Latest recipes</h1>
                     <div>
-                        <RecipeList />
-                        <section className={styles.see__more}>
-                            <Link className={`${styles.btn__lg} ${styles.btn__info}`} to="#">See more</Link>
-                        </section>
+                        <RecipeList recipes={recipes} maxRecipes={maxRecipes} />
                     </div>
+                </section>
+                <section className={styles.see__more}>
+                    <Link className={`${styles.btn__lg} ${styles.btn__info}`} to="#">See more</Link>
                 </section>
             </Main>
         </>

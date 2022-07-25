@@ -1,25 +1,16 @@
 import Recipe from '../Recipe-card/Recipe';
 
-const RecipeList = () => {
+const RecipeList = ({
+    recipes,
+    maxRecipes
+}) => {
 
     return (
         <>
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
+           {maxRecipes
+           ? recipes.slice(0,maxRecipes).map(x => <Recipe key={x._id} recipeInfo={x} />)
+           : recipes.map(x => <Recipe key={x._id} recipeInfo={x} />)
+           }
         </>
     );
 };
