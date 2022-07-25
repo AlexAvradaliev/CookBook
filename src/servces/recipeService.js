@@ -25,5 +25,20 @@ export const getOneById = async (id) => {
     } catch (err) {
         console.log(err);
     };
-    
+};
+
+export const getAllOwner = async (token) => {
+
+    let response = await fetch(`${BASE_URL}/api/recipe/owner`,{
+        headers: {
+            'content-type': 'application/json',
+            'x-authorization': token
+        },
+    });
+
+    let recipes = await response.json();
+   
+    let result = Object.values(recipes);
+
+    return result;
 };
