@@ -1,5 +1,18 @@
 import { BASE_URL } from './config';
 
+export const getAllByRecipe = async (recipeId, token) => {
+
+    let response = await fetch(`${BASE_URL}/api/comment/recipe/${recipeId}`, {
+        headers: {
+            'x-authorization': token
+        }
+    });
+
+    let comments = await response.json();
+    return comments;
+    
+};
+
 export const create = async (
     text,
     recipeId,

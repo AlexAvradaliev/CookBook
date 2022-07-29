@@ -28,7 +28,6 @@ const CreateComment = () => {
                 console.log(err);
             });
     };
-
     return (
         <section className={styles.create__comment}>
             <form method="POST" onSubmit={onSubmitHandler}>

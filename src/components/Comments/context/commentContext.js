@@ -12,12 +12,16 @@ const changeText = (data) => {
 };
 
 const changeComments = (data) => {
-    setComments(state => ({data, ...state}));
+    setComments(state => ([data, ...state]));
+};
+
+const addComments = (data) => {
+    setComments(data);
 };
 
 
     return (
-        <CommentContext.Provider value={{text, changeText, changeComments}}>
+        <CommentContext.Provider value={{text, comments, changeText, changeComments, addComments}}>
             {children}
         </CommentContext.Provider>
     );
