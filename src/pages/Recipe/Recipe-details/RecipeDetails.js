@@ -2,6 +2,7 @@ import { CommentProvider } from '../../../components/Comments/context/commentCon
 
 import CreateComment from '../../../components/Comments/Create-comment/CreateComment';
 import RecipeCommentCard from '../../../components/Comments/Recipe-comments/RecipeCommentCard';
+import Feedback from '../../../components/Common/Feedback/Feedback';
 import Main from '../../../components/Common/Main/Main';
 import Header from '../../../components/Headers/Header/Header';
 import Nav from '../../../components/Nav/Nav';
@@ -17,7 +18,7 @@ function RecipeDetails() {
             </Header>
             <Main>
                 <Details />
-
+                <Feedback />
                 <CommentProvider>
                     <CreateComment />
                     <RecipeCommentCard />
