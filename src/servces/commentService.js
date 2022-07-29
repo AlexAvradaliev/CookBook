@@ -34,3 +34,16 @@ export const create = async (
         throw jsonRes.message;
     };  
 };
+
+export const getAllOwner = async (token) => {
+
+    let response = await fetch(`${BASE_URL}/api/comment`,{
+        headers:{
+            'x-authorization': token,
+        }
+    });
+
+    let comments = await response.json();
+    let result = Object.values(comments);
+    return result;
+};

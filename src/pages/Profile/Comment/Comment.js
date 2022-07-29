@@ -1,3 +1,8 @@
+import { useState, useEffect } from 'react';
+
+import { useAuthContext } from '../../../context/AuthContext';
+import * as commentService from '../../../servces/commentService';
+
 import AsideMenu from '../../../components/Aside-menu/AsideMenu';
 import CommentCard from '../../../components/Comments/New-comments/CommentCard';
 import Main from '../../../components/Common/Main/Main';
@@ -8,6 +13,17 @@ import styles from './Comment.module.css';
 
 
 function Comment() {
+
+    const {user} = useAuthContext(); 
+
+    const [comments, setComments] = useState([]);
+    useEffect(() => {
+        commentService.getAllOwner(user.accessToken)
+        .then(result =>{
+            setComments(result)
+        });
+    }, [user]);
+
     return (
         <>
             <Header>
@@ -24,10 +40,9 @@ function Comment() {
                         <p className={styles.profile__content__text}>comments</p>
                         <div className={styles.profile__content__container}>
 
-                            <CommentCard />
-                            <CommentCard />
-                            <CommentCard />
-                            <CommentCard />
+                        {comments.map((comment) => (
+                      <CommentCard comment={comment} key={comment._id} />
+                    ))}
 
                         </div>
                     </section>
