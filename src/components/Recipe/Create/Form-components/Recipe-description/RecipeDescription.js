@@ -6,6 +6,7 @@ import styles from './RecipeDescription.module.css';
 const RecipeDescription = () => {
 
     const {
+        errors,
         recipe,
         changeRecipe,
         checkData,
@@ -34,7 +35,9 @@ const RecipeDescription = () => {
                 value={recipe.description}
             />
             <label htmlFor="description" className={styles.description__wrapper__label}>Description</label>
-            <ErrorMessage message='text'>error</ErrorMessage>
+            {errors.description &&
+            <ErrorMessage >{errors.description[0]}</ErrorMessage>
+        }
         </article>
     );
 };

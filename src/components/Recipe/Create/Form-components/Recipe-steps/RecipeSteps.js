@@ -11,6 +11,7 @@ const RecipeSteps = () => {
     const [step, setStep] = useState('');
 
     const {
+        errors,
         recipe,
         changeRecipe,
         checkData,
@@ -18,10 +19,6 @@ const RecipeSteps = () => {
 
     const changeStep = (e) => {
         setStep(e.target.value);
-    };
-
-    const verifyField = (e) => {
-        checkData(e.target.name, e.target.value);
     };
 
     const addSteps = (e) => {
@@ -36,14 +33,11 @@ const RecipeSteps = () => {
         changeRecipe('steps', newSteps);
     };
 
-
     return (
         <article>
             <form onSubmit={addSteps}>
 
             <div className={styles.steps__wrapper}>
-
-
                 <input
                     type="text"
                     name="steps"
@@ -56,7 +50,9 @@ const RecipeSteps = () => {
                 <i className="fas fa-plus" onClick={addSteps}></i>
                 <label htmlFor="steps" className={styles.steps__wrapper__label}>Steps</label>
             </div>
-            <ErrorMessage message='text'>error</ErrorMessage>
+            {errors.steps &&
+            <ErrorMessage >{errors.steps[0]}</ErrorMessage>
+        }
 
             </form>
             {recipe.steps.length > 0 &&

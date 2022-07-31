@@ -10,6 +10,7 @@ const RecipeIngredients = () => {
     const [ingredient, setIngredient] = useState('');
 
     const {
+        errors,
         recipe,
         changeRecipe,
         checkData,
@@ -17,10 +18,6 @@ const RecipeIngredients = () => {
 
     const changeIngredient = (e) => {
         setIngredient(e.target.value);
-    };
-
-    const verifyField = (e) => {
-        checkData(e.target.name, e.target.value);
     };
 
     const addIngredients = (e) => {
@@ -52,7 +49,9 @@ const RecipeIngredients = () => {
                     <label htmlFor="ingredients" className={styles.ingredients__wrapper__label}>Ingredients</label>
                     <i className="fas fa-plus" onClick={addIngredients}></i>
                 </div>
-                <ErrorMessage message='text'>error</ErrorMessage>
+                {errors.ingredients &&
+            <ErrorMessage >{errors.ingredients[0]}</ErrorMessage>
+        }
 
             </form>
             {recipe.ingredients.length > 0 &&

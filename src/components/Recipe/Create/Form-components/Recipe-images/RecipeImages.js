@@ -11,21 +11,26 @@ import styles from './RecipeImages.module.css';
 const RecipeImages = () => {
 
     const {
+        errors,
         previewImage,
         recipe,
         changeRecipe,
         checkData,
         changePreviewImage,
         removePreviewImage,
+        checkMimeType,
     } = useRecipeContext();
 
     
     const addImage = (e) => {
         const newImage = e.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(newImage);
-        reader.onloadend = () => {
-            changePreviewImage({url: reader.result, mimeType: newImage.type});
+        if(!checkMimeType('images', newImage.type)){
+            const reader = new FileReader();
+            reader.readAsDataURL(newImage);
+            reader.onloadend = () => {
+                
+                changePreviewImage({url: reader.result, mimeType: newImage.type});
+            };
         };
     };
 
@@ -44,7 +49,9 @@ const RecipeImages = () => {
                 Import
             </label>
 
-            <ErrorMessage message='level'>error</ErrorMessage>
+            {errors.images &&
+            <ErrorMessage >{errors.images[0]}</ErrorMessage>
+        }
                 
             <section className={styles.create__images}>
                     {previewImage.map((img, i) =>

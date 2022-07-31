@@ -6,6 +6,7 @@ import styles from './RecipeCookTime.module.css';
 const RecipeCookTime = () => {
 
     const {
+        errors,
         recipe,
         changeRecipe,
         checkData,
@@ -33,7 +34,9 @@ const RecipeCookTime = () => {
                value={recipe.cookTime}
                 />
             <label htmlFor="cookTime" className={styles.cook__time__wrapper__label}>Cooking time</label>
-            <ErrorMessage message='text'>error</ErrorMessage>
+            {errors.cookTime &&
+            <ErrorMessage >{errors.cookTime[0]}</ErrorMessage>
+        }
         </article>
     );
 };

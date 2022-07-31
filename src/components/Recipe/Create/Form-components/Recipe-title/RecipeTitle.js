@@ -6,6 +6,7 @@ import styles from './RecipeTitle.module.css';
 const RecipeName = () => {
 
     const {
+        errors,
         recipe,
         changeRecipe,
         checkData,
@@ -32,7 +33,9 @@ const RecipeName = () => {
                 value={recipe.title}
             />
             <label htmlFor="title" className={styles.title__wrapper__label}>Title</label>
-            <ErrorMessage message='text'>error</ErrorMessage>
+            {errors.title &&
+            <ErrorMessage >{errors.title[0]}</ErrorMessage>
+        }
         </article>
     );
 };

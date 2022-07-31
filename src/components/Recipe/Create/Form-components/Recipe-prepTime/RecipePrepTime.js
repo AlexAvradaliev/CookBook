@@ -5,6 +5,7 @@ import styles from './RecipePrepTime.module.css';
 const RecipePrepTime = () => {
 
     const {
+        errors,
         recipe,
         changeRecipe,
         checkData,
@@ -31,7 +32,9 @@ const RecipePrepTime = () => {
                 value={recipe.prepTime}
                 />
             <label htmlFor="prepTime" className={styles.prep__time__wrapper__label}>Preparation time</label>
-            <ErrorMessage message='text'>error</ErrorMessage>
+            {errors.prepTime &&
+            <ErrorMessage >{errors.prepTime[0]}</ErrorMessage>
+        }
         </article>
     );
 };

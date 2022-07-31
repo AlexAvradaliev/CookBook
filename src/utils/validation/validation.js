@@ -1,11 +1,24 @@
 import isEmail from 'validator/lib/isEmail';
 
+const mimeType = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'];
+const isValid = (type) => !!mimeType.find(x => x == type);
+
 const title = {
     firstName: 'First name',
     lastName: 'Last name',
     password: 'Password',
     currentPassword: 'Current Password',
     newPassword: 'New Password',
+    title: 'Title',
+    description: 'Description',
+    level: 'Level',
+    cuisine: 'Cuisine',
+    images: 'Images',
+    cookTime: 'Cooking time',
+    prepTime: 'Preparation time',
+    groups: 'Groups',
+    steps: 'Steps',
+    ingredients: 'Ingredients'
 };
 
 const minLength = {
@@ -14,14 +27,22 @@ const minLength = {
     password: 6,
     currentPassword: 6,
     newPassword: 6,
+    cookTime: 1,
+    prepTime: 1,
+    groups: 1,
+    steps: 1,
+    ingredients: 1
 };
 
 const maxLength = {
     firstName: 12,
     lastName: 12,
+    description: 500,
+    images: 6,
 };
 
 export const inputText = (name, value) => {
+    console.log(name)
     value = value.trim();
     if (value.length === 0) {
         return { [name]: ["Required"] };
@@ -53,4 +74,55 @@ export const confirmPassword = (name, value, password) => {
     } else if (value != password) {
         return { [name]: [`The Passwords don\'t match`] };
     }
+};
+
+export const inputNumber = (name, value) => {
+    value = value.trim();
+    if (value.length === 0) {
+        return { [name]: ["Required"] };
+
+    } else if (isNaN(value)) {
+        return { [name]: [`Your estimate of ${title[name]} should be a number`] };
+
+    } else if (value.length > maxLength[name]) {
+        return { [name]: [`The ${title[name]} can be maximum ${maxLength[name]} minutes`] };
+
+    } else if (value.length < minLength[name]) {
+        return { [name]: [`The ${title[name]} can be minimum ${minLength[name]} minutes`] };
+    };
+};
+
+export const arrayField = (name, value) => {
+    let newArr = value.map(x => {
+        return x.trim();
+    });
+
+    if (newArr.length === 0) {
+        return { [name]: ["Required"] };
+    } else if (newArr.length > maxLength[title]) {
+        return { [name]: [`The ${title[name]} can be maximum ${maxLength[name]} options`] };
+    } else if (newArr.length < minLength[name]) {
+        return { [name]: [`The ${title[name]} can be minimum ${minLength[name]} options`] };
+    };
+};
+
+export const imagesField = (name, valueImages, valuePreview, type) => {
+    let newImages = valueImages.map(x => {
+        return x.trim();
+    }).filter(x => x != '');
+    let newPreview = valuePreview.map(x => {
+        return x.trim();
+    }).filter(x => x != '');
+
+    if (newImages.length == 0 && newPreview.length == 0) {
+        return { [name]: ["Required"] };
+    } else if (Number(newImages.length) + Number(newPreview.length) > maxLength[name]) {
+        return { [name]: [`The ${title[name]} can be maximum ${maxLength[name]} images`] };
+    };
+};
+
+export const imagesType = (name, type) => {
+  if (!isValid(type)) {
+        return { [name]: ["File does not support"] };
+    };
 };

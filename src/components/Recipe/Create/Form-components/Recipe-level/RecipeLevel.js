@@ -6,6 +6,7 @@ import styles from './RecipeLevel.module.css';
 const RecipeLevel = () => {
 
     const {
+        errors,
         recipe,
         changeRecipe,
         checkData,
@@ -34,7 +35,9 @@ const RecipeLevel = () => {
                 <option value="Advanced">Advanced</option>
             </select>
         </label>
-        <ErrorMessage message='level'>error</ErrorMessage>
+        {errors.level &&
+            <ErrorMessage >{errors.level[0]}</ErrorMessage>
+        }
         </article>
     );
 };

@@ -6,6 +6,7 @@ import styles from './RecipeCuisine.module.css';
 const RecipeCuisine = () => {
 
     const {
+        errors,
         recipe,
         changeRecipe,
         checkData,
@@ -42,7 +43,9 @@ const RecipeCuisine = () => {
                 <option value="Italian">Italian</option>
             </select>
         </label>
-            <ErrorMessage message='text'>error</ErrorMessage>
+        {errors.cuisine &&
+            <ErrorMessage >{errors.cuisine[0]}</ErrorMessage>
+        }
             </article>
     );
 };
