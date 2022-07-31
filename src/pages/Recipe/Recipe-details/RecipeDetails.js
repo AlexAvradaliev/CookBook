@@ -1,5 +1,8 @@
-import { CommentProvider } from '../../../components/Comments/context/commentContext';
+import {Link} from 'react-router-dom';
 
+import { useAuthContext } from '../../../context/AuthContext';
+
+import { CommentProvider } from '../../../components/Comments/context/commentContext';
 import CreateComment from '../../../components/Comments/Create-comment/CreateComment';
 import RecipeCommentCard from '../../../components/Comments/Recipe-comments/RecipeCommentCard';
 import Feedback from '../../../components/Common/Feedback/Feedback';
@@ -11,6 +14,25 @@ import Details from '../../../components/Recipe/Details/Details';
 
 
 function RecipeDetails() {
+const {user} = useAuthContext();
+
+    const notLogged = ( 
+    <p className='lead'>
+    To add a comment please{" "}
+    <Link
+      to={'/signin'}
+    >
+      <strong className='primary'>Login</strong>
+    </Link>{" "}
+    or{" "}
+    <Link
+      to={'/signup'}
+    >
+      <strong className='primary'>Sign up</strong>
+    </Link>
+  </p>
+  )
+
     return (
         <>
             <Header>
@@ -18,9 +40,14 @@ function RecipeDetails() {
             </Header>
             <Main>
                 <Details />
+                {user.accessToken &&
                 <Feedback />
+                }
                 <CommentProvider>
-                    <CreateComment />
+                    {user.accessToken
+                    ? <CreateComment />
+                    : notLogged
+                    }
                     <RecipeCommentCard />
                 </CommentProvider>
                 

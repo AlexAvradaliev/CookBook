@@ -14,7 +14,7 @@ const RecipeCommentCard = () => {
     const { recipeId } = useParams();
 
     useEffect(() => {
-        commentService.getAllByRecipe(recipeId, user.accessToken)
+        commentService.getAllByRecipe(recipeId, user?.accessToken)
             .then(res => {
                 addComments(res);
             })
