@@ -1,3 +1,5 @@
+import { RecipeProvider } from '../../../components/Recipe/Create/context/recipeFormContext';
+
 import AsideMenu from '../../../components/Aside-menu/AsideMenu';
 import Main from '../../../components/Common/Main/Main';
 import Header from '../../../components/Headers/Header/Header';
@@ -17,7 +19,9 @@ function Create() {
                 <ImageHeader />
                 <section className={styles.profile__grids}>
                     <AsideMenu />
-                    <CreateRecipe />
+                    <RecipeProvider>
+                        <CreateRecipe />
+                    </RecipeProvider>
                 </section>
             </Main>
         </>

@@ -1,3 +1,8 @@
+import { useRecipeContext } from './context/recipeFormContext';
+import { useAuthContext } from '../../../context/AuthContext';
+
+import * as recipeService from '../../../servces/recipeService'
+
 import RecipeCookTime from './Form-components/Recipe-cookTime/RecipeCookTime';
 import RecipeCuisine from './Form-components/Recipe-cuisine/RecipeCuisine';
 import RecipeDescription from './Form-components/Recipe-description/RecipeDescription';
@@ -5,51 +10,76 @@ import RecipeGroups from './Form-components/Recipe-groups/RecipeGroups';
 import RecipeImages from './Form-components/Recipe-images/RecipeImages';
 import RecipeIngredients from './Form-components/Recipe-ingredients/RecipeIngredients';
 import RecipeLevel from './Form-components/Recipe-level/RecipeLevel';
-import RecipeTitile from './Form-components/Recipe-title/RecipeTitile';
+import RecipeTitle from './Form-components/Recipe-title/RecipeTitle';
 import RecipePrepTime from './Form-components/Recipe-prepTime/RecipePrepTime';
 import RecipeSteps from './Form-components/Recipe-steps/RecipeSteps';
 import styles from './CreateRecipe.module.css';
 
 const CreateRecipe = () => {
 
+    const {
+        previewImage,
+        recipe,
+    } = useRecipeContext();
+
+    const { user } = useAuthContext();
+
+    const submitData = () => {
+        let data = recipe;
+
+        if (previewImage.length > 0) {
+            data = { ...recipe, previewImage }
+        };
+
+        recipeService.create(data, user.accessToken)
+            .then(() => {
+                // navigate
+            })
+            .catch((err) => {
+                console.log(err)
+            });
+    };
+
     return (
         <section className={styles.profile__content}>
             <p className={styles.profile__content__text}>Create recipe</p>
             <div className={styles.create}>
-                <form>
-                    <fieldset>
+                <section>
+                    <form>
+                        <fieldset>
 
-                        <RecipeTitile />
-                        <RecipeDescription />
+                            <RecipeTitle />
+                            <RecipeDescription />
 
-                    </fieldset>
+                        </fieldset>
 
-                    <fieldset className={styles.create__selects}>
+                        <fieldset className={styles.create__selects}>
 
-                        <RecipeLevel />
-                        <RecipeCuisine />
+                            <RecipeLevel />
+                            <RecipeCuisine />
 
-                    </fieldset>
+                        </fieldset>
 
-                    <fieldset className={styles.create__time}>
+                        <fieldset className={styles.create__time}>
 
-                        <RecipePrepTime />
-                        <RecipeCookTime />
+                            <RecipePrepTime />
+                            <RecipeCookTime />
 
-                    </fieldset>
+                        </fieldset>
 
-                    <RecipeGroups />
-                    <RecipeImages />
+                        <RecipeGroups />
+                        <RecipeImages />
 
-                    <fieldset className={styles.create__steps}>
+                    </form>
+                </section>
+                <section className={styles.create__steps}>
 
-                        <RecipeSteps />
-                        <RecipeIngredients />
+                    <RecipeSteps />
+                    <RecipeIngredients />
 
-                    </fieldset>
+                </section>
 
-                    <button type="submit" className={`${styles.button} ${styles.btn__primary}`}>Create Recipe</button>
-                </form>
+                <button onClick={submitData} className={`${styles.button} ${styles.btn__primary}`}>Create Recipe</button>
             </div>
         </section>
 

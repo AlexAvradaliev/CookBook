@@ -42,3 +42,25 @@ export const getAllOwner = async (token) => {
 
     return result;
 };
+
+export const create = async ( 
+    data,
+    token
+     ) => {
+   
+    const response = await fetch(`${BASE_URL}/api/recipe`, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'x-authorization': token
+        },
+        body: JSON.stringify(data)
+    });
+    const jsonRes = await response.json();
+    
+    if(response.ok){
+        return jsonRes;
+    } else{
+        throw jsonRes;
+    };  
+};

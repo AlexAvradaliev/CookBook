@@ -1,9 +1,9 @@
 import { useRecipeContext } from '../../context/recipeFormContext';
 
 import ErrorMessage from '../../../../Common/Error-message/ErrorMessage';
-import styles from './RecipeDescription.module.css';
+import styles from './RecipeTitle.module.css';
 
-const RecipeDescription = () => {
+const RecipeName = () => {
 
     const {
         recipe,
@@ -19,24 +19,22 @@ const RecipeDescription = () => {
         checkData(e.target.name, e.target.value);
     };
 
-
     return (
-        <article className={styles.description__wrapper}>
-            <textarea
+        <article className={styles.title__wrapper}>
+            <input
                 type="text"
-                name="description"
-                id="description"
-                className={styles.description__wrapper__input}
+                name="title"
+                id="title"
+                className={styles.title__wrapper__input}
                 placeholder=" "
-                rows={4}
                 onChange={changeHandler}
                 onBlur={verifyField}
-                value={recipe.description}
+                value={recipe.title}
             />
-            <label htmlFor="description" className={styles.description__wrapper__label}>Description</label>
+            <label htmlFor="title" className={styles.title__wrapper__label}>Title</label>
             <ErrorMessage message='text'>error</ErrorMessage>
         </article>
     );
 };
 
-export default RecipeDescription;
+export default RecipeName;

@@ -1,22 +1,60 @@
+import { useState } from 'react';
+
+
+import { useRecipeContext } from '../../context/recipeFormContext';
+
+import newFile from './assets/newFile.png'
+ 
 import ErrorMessage from '../../../../Common/Error-message/ErrorMessage';
 import styles from './RecipeImages.module.css';
 
 const RecipeImages = () => {
 
+    const {
+        previewImage,
+        recipe,
+        changeRecipe,
+        checkData,
+        changePreviewImage,
+        removePreviewImage,
+    } = useRecipeContext();
+
+    
+    const addImage = (e) => {
+        const newImage = e.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(newImage);
+        reader.onloadend = () => {
+            changePreviewImage({url: reader.result, mimeType: newImage.type});
+        };
+    };
+
+    const removeImage = (e) => {
+        const id = e.target.id;
+        const filtred = previewImage.filter(x => x.url != id);
+        removePreviewImage(filtred);
+    };
+
     return (
         <fieldset>
             <p className={styles.add__image__p}>Add images</p>
             <label className={styles.custom__file__upload}>
-                <input type="file" />
+                <input type="file" onChange={addImage} />
                 <i className="fa fa-images"></i>
                 Import
             </label>
-        <ErrorMessage message='level'>error</ErrorMessage>
+
+            <ErrorMessage message='level'>error</ErrorMessage>
+                
             <section className={styles.create__images}>
-            <div  className='create__image'>
-              <img src="" alt="" />
-              <i className='fas fa-times'></i>
-            </div>
+                    {previewImage.map((img, i) =>
+                    (
+                        <div key={img.url} className={styles.create__image} >
+                            <img src={newFile} className={styles.logo}/>
+                            <img src={img.url} alt="" className={styles.image}  />
+                            <i className='fas fa-times' onClick={removeImage} id={img.url}></i>
+                            </div>
+                    ))}
             </section>
         </fieldset>
     );

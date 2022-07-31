@@ -59,7 +59,6 @@
     border-bottom: 2px solid;
     border-top: none;
     border-color: #d8b4fe;
-    margin-bottom: 3rem;
     margin-top: 1rem;
 }
 
@@ -89,6 +88,6 @@
 @media (max-width:700px) {
     .ingredients__wrapper {
         margin-bottom: 0.5rem;
-        margin-top: 0;
+        margin-top: 3rem;
     }
 }
