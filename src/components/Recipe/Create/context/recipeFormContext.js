@@ -38,6 +38,7 @@ export const RecipeProvider = ({ children }) => {
             ...state,
             [name]: value
         }));
+        setErrors(state => removeErrorProperties(state, name));
     };
 
     const changePreviewImage = (data) => {
@@ -48,15 +49,17 @@ export const RecipeProvider = ({ children }) => {
         setPreviewImage(data)
     }
 
-    const checkData = (name, value, previewValue, type) => {
-        
+    const checkData = (name, value) => {
+
         if (name == 'images' || name == 'previewImage') {
-            const result = imagesField('images', value, previewValue, type);
+           
+            const result = imagesField(Number(previewImage.length) + Number(recipe.images.length));
 
             result
                 ? setErrors(state => addErrorProperties(state, name, result))
                 : setErrors(state => removeErrorProperties(state, name));
-            return result;
+            
+                return result;
 
         } else if (name == 'prepTime' || name == 'cookTime') {
             const result = inputNumber(name, value);
@@ -94,8 +97,34 @@ export const RecipeProvider = ({ children }) => {
         return result;
     }
 
+    const isFormValid = () => {
+        let isValid = false;
+
+        Object.entries(recipe).map(x => {
+            const name = x[0];
+            const value = x[1];
+
+            const result = checkData(name, value);
+            if (result) {
+                isValid = true;
+            };
+        });
+
+       return !isValid
+    };
+
     return (
-        <RecipeContext.Provider value={{errors, previewImage, recipe, changeRecipe, checkData, changePreviewImage, removePreviewImage, checkMimeType }}>
+        <RecipeContext.Provider value={{
+            errors,
+            previewImage,
+            recipe,
+            changeRecipe,
+            checkData,
+            changePreviewImage,
+            removePreviewImage,
+            checkMimeType,
+            isFormValid
+        }}>
             {children}
         </RecipeContext.Provider>
     );

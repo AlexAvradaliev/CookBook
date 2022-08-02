@@ -20,24 +20,27 @@ const CreateRecipe = () => {
     const {
         previewImage,
         recipe,
+        isFormValid
     } = useRecipeContext();
 
     const { user } = useAuthContext();
 
     const submitData = () => {
-        let data = recipe;
+        if (isFormValid()) {
+            let data = recipe;
 
-        if (previewImage.length > 0) {
-            data = { ...recipe, previewImage }
+            if (previewImage.length > 0) {
+                data = { ...recipe, previewImage }
+            };
+
+            recipeService.create(data, user.accessToken)
+                .then(() => {
+                    // navigate
+                })
+                .catch((err) => {
+                    console.log(err)
+                });
         };
-
-        recipeService.create(data, user.accessToken)
-            .then(() => {
-                // navigate
-            })
-            .catch((err) => {
-                console.log(err)
-            });
     };
 
     return (

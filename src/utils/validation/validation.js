@@ -106,23 +106,17 @@ export const arrayField = (name, value) => {
     };
 };
 
-export const imagesField = (name, valueImages, valuePreview, type) => {
-    let newImages = valueImages.map(x => {
-        return x.trim();
-    }).filter(x => x != '');
-    let newPreview = valuePreview.map(x => {
-        return x.trim();
-    }).filter(x => x != '');
-
-    if (newImages.length == 0 && newPreview.length == 0) {
-        return { [name]: ["Required"] };
-    } else if (Number(newImages.length) + Number(newPreview.length) > maxLength[name]) {
-        return { [name]: [`The ${title[name]} can be maximum ${maxLength[name]} images`] };
-    };
+export const imagesField = (value) => {
+    if (value > maxLength['images']) {
+        return { ['images']: [`The ${title['images']} can be maximum ${maxLength['images']} images`] };
+    } else if( value == 0) {
+        return { ['images']: ["Required"] };
+    }
 };
 
+
 export const imagesType = (name, type) => {
-  if (!isValid(type)) {
+    if (!isValid(type)) {
         return { [name]: ["File does not support"] };
     };
 };

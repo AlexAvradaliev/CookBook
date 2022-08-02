@@ -1,6 +1,3 @@
-import { useState } from 'react';
-
-
 import { useRecipeContext } from '../../context/recipeFormContext';
 
 import newFile from './assets/newFile.png'
