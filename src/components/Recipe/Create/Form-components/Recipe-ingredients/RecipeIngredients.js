@@ -54,9 +54,9 @@ const RecipeIngredients = () => {
         }
 
             </form>
-            {recipe.ingredients.length > 0 &&
+            {recipe.ingredients?.length > 0 &&
                 (<ul className={styles.create__ingredients__ul}>
-                    {recipe.ingredients.map((ing, index) => (
+                    {recipe.ingredients?.map((ing, index) => (
                         <li key={ing + index}>
                             <div>
                                 <i className="fas fa-dot-circle"></i>{" "}

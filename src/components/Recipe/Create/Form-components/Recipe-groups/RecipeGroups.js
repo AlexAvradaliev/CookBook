@@ -12,12 +12,12 @@ const RecipeGroups = () => {
         } else {
             const groups = [...recipe.groups].filter((x) => x !== e.target.value);
             changeRecipe('groups', groups);
-        }
+        };
     };
 
     const isChecked = (name) => {
-        return recipe.groups.includes(name)
-    }
+        return recipe.groups.includes(name);
+    };
 
     return (
         <fieldset className={styles.create__groups}>
@@ -27,7 +27,7 @@ const RecipeGroups = () => {
                     <label className={styles.checkbox__container}>
                         dairy
                         <input
-                            defaultChecked={isChecked('dairy')}
+                            checked={isChecked('dairy')}
                             onChange={changeGroups}
                             type="checkbox"
                             value="dairy"
@@ -38,7 +38,7 @@ const RecipeGroups = () => {
                     <label className={styles.checkbox__container}>
                         fruits
                         <input
-                            defaultChecked={isChecked("fruits")}
+                            checked={isChecked("fruits")}
                             onChange={changeGroups}
                             type="checkbox"
                             value="fruits"
@@ -49,7 +49,7 @@ const RecipeGroups = () => {
                     <label className={styles.checkbox__container}>
                         protein foods
                         <input
-                            defaultChecked={isChecked("protein foods")}
+                            checked={isChecked("protein foods")}
                             onChange={changeGroups}
                             type="checkbox"
                             value="protein foods"
@@ -60,7 +60,7 @@ const RecipeGroups = () => {
                     <label className={styles.checkbox__container}>
                         vegetables
                         <input
-                            defaultChecked={isChecked("vegetables")}
+                            checked={isChecked("vegetables")}
                             onChange={changeGroups}
                             type="checkbox"
                             value="vegetables"
@@ -71,7 +71,7 @@ const RecipeGroups = () => {
                     <label className={styles.checkbox__container}>
                         grains
                         <input
-                            defaultChecked={isChecked("grains")}
+                            checked={isChecked("grains")}
                             onChange={changeGroups}
                             type="checkbox"
                             value="grains"

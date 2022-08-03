@@ -20,7 +20,6 @@ const ImageHeader = () => {
         const reader = new FileReader();
         reader.readAsDataURL(newImage);
         reader.onloadend = () => {
-            console.log({url: reader.result, mimeType: newImage.type})
             uploadService.avatar({url: reader.result, mimeType: newImage.type}, user.accessToken)
             .then(result => {
                 changePhoto(result)

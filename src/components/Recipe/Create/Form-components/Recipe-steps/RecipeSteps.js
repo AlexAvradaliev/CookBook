@@ -14,7 +14,6 @@ const RecipeSteps = () => {
         errors,
         recipe,
         changeRecipe,
-        checkData,
     } = useRecipeContext();
 
     const changeStep = (e) => {
@@ -55,9 +54,9 @@ const RecipeSteps = () => {
         }
 
             </form>
-            {recipe.steps.length > 0 &&
+            {recipe.steps?.length > 0 &&
             (<ul className={styles.create__steps__ul}>
-                {recipe.steps.map((step, index) => (
+                {recipe.steps?.map((step, index) => (
                 <li key={step + index}>
                     <div>
                         <i className="fas fa-dot-circle"></i>{" "}

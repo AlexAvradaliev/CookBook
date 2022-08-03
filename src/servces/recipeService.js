@@ -64,3 +64,26 @@ export const create = async (
         throw jsonRes;
     };  
 };
+
+export const update = async ( 
+    data,
+    recipeId,
+    token
+     ) => {
+   
+    const result = await fetch(`${BASE_URL}/api/recipe/${recipeId}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+            'x-authorization': token
+        },
+        body: JSON.stringify(data)
+    });
+    const jsonRes = await result.json();
+    
+    if(result.ok){
+        return jsonRes;
+    } else{
+        throw jsonRes.message;
+    };  
+};

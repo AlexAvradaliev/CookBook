@@ -1,7 +1,9 @@
+import { useEffect } from 'react';
+import {useNavigate, useParams} from 'react-router-dom';
+
 import { useRecipeContext } from './context/recipeFormContext';
 import { useAuthContext } from '../../../context/AuthContext';
-
-import * as recipeService from '../../../servces/recipeService'
+import * as recipeService from '../../../servces/recipeService';
 
 import RecipeCookTime from './Form-components/Recipe-cookTime/RecipeCookTime';
 import RecipeCuisine from './Form-components/Recipe-cuisine/RecipeCuisine';
@@ -15,15 +17,39 @@ import RecipePrepTime from './Form-components/Recipe-prepTime/RecipePrepTime';
 import RecipeSteps from './Form-components/Recipe-steps/RecipeSteps';
 import styles from './CreateRecipe.module.css';
 
-const CreateRecipe = () => {
+const CreateRecipe = ({
+    edit
+}) => {
 
     const {
         previewImage,
         recipe,
-        isFormValid
+        isFormValid,
+        changeState,
     } = useRecipeContext();
 
+
+    useEffect(() => {
+        if (edit) {
+            const data = {
+                title: edit.title || '',
+                description: edit.description || '',
+                level: edit.level || 'Easy',
+                cuisine: edit.cuisine || 'Moroccan',
+                prepTime: edit.prepTime || '',
+                cookTime: edit.cookTime || '',
+                groups: edit.groups || [],
+                images: edit.images || [],
+                steps: edit.steps || [],
+                ingredients: edit.ingredients || [],
+            };
+            changeState(data);
+        }
+    }, [edit]);
+
+    const {recipeId} = useParams();
     const { user } = useAuthContext();
+    const navigate = useNavigate();
 
     const submitData = () => {
         if (isFormValid()) {
@@ -32,14 +58,24 @@ const CreateRecipe = () => {
             if (previewImage.length > 0) {
                 data = { ...recipe, previewImage }
             };
-
-            recipeService.create(data, user.accessToken)
-                .then(() => {
+            if(edit){
+            recipeService.update(data, recipeId, user.accessToken)
+                .then(res => {
+                    console.log(res)
                     // navigate
                 })
                 .catch((err) => {
                     console.log(err)
                 });
+            } else {
+                recipeService.create(data, user.accessToken)
+                .then(() => {
+                    // navigate
+                })
+                .catch((err) => {
+                    console.log(err)
+                }); 
+            }
         };
     };
 
@@ -82,7 +118,12 @@ const CreateRecipe = () => {
 
                 </section>
 
-                <button onClick={submitData} className={`${styles.button} ${styles.btn__primary}`}>Create Recipe</button>
+                <button onClick={submitData} className={`${styles.button} ${styles.btn__primary}`}>
+                    {edit
+                        ? 'Update Recipe'
+                        : 'Create Recipe'
+                    }
+                </button>
             </div>
         </section>
 

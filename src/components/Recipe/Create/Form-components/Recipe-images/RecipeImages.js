@@ -1,7 +1,11 @@
+import {useNavigate, useParams} from 'react-router-dom';
+
+import { useAuthContext } from '../../../../../context/AuthContext';
 import { useRecipeContext } from '../../context/recipeFormContext';
+import * as uploadService from '../../../../../servces/uploadService';
 
 import newFile from './assets/newFile.png'
- 
+
 import ErrorMessage from '../../../../Common/Error-message/ErrorMessage';
 import styles from './RecipeImages.module.css';
 
@@ -18,23 +22,37 @@ const RecipeImages = () => {
         checkMimeType,
     } = useRecipeContext();
 
-    
+const {recipeId} = useParams();
+const {user} = useAuthContext();
+
     const addImage = (e) => {
         const newImage = e.target.files[0];
-        if(!checkMimeType('images', newImage.type)){
+        if (!checkMimeType('images', newImage.type)) {
             const reader = new FileReader();
             reader.readAsDataURL(newImage);
             reader.onloadend = () => {
-                
-                changePreviewImage({url: reader.result, mimeType: newImage.type});
+
+                changePreviewImage({ url: reader.result, mimeType: newImage.type });
             };
         };
     };
 
-    const removeImage = (e) => {
+    const deletePreviewImage = (e) => {
         const id = e.target.id;
         const filtred = previewImage.filter(x => x.url != id);
         removePreviewImage(filtred);
+    };
+    const deleteImage = (e) => {
+        const id = e.target.id;
+        const image = recipe.images.filter(x => x.url === id);
+        uploadService.removeImage({id: image[0].id, url: image[0].url}, recipeId, user.accessToken)
+        .then((res) =>{
+            console.log(res)
+            const filtred = recipe.images.filter(x => x.url != id);
+            changeRecipe('images', filtred);
+        })
+        
+        
     };
 
     return (
@@ -47,20 +65,37 @@ const RecipeImages = () => {
             </label>
 
             {errors.images &&
-            <ErrorMessage >{errors.images[0]}</ErrorMessage>
-        }
-                
-            <section className={styles.create__images}>
+                <ErrorMessage >{errors.images[0]}</ErrorMessage>
+            }
+            {previewImage
+
+                ? < section className={styles.create__images}>
                     {previewImage.map((img, i) =>
-                    (
+                    
                         <div key={img.url} className={styles.create__image} >
-                            <img src={newFile} className={styles.logo}/>
-                            <img src={img.url} alt="" className={styles.image}  />
-                            <i className='fas fa-times' onClick={removeImage} id={img.url}></i>
-                            </div>
-                    ))}
-            </section>
-        </fieldset>
+                            <img src={newFile} alt='' className={styles.logo} />
+                            <img src={img.url} alt="" className={styles.image} />
+                            <i className='fas fa-times' onClick={deletePreviewImage} id={img.url}></i>
+                        </div>
+                    )}
+                </section>
+                : ''
+            }
+
+            {recipe.images
+                ? < section className={styles.create__images}>
+                    {recipe.images.map((img) =>
+
+                        <div key={img.id} className={styles.create__image} >
+                            <img src={img.url} alt='' className={styles.image} />
+                            <i className='fas fa-times' onClick={deleteImage} id={img.url}></i>
+                        </div>
+                    )}
+
+                </section>
+                : ''
+            }
+        </fieldset >
     );
 };
 

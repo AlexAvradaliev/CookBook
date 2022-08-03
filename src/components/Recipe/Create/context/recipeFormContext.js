@@ -33,6 +33,10 @@ export const RecipeProvider = ({ children }) => {
         ingredients: [],
     });
 
+    const changeState = (data) => {
+        setRecipe(data);
+    };
+
     const changeRecipe = (name, value) => {
         setRecipe(state => ({
             ...state,
@@ -95,7 +99,7 @@ export const RecipeProvider = ({ children }) => {
             ? setErrors(state => addErrorProperties(state, name, result))
             : setErrors(state => removeErrorProperties(state, name));
         return result;
-    }
+    };
 
     const isFormValid = () => {
         let isValid = false;
@@ -123,7 +127,8 @@ export const RecipeProvider = ({ children }) => {
             changePreviewImage,
             removePreviewImage,
             checkMimeType,
-            isFormValid
+            isFormValid,
+            changeState
         }}>
             {children}
         </RecipeContext.Provider>

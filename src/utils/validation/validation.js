@@ -42,7 +42,7 @@ const maxLength = {
 };
 
 export const inputText = (name, value) => {
-    console.log(name)
+
     value = value.trim();
     if (value.length === 0) {
         return { [name]: ["Required"] };

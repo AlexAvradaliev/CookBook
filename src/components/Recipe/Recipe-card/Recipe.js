@@ -38,7 +38,7 @@ const Recipe = ({
             
             {showButtons && (
                 <>
-                    <button className={`${styles.btn} ${styles.btn__info}`}>Update</button>
+                    <Link to={`/recipe/${recipeInfo._id}/edit`} className={`${styles.btn} ${styles.btn__info}`}>Update</Link>
                     <button className={`${styles.btn} ${styles.btn__danger}`}>Delete</button>
                 </>
             )}
