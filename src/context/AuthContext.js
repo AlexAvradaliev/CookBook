@@ -1,56 +1,43 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext } from 'react';
 
 import { KEY_LOCALSTORAGE } from '../constants/constants';
 
+import useLocalStorage from '../hooks/useLocalStorage';
+
+const initialAuthState = {
+    _id: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    accessToken: '',
+};
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useLocalStorage(KEY_LOCALSTORAGE, initialAuthState);
     
-    const [user, setUser] = useState(null);
-   
-    useEffect(() => {
-        try {
-            const item = localStorage.getItem(KEY_LOCALSTORAGE)
-            if(item){
-                setUser(JSON.parse(item));
-            }
-
-        } catch (err) {
-            return null;
-        }
-    }, []);
-
-    useEffect(() => {
-        try {
-          user
-           ? localStorage.setItem(KEY_LOCALSTORAGE, JSON.stringify(user))
-           : localStorage.removeItem(KEY_LOCALSTORAGE)
-
-        } catch (err) {
-            return null;
-        }
-    }, [user]);
-
-
     const login = (authData) => {
         setUser(authData);
     }
-
-    const register = (authData) => {
-        setUser(authData);
-    }
-
-    const logout = () => {
-        setUser(null);
-    };
-
     const changeUserData = (authData) => {
         setUser(authData);
     };
 
+    const changePhoto = (authData) => {
+        setUser(authData);
+    };
+
+    const register = (authData) => {
+        setUser(authData);
+    };
+
+    const logout = () => {
+        setUser(initialAuthState);
+    };
+
     return (
-        <AuthContext.Provider value={{ user, login, register, logout, changeUserData }}>
+        <AuthContext.Provider value={{ user, login, register, logout, changeUserData, changePhoto }}>
             {children}
         </AuthContext.Provider>
     );
