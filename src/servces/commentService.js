@@ -47,3 +47,18 @@ export const getAllOwner = async (token) => {
     let result = Object.values(comments);
     return result;
 };
+
+export const edit = async(data, commentId, token) => {
+
+    let response = await fetch(`${BASE_URL}/api/comment/${commentId}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+            'x-authorization': token
+        },
+        body: JSON.stringify({text: data})
+    });
+
+    const jsonRes = await response.json();
+    return jsonRes;
+};

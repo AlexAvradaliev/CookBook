@@ -6,6 +6,11 @@ export const CommentProvider = ({ children }) => {
 
 const [text, setText] = useState('');
 const [comments, setComments] = useState([]);
+const [update, setUpdate] = useState(null)
+
+const changeUpdate = (data) => {
+    setUpdate(data)
+};
 
 const changeText = (data) => {
     setText(data);
@@ -21,7 +26,7 @@ const addComments = (data) => {
 
 
     return (
-        <CommentContext.Provider value={{text, comments, changeText, changeComments, addComments}}>
+        <CommentContext.Provider value={{update, changeUpdate, text, comments, changeText, changeComments, addComments}}>
             {children}
         </CommentContext.Provider>
     );

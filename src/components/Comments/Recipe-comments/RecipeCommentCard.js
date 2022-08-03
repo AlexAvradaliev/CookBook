@@ -10,7 +10,7 @@ import styles from './RecipeCommentCard.module.css';
 const RecipeCommentCard = () => {
 
     const { user } = useAuthContext();
-    const { comments, addComments } = useCommentContext();
+    const { comments, addComments, changeUpdate } = useCommentContext();
     const { recipeId } = useParams();
 
     useEffect(() => {
@@ -22,6 +22,16 @@ const RecipeCommentCard = () => {
                 console.log(err);
             });
     }, [ recipeId, user.accessToken]);
+
+    const updateHandler = (e) => {
+        const id = e.target.id;
+        const comment = comments.filter(x => x._id == id);
+        changeUpdate(comment[0])
+        window.scrollTo({
+            top: 700,
+            behavior: 'smooth',
+        });
+    };
 
     return (
         <>
@@ -46,7 +56,13 @@ const RecipeCommentCard = () => {
 
                 {user?._id && user?._id === x._ownerId._id && (
                 <div>
-                <button className={`${styles.btn} ${styles.btn__info}`}>Update</button>
+                <button 
+                onClick={updateHandler} 
+                className={`${styles.btn} ${styles.btn__info}`}
+                id={x._id}
+                >
+                    Update
+                    </button>
                     <button className={`${styles.btn} ${styles.btn__danger}`}>Delete</button>
                 </div>
                 )}
