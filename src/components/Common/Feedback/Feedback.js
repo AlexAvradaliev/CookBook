@@ -15,7 +15,6 @@ const Feedback = () => {
     useEffect(() => {
         feedbackService.getOwner(recipeId, user.accessToken)
             .then(res => {
-                console.log(res)
                 setRating({value:Number(res.value) || 0, ratingId: res._id})
             })
     }, [recipeId, user]);

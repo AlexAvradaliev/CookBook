@@ -16,8 +16,7 @@ const PasswordForm = () => {
         errorsServerPasswords,
         errorsPasswords
     } = useEditProfileContext();
-                
-console.log(errorsPasswords)
+
     const changeHandler = (e) => {
         userChange(e.target.name, e.target.value);
     };
@@ -31,9 +30,9 @@ console.log(errorsPasswords)
 
         if (isFormValid()) {
             authService.changePassword(passwords, user.accessToken)
-            .catch((err) => {
-                addErrorServer(err);
-            });
+                .catch((err) => {
+                    addErrorServer(err);
+                });
         };
     };
 
