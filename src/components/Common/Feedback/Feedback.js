@@ -10,21 +10,32 @@ const Feedback = () => {
     const { recipeId } = useParams();
     const { user } = useAuthContext();
 
-    const [rating, setRating] = useState({value: 0});
+    const [rating, setRating] = useState({ value: 0 });
 
     useEffect(() => {
         feedbackService.getOwner(recipeId, user.accessToken)
             .then(res => {
-                setRating({value:Number(res.value) || 0, ratingId: res._id})
+                setRating({ value: Number(res.value) || 0, ratingId: res._id })
             })
     }, [recipeId, user]);
 
     const changeRageting = (e) => {
-        feedbackService.create(e.target.value, recipeId, user.accessToken)
-            .then(res => {
-                setRating({value:Number(res.value), ratingId: res._id});
-            })
+        if (rating.value == 0) {
+            feedbackService.create(e.target.value, recipeId, user.accessToken)
+                .then(res => {
+                    setRating({ value: Number(res.value), ratingId: res._id });
+                })
+        } else {
+            feedbackService.update({ rating: e.target.value }, user.accessToken, recipeId)
+                .then(res => {
+                    setRating({ value: Number(res.value), ratingId: res._id })
+                })
+                .catch(err => {
+                    console.log(err)
+                });
+        };
     };
+
 
     return (
         <section className={styles.recipe__details__rating}>

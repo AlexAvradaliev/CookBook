@@ -35,3 +35,16 @@ export const getOwner = async (
     let jsonResult = await result.json();
     return jsonResult;
 };
+
+export const update = async (data, token, recipeId) => {
+    let result = await fetch(`${BASE_URL}/api/feedback/${recipeId}`, {
+            method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+            'x-authorization': token
+        },
+        body: JSON.stringify(data)
+    });
+    let jsonResult = await result.json();
+    return jsonResult;
+};
