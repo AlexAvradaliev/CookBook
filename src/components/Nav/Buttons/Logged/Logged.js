@@ -24,7 +24,7 @@ const Logged = (props) => {
     return (
         <>
             <li>
-                <Link className={styleUser} to={`/profile/${user?._id}`}>
+                <Link className={styleUser} to={`/profile`}>
                     <img src={user?.photo} alt={user?.firstName} />
                     <p>{user?.firstName} {" "} {user?.lastName}</p>
                 </Link>

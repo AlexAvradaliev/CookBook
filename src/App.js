@@ -21,10 +21,10 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/profile/:userId/' element={<MyRecipe />} />
-        <Route path='/profile/:userId/comments' element={<Comment />} />
-        <Route path='/profile/:userId/edit' element={<EditProfile />} />
-        <Route path='/profile/:userId/create-recipe' element={<Create />} />
+        <Route path='/profile/' element={<MyRecipe />} />
+        <Route path='/profile/comments' element={<Comment />} />
+        <Route path='/profile/edit' element={<EditProfile />} />
+        <Route path='/profile/create-recipe' element={<Create />} />
         <Route path='/recipe/:recipeId' element={<RecipeDetails />} />
         <Route path='/recipe/:recipeId/edit' element={<EditRecipe />} />
       </Routes>

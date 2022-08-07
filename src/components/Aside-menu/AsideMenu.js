@@ -35,16 +35,16 @@ const AsideMenu = () => {
                 <p className={styles.profile__aside__text}>Activity</p>
 
                 <li>
-                    <Link to={`/profile/${user?._id}`} className={active === "recipes" ? `${styles.active}` : ''}><p>Recipes</p></Link>
+                    <Link to={`/profile`} className={active === "recipes" ? `${styles.active}` : ''}><p>Recipes</p></Link>
                 </li>
                 <li>
-                    <Link to={`/profile/${user?._id}/comments`} className={active === "comments" ? `${styles.active}` : ''}><p>Comments</p></Link>
+                    <Link to={`/profile/comments`} className={active === "comments" ? `${styles.active}` : ''}><p>Comments</p></Link>
                 </li>
                 <li>
-                    <Link to={`/profile/${user?._id}/create-recipe`}  className={active === "createRecipe" ? `${styles.active}` : ''}><p>Create Recipe</p></Link>
+                    <Link to={`/profile/create-recipe`}  className={active === "createRecipe" ? `${styles.active}` : ''}><p>Create Recipe</p></Link>
                 </li>
                 <li>
-                    <Link to={`/profile/${user?._id}/edit`} className={active === "editProfile" ? `${styles.active}` : ''}><p>Edit Profile</p></Link>
+                    <Link to={`/profile/edit`} className={active === "editProfile" ? `${styles.active}` : ''}><p>Edit Profile</p></Link>
                 </li>
             </ul>
         </aside>
