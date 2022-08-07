@@ -77,8 +77,8 @@ const Details = () => {
                 <article className={styles.recipe__details__generic__images}>
                     <div className={styles.recipe__details__generic__images__active}>
                         <img 
-                        src={recipe.images && recipe.images[activeImage]}
-                        alt={recipe.name} 
+                        src={recipe.images && recipe.images[activeImage].url}
+                        alt={recipe.title} 
                             />
                     </div>
                     <div className={styles.recipe__details__generic__images__select}>
@@ -89,7 +89,7 @@ const Details = () => {
                         alt={recipe?.name}
                         key={index}
                         onClick={() => setActiveImage(index)}
-                        src={image}
+                        src={image.url}
                       />
                     ))}
 
