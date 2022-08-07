@@ -87,3 +87,15 @@ export const update = async (
         throw jsonRes.message;
     };  
 };
+
+export const removeRecipe = async (recipeId, token) => {
+
+    let response = await fetch(`${BASE_URL}/api/recipe/${recipeId}`,{
+        method: 'DELETE',
+        headers: {
+            'x-authorization': token
+        },
+    });
+    const jsonRes = await response.json();
+    return jsonRes;
+};

@@ -62,3 +62,15 @@ export const edit = async(data, commentId, token) => {
     const jsonRes = await response.json();
     return jsonRes;
 };
+
+export const remove = async (commentId, token) => {
+
+    let response = await fetch(`${BASE_URL}/api/comment/${commentId}`,{
+        method: 'DELETE',
+        headers: {
+            'x-authorization': token
+        },
+    });
+    const jsonRes = await response.json();
+    return jsonRes;
+};

@@ -1,4 +1,4 @@
-import {useNavigate, useParams} from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAuthContext } from '../../../../../context/AuthContext';
 import { useRecipeContext } from '../../context/recipeFormContext';
@@ -16,14 +16,13 @@ const RecipeImages = () => {
         previewImage,
         recipe,
         changeRecipe,
-        checkData,
         changePreviewImage,
         removePreviewImage,
         checkMimeType,
     } = useRecipeContext();
 
-const {recipeId} = useParams();
-const {user} = useAuthContext();
+    const { recipeId } = useParams();
+    const { user } = useAuthContext();
 
     const addImage = (e) => {
         const newImage = e.target.files[0];
@@ -45,14 +44,13 @@ const {user} = useAuthContext();
     const deleteImage = (e) => {
         const id = e.target.id;
         const image = recipe.images.filter(x => x.url === id);
-        uploadService.removeImage({id: image[0].id, url: image[0].url}, recipeId, user.accessToken)
-        .then((res) =>{
-            console.log(res)
-            const filtred = recipe.images.filter(x => x.url != id);
-            changeRecipe('images', filtred);
-        })
-        
-        
+        uploadService.removeImage({ id: image[0].id, url: image[0].url }, recipeId, user.accessToken)
+            .then(() => {
+                const filtred = recipe.images.filter(x => x.url != id);
+                changeRecipe('images', filtred);
+            })
+
+
     };
 
     return (
@@ -71,7 +69,7 @@ const {user} = useAuthContext();
 
                 ? < section className={styles.create__images}>
                     {previewImage.map((img, i) =>
-                    
+
                         <div key={img.url} className={styles.create__image} >
                             <img src={newFile} alt='' className={styles.logo} />
                             <img src={img.url} alt="" className={styles.image} />

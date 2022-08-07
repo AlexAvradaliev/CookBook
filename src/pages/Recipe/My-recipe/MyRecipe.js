@@ -1,4 +1,4 @@
-import { useState ,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useAuthContext } from '../../../context/AuthContext';
 import * as recipeService from '../../../servces/recipeService';
@@ -13,19 +13,26 @@ import styles from './MyRecipe.module.css';
 
 function MyRecipe() {
 
-    const {user} = useAuthContext();
+    const { user } = useAuthContext();
 
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
         recipeService.getAllOwner(user.accessToken)
             .then(result => {
-                setRecipes(result);	
+                setRecipes(result);
             })
             .catch(err => {
                 console.log(err);
             });
-        }, [user.accessToken]);
+    }, [user.accessToken]);
+
+    const deleteHandler = (id) => {
+        recipeService.removeRecipe(id, user.accessToken)
+            .then(() => {
+                setRecipes(state => [...state.filter(x => x._id != id)]);
+            })
+    };
 
     return (
         <>
@@ -43,7 +50,7 @@ function MyRecipe() {
                     <section className={styles.profile__content}>
                         <p className={styles.profile__content__text}>recipes</p>
                         <div className={styles.profile__content__container}>
-                            <RecipeList recipes={recipes} />
+                            <RecipeList recipes={recipes} deleteHandler={deleteHandler} />
                         </div>
                     </section>
 
