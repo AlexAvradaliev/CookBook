@@ -34,8 +34,8 @@ const ImageHeader = () => {
                     alt={user?.firstName} />
                 <label>
                     <input type="file" onChange={changeAvatar}/>
-                    <i className="fas fa-camera fa-2x"></i>
                 </label>
+                    <i className="fas fa-camera fa-2x"></i>
             </article>
                 <p>{user?.firstName}{' '} {user?.lastName} </p>
         </section>

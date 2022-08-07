@@ -48,10 +48,12 @@
     left: 13%;
 }
 
-.profile__image label i {
+.profile__image i {
     color: #ed5a6b;
+    left: 5.5rem;
+    position: absolute;
 }
 
-.profile__image label:hover {
+.profile__image i:hover {
     color: #ea4356;
 }
