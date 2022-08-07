@@ -9,6 +9,7 @@ import Main from '../../components/Common/Main/Main';
 import RecipeList from '../../components/Recipe/Recipe-list/RecipeList';
 
 import styles from './Search.module.css'
+import Paginate from '../../components/Paginate/Paginate';
 
 function Search() {
     const navigate = useNavigate();
@@ -76,7 +77,7 @@ function Search() {
     }
 
     const closeSearch = () => {
-            setShowSearchBox(false);
+        setShowSearchBox(false);
     }
 
     return (
@@ -113,11 +114,18 @@ function Search() {
                             {activeTerm} <i className='fas fa-times'></i>
                         </button>
                     )}
-                    <div  className={styles.recipes}>
+                    <div className={styles.recipes}>
                         <div onClick={closeSearch}>
                             <RecipeList recipes={recipes} />
                         </div>
                     </div>
+                    <Paginate
+                        pages={pages}
+                        page={page}
+                        term={activeTerm}
+                        category={category}
+                        typeCategory={typeCategory}
+                    />
                 </div>
             </Main>
         </>

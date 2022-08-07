@@ -1,0 +1,19 @@
+.btn {
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-size: .9rem;
+    margin: .5rem .25rem;
+    overflow: hidden;
+    padding: .4rem .75rem;
+    transition: background .15s
+}
+
+.btn__primary {
+    background-color: #ed5a6b;
+    color: #f2f2f2
+}
+
+.btn__primary:hover {
+    background-color: #ea4356
+}
