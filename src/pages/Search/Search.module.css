@@ -1,0 +1,117 @@
+.search__page .no-results {
+    margin-top: 4rem;
+    text-align: center
+}
+
+.search__page .no-results img {
+    width: 12rem
+}
+
+.search__page .search__box i {
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.4rem;
+    padding: 1rem;
+    position: fixed;
+    right: 10%;
+    top: 18%;
+    z-index: 5
+}
+
+.search__page .search__box i:hover {
+    color: #e7814d
+}
+
+.search__page .input__box {
+    background-color: rgba(0, 0, 0, .1);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1
+}
+
+.search__page .input__box__container {
+    background-color: #fff;
+    padding: 4rem 1rem;
+    z-index: 20
+}
+
+.search__page .input__box__container>* {
+    margin: auto;
+    max-width: 800px
+}
+
+.search__page .filter {
+    backface-visibility: none;
+    background-color: inherit;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: .5rem .25rem;
+    padding: .5rem 1rem;
+    transition: all .2s
+}
+
+.search__page .filter i {
+    color: #f2f2f2;
+    margin: .2rem
+}
+
+.search__page .filter i.filterIcon {
+    color: #ed5a6b
+}
+
+.search__page .filter span {
+    background-color: #ed5a6b;
+    border-radius: 2px;
+    color: #f2f2f2;
+    padding: .1rem .3rem
+}
+
+.search__page .filter:hover {
+    background-color: #ccc;
+    transform: translateY(-1px)
+}
+
+.search__page .filter.active {
+    background-color: #ed5a6b;
+    color: #f2f2f2
+}
+
+.recipes {
+    padding: 1rem 1rem 2rem
+}
+
+.recipes:not(:last-child) {
+    border-bottom: 1px solid #ccc
+}
+
+.recipes>div {
+    grid-gap: 2rem;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(4, 1fr)
+}
+
+@media (max-width:1024px) {
+    .recipes>div {
+        grid-template-columns: repeat(3, 1fr);
+        padding: 1rem
+    }
+}
+
+@media (max-width:768px) {
+    .recipes>div {
+        gap: .5rem;
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media (max-width:500px) {
+    .recipes>div {
+        grid-template-columns: 1fr
+    }
+}

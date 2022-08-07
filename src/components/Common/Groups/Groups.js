@@ -10,7 +10,10 @@ const Groups = () => {
       <div>
         {groupsData.map((group, i) => (
           <article className={styles.group} key={i} >
-            <Link to="#" key={i}>
+            <Link 
+            to={`/search/?category=groups&groups=${group.name.toLowerCase()}`}
+             key={i}
+             >
               <img src={group.img} alt={group.name} />
               <p>{group.name}</p>
             </Link>

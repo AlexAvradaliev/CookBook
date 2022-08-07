@@ -43,7 +43,7 @@ const Home = () => {
                     </div>
                 </section>
                 <section className={styles.see__more}>
-                    <Link className={`${styles.btn__lg} ${styles.btn__info}`} to="#">See more</Link>
+                    <Link className={`${styles.btn__lg} ${styles.btn__info}`} to={'/search/?name=&page=1'}>See more</Link>
                 </section>
             </Main>
         </>

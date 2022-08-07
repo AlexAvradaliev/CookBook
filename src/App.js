@@ -13,6 +13,7 @@ import Create from './pages/Recipe/Create/Create';
 import MyRecipe from './pages/Recipe/My-recipe/MyRecipe';
 import RecipeDetails from './pages/Recipe/Recipe-details/RecipeDetails';
 import EditRecipe from './pages/Edit-recipe/EditRecipe';
+import Search from './pages/Search/Search';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/profile/create-recipe' element={<Create />} />
         <Route path='/recipe/:recipeId' element={<RecipeDetails />} />
         <Route path='/recipe/:recipeId/edit' element={<EditRecipe />} />
+        <Route path='/search' element={<Search />} />
       </Routes>
       <Footer />
     </AuthProvider>

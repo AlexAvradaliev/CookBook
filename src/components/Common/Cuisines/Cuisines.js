@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import cuisinesData from './CuisinesData';
 import styles from './Cuisines.module.css'
@@ -11,7 +11,10 @@ const Cuisines = () => {
       <div>
         {cuisinesData.map((cuisine, i) => (
           <article key={i} className={styles.cuisine}>
-            <Link to="#" className={styles.cuisine__container} >
+            <Link
+              to={`/search/?category=cuisine&cuisine=${cuisine.name}&page=1`}
+              className={styles.cuisine__container}
+            >
               <img
                 className={styles.cuisine__image}
                 src={cuisine.img}
