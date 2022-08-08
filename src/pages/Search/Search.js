@@ -74,12 +74,11 @@ function Search() {
 
     const showBox = () => {
         setShowSearchBox(true)
-    }
+    };
 
     const closeSearch = () => {
         setShowSearchBox(false);
-    }
-
+    };
     return (
         <>
             <Header>

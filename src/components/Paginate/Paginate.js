@@ -17,7 +17,7 @@ export const Paginate = ({ pages, page, term = '', typeCategory = '',  category 
 				))}
 			 </div>
 			 : <div className={styles.paginate}>
-			 {[Array(pages).keys()].map((key) => (
+			 {[...Array(pages).keys()].map((key) => (
 					<Link key={key} to={`/search/?name=${term}&page=${key + 1}`}>
 					 <button className={`${styles.btn} ${key + 1 === page && btnPrimary }`}>
 						 {key + 1}
