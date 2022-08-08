@@ -31,7 +31,7 @@ const Recipe = ({
             <Link to={`/recipe/${recipeInfo._id}`}>
                 <img
                     className={styles.recipe__image}
-                    src={recipeInfo?.images[0].url}
+                    src={recipeInfo?.images[0]?.url}
                     alt={recipeInfo?.title}
                 />
                 <p className={styles.recipe__name}>{recipeInfo?.title} </p>
