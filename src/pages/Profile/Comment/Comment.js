@@ -9,8 +9,10 @@ import Main from '../../../components/Common/Main/Main';
 import Header from '../../../components/Headers/Header/Header';
 import Nav from '../../../components/Nav/Nav';
 import ImageHeader from '../../../components/Profile/ImageHeader/ImageHeader';
-import styles from './Comment.module.css';
 import NoData from '../../../components/Common/No-data/NoData';
+import SkeletonComment from '../../../components/Common/skeletons/SkeletonComment/SkeletonComment'; 
+import Skeleton from '../../../components/Common/skeletons/Skeleton/Skeleton'; 
+import styles from './Comment.module.css';
 
 
 function Comment() {
@@ -18,14 +20,20 @@ function Comment() {
     const { user } = useAuthContext();
 
     const [comments, setComments] = useState([]);
+    const [loading, setLoading] = useState(true)
+
     useEffect(() => {
         commentService.getAllOwner(user.accessToken)
             .then(result => {
-                setComments(result)
-            });
+                setComments(result);
+                setLoading(false);
+            })
+            .catch((err) => {
+                setLoading(false);
+            })
     }, [user]);
 
-    
+const skeletonArr = [1,2,3,4,5,6];
 
     return (
         <>
@@ -41,18 +49,28 @@ function Comment() {
 
                     <section className={styles.profile__content}>
                         <p className={styles.profile__content__text}>comments</p>
-                        {comments.length > 0 &&
-                        <div className={styles.profile__content__container}>
 
-                            {comments.map((comment) =>
-                                <CommentCard comment={comment} key={comment._id} />
-                                )}
-                        </div>
-                            }
+                        {loading
+                        ?  <div className={styles.wrapper}>
+                        {skeletonArr.map((i) => (
+                          <SkeletonComment key={i} />
+                        ))}
+                      </div>
 
-                        {comments.length == 0 &&
-                                (<NoData active={'noComments'} />)
-                            }
+                        :<>
+                         {comments.length > 0
+                            
+                               ? <div className={styles.profile__content__container}>
+                                    {comments.map((comment) =>
+                                        <CommentCard comment={comment} key={comment._id} />
+                                    )}
+                                </div>
+                            : <NoData active={'noComments'} />
+                        }
+                        </>
+}
+                      
+                            
                     </section>
 
                 </section>

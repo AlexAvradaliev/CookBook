@@ -7,10 +7,10 @@ import Header from '../../components/Headers/Header/Header';
 import Nav from '../../components/Nav/Nav';
 import Main from '../../components/Common/Main/Main';
 import RecipeList from '../../components/Recipe/Recipe-list/RecipeList';
-
-import styles from './Search.module.css'
 import Paginate from '../../components/Paginate/Paginate';
 import NoData from '../../components/Common/No-data/NoData';
+import SkeletonRecipe from '../../components/Common/skeletons/SkeletonRecipe/SkeletonRecipe';
+import styles from './Search.module.css'
 
 function Search() {
     const navigate = useNavigate();
@@ -26,7 +26,8 @@ function Search() {
     const [termVal, setTermVal] = useState('');
     const [recipes, setRecipes] = useState([]);
     const [pages, setPages] = useState(1);
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(true);
 
     const sendCategory = `?${typeCategory}=${category}`;
 
@@ -60,6 +61,10 @@ function Search() {
                     setPage(Number(pageURL));
                     setPages(Number(result.pagination.pages));
                     window.scrollTo(0, 0);
+                    setLoading(false);
+                })
+                .catch((err) => {
+                    setLoading(false);
                 })
         } else {
             recipeService.getAll(activeTerm, page)
@@ -67,9 +72,12 @@ function Search() {
                     setRecipes(result.recipes);
                     setPage(Number(pageURL));
                     setPages(Number(result.pagination.pages));
-                    window.scrollTo(0, 0)
+                    window.scrollTo(0, 0);
+                    setLoading(false);
                 })
-
+                .catch((err) => {
+                    setLoading(false);
+                })
         }
     }, [activeTerm, page, pageURL, sendCategory, typeCategory]);
 
@@ -80,6 +88,8 @@ function Search() {
     const closeSearch = () => {
         setShowSearchBox(false);
     };
+
+    const skeletonArr =[1,2,3,4,5,6,7,8]
     return (
         <>
             <Header>
@@ -96,7 +106,8 @@ function Search() {
                                     placeholder='Search recipes...'
                                     defaultValue={termVal}
                                     onBlur={hanldeInput}
-                                />
+                                    autoFocus
+                                    />
                             </div>
                         </div>
                     )}
@@ -115,12 +126,19 @@ function Search() {
                         </button>
                     )}
                     <div onClick={closeSearch} className={styles.recipes}>
-                        
+                        {loading
+                        ?<div className={styles.wrapper}>
+                        {skeletonArr.map((i) => (
+                            <SkeletonRecipe key={i} />
+                        ))}
+                    </div>
+                    : <>
                             {recipes.length > 0
-                            ? (<div><RecipeList recipes={recipes} /></div>)
-                            : <NoData active={'noFind'} />
+                                ? (<div><RecipeList recipes={recipes} /></div>)
+                                : <NoData active={'noFind'} />
                             }
-                            
+                            </>
+                        }
                     </div>
                     <Paginate
                         pages={pages}

@@ -1,0 +1,48 @@
+.skeleton__wrapper {
+    background: #e6e6e6;
+    margin: 1rem auto;
+    padding: .2rem .4rem .5rem;
+    position: relative;
+    width: 100%
+}
+
+.skeleton,
+.skeleton__wrapper {
+    border-radius: 4px;
+    overflow: hidden
+}
+
+.skeleton {
+    background: #ccc;
+    margin: .4rem 0
+}
+
+.skeleton__text {
+    height: .8rem;
+    margin-bottom: .5rem;
+    width: 100%
+}
+
+.skeleton__title {
+    height: 1.5rem;
+    margin-bottom: 1rem;
+    width: 30%
+}
+
+.skeleton__image {
+    height: 9rem;
+    overflow: hidden;
+    width: 100%
+}
+
+.skeleton__name {
+    height: 1.25rem;
+    width: 100%
+}
+
+.skeleton__avatar {
+    border-radius: 50%;
+    height: 2.5rem;
+    margin-right: .5rem;
+    width: 2.5rem
+}

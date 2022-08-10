@@ -1,0 +1,52 @@
+.shimmer__wrapper {
+    -webkit-animation: loading 1.5s infinite;
+    animation: loading 1.5s infinite;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.shimmer {
+    background: hsla(0, 0%, 100%, .2);
+    box-shadow: 0 0 30px 30px hsla(0, 0%, 100%, .2);
+    height: 100%;
+    -webkit-transform: skewX(-20deg);
+    transform: skewX(-20deg);
+    width: 50%;
+}
+
+@-webkit-keyframes loading {
+    0% {
+        -webkit-transform: translateX(-150%);
+        transform: translateX(-150%)
+    }
+
+    50% {
+        -webkit-transform: translateX(-60%);
+        transform: translateX(-60%)
+    }
+
+    to {
+        -webkit-transform: translateX(150%);
+        transform: translateX(150%)
+    }
+}
+
+@keyframes loading {
+    0% {
+        -webkit-transform: translateX(-150%);
+        transform: translateX(-150%)
+    }
+
+    50% {
+        -webkit-transform: translateX(-60%);
+        transform: translateX(-60%)
+    }
+
+    to {
+        -webkit-transform: translateX(150%);
+        transform: translateX(150%)
+    }
+}

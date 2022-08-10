@@ -9,21 +9,26 @@ import Header from '../../../components/Headers/Header/Header';
 import Nav from '../../../components/Nav/Nav';
 import ImageHeader from '../../../components/Profile/ImageHeader/ImageHeader';
 import RecipeList from '../../../components/Recipe/Recipe-list/RecipeList';
-import styles from './MyRecipe.module.css';
 import NoData from '../../../components/Common/No-data/NoData';
+import Skeleton from '../../../components/Common/skeletons/Skeleton/Skeleton';
+import SkeletonRecipe from '../../../components/Common/skeletons/SkeletonRecipe/SkeletonRecipe';
+import styles from './MyRecipe.module.css';
 
 function MyRecipe() {
 
     const { user } = useAuthContext();
 
     const [recipes, setRecipes] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         recipeService.getAllOwner(user.accessToken)
             .then(result => {
                 setRecipes(result);
+                setLoading(false);
             })
             .catch(err => {
+                setLoading(false);
                 console.log(err);
             });
     }, [user.accessToken]);
@@ -34,6 +39,8 @@ function MyRecipe() {
                 setRecipes(state => [...state.filter(x => x._id != id)]);
             })
     };
+
+    const skeletonArr = [1, 2, 3, 4, 5, 6]
 
     return (
         <>
@@ -50,13 +57,20 @@ function MyRecipe() {
 
                     <section className={styles.profile__content}>
                         <p className={styles.profile__content__text}>recipes</p>
-                        {recipes.length > 0
-                            ? 
-                                <div className={styles.profile__content__container}>
-                                    <RecipeList recipes={recipes} deleteHandler={deleteHandler} />
-                                </div>
-                            
-                            : <NoData active={'noRecipe'} />
+                        {loading
+                            ? <div className={styles.wrapper}>
+                                {skeletonArr.map((i) => (
+                                    <SkeletonRecipe key={i} />
+                                ))}
+                            </div>
+                            : <>
+                                {recipes.length > 0
+                                    ? <div className={styles.profile__content__container}>
+                                        <RecipeList recipes={recipes} deleteHandler={deleteHandler} />
+                                    </div>
+                                    : <NoData active={'noRecipe'} />
+                                }
+                            </>
                         }
 
                     </section>
