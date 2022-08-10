@@ -60,9 +60,8 @@ const CreateRecipe = ({
             };
             if(edit){
             recipeService.update(data, recipeId, user.accessToken)
-                .then(res => {
-                    console.log(res)
-                    // navigate
+                .then(() => {
+                    navigate('/profile');
                 })
                 .catch((err) => {
                     console.log(err)
