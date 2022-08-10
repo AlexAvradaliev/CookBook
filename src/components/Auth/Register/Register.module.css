@@ -133,3 +133,7 @@
 .text strong {
     color: #9b59b6;
 }
+
+.loading {
+    text-align: center;
+}

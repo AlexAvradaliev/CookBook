@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAuthContext } from '../../../context/AuthContext';
@@ -5,13 +6,14 @@ import { useCommentContext } from '../context/commentContext';
 import * as commentService from '../../../servces/commentService';
 
 import styles from './CreateComment.module.css';
-import { useEffect } from 'react';
+import Loader from '../../Common/Loader/Loader';
 
 const CreateComment = () => {
 
     const { user } = useAuthContext();
     const { update, text, changeText, changeComments, comments, changeUpdate, addComments } = useCommentContext();
     const { recipeId } = useParams();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if(update){
@@ -25,6 +27,7 @@ const CreateComment = () => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
+        setLoading(true);
         if(update){
             commentService.edit(text, update._id, user.accessToken)
             .then(res=>{
@@ -32,8 +35,14 @@ const CreateComment = () => {
                 commentsCopy.map((com, i) => {
                     if(com._id == res._id){
                       commentsCopy.splice(i,1,res);
-                    }
+                    };
             })
+            .catch((err) => {
+
+            })
+            .finally(() => {
+                setLoading(false);
+            });
             addComments(commentsCopy);
             changeUpdate(null);
             changeText('');
@@ -48,6 +57,9 @@ const CreateComment = () => {
             })
             .catch(err => {
                 console.log(err);
+            })
+            .finally(() => {
+                setLoading(false);
             });
         };
     };
@@ -68,6 +80,7 @@ const CreateComment = () => {
                         htmlFor="createComment"
                         className={styles.createComment__wrapper__label}
                     >
+                        <Loader />
                         {update
                         ? 'Update a comment'
                         : 'Give it a comment'

@@ -10,6 +10,7 @@ import hidePassword from '../assets/images/hide-password.svg';
 import ErrorMessage from '../../Common/Error-message/ErrorMessage';
 
 import styles from './Login.module.css';
+import Loader from '../../Common/Loader/Loader';
 
 const Login = () => {
 
@@ -26,6 +27,7 @@ const Login = () => {
     } = useLoginContext();
 
     const [toggle, setToggle] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const onToggleClick = () => {
         setToggle(state => !state);
@@ -41,15 +43,18 @@ const Login = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        setLoading(true);
 
         if (isFormValid()) {
             authService.login(user)
                 .then((authData) => {
                     login(authData);
                     navigate('/');
+                    setLoading(false);
                 })
                 .catch((err) => {
                     addErrorServer(err);
+                    setLoading(false);
                 });
         };
     };
@@ -78,14 +83,14 @@ const Login = () => {
                                     onBlur={verifyField}
                                 />
                                 <label htmlFor="email" className={`${styles.form__label}`}>Email</label>
-                                {errorsServer?.custom
-                                    ? <ErrorMessage message='text'>{errorsServer.custom[0]}</ErrorMessage>
-                                    : ''
+                                {errorsServer?.custom &&
+                                     <ErrorMessage message='text'>{errorsServer.custom[0]}</ErrorMessage>
                                 }
-                                {errors?.email
-                                    ? <ErrorMessage message='text'>{errors.email[0]}</ErrorMessage>
-                                    : ''
+
+                                {errors?.email &&
+                                     <ErrorMessage message='text'>{errors.email[0]}</ErrorMessage>
                                 }
+
                             </article>
 
                             <article className={styles.input__box}>
@@ -113,17 +118,23 @@ const Login = () => {
                                     alt='hide'
                                     onClick={onToggleClick}
                                 />
-                                {errorsServer?.custom
-                                    ? <ErrorMessage message='text'>{errorsServer.custom[0]}</ErrorMessage>
-                                    : ''
+                                {errorsServer?.custom &&
+                                     <ErrorMessage message='text'>{errorsServer.custom[0]}</ErrorMessage>
                                 }
-                                {errors?.password
-                                    ? <ErrorMessage message='text'>{errors.password[0]}</ErrorMessage>
-                                    : ''
+
+                                {errors?.password &&
+                                     <ErrorMessage message='text'>{errors.password[0]}</ErrorMessage>
                                 }
+
                             </article>
 
                         </section>
+
+                        {loading && 
+						<div className={styles.loading}>
+							<Loader />
+						</div>
+					}
 
                         <button className={styles.button}>Login</button>
 

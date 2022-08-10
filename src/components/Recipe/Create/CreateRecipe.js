@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
 
 import { useRecipeContext } from './context/recipeFormContext';
@@ -16,6 +16,7 @@ import RecipeTitle from './Form-components/Recipe-title/RecipeTitle';
 import RecipePrepTime from './Form-components/Recipe-prepTime/RecipePrepTime';
 import RecipeSteps from './Form-components/Recipe-steps/RecipeSteps';
 import styles from './CreateRecipe.module.css';
+import Loader from '../../Common/Loader/Loader';
 
 const CreateRecipe = ({
     edit
@@ -50,14 +51,17 @@ const CreateRecipe = ({
     const {recipeId} = useParams();
     const { user } = useAuthContext();
     const navigate = useNavigate();
+const [loading, setLoading] = useState(false);
 
     const submitData = () => {
+
         if (isFormValid()) {
             let data = recipe;
 
             if (previewImage.length > 0) {
                 data = { ...recipe, previewImage }
             };
+            setLoading(true);
             if(edit){
             recipeService.update(data, recipeId, user.accessToken)
                 .then(() => {
@@ -65,16 +69,22 @@ const CreateRecipe = ({
                 })
                 .catch((err) => {
                     console.log(err)
+                })
+                .finally(() => {
+                setLoading(false);
                 });
             } else {
                 recipeService.create(data, user.accessToken)
                 .then(() => {
-                    // navigate
+                    navigate('/profile');
                 })
                 .catch((err) => {
                     console.log(err)
+                })
+                .finally(() => {
+                setLoading(false);
                 }); 
-            }
+            };
         };
     };
 
@@ -116,6 +126,10 @@ const CreateRecipe = ({
                     <RecipeIngredients />
 
                 </section>
+
+                {loading &&
+                <Loader />
+                }
 
                 <button onClick={submitData} className={`${styles.button} ${styles.btn__primary}`}>
                     {edit

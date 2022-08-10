@@ -134,3 +134,7 @@
     width: 19px;
     cursor: pointer;
 }
+
+.loading {
+    text-align: center;
+}
