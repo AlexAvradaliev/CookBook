@@ -17,6 +17,7 @@ import RecipePrepTime from './Form-components/Recipe-prepTime/RecipePrepTime';
 import RecipeSteps from './Form-components/Recipe-steps/RecipeSteps';
 import styles from './CreateRecipe.module.css';
 import Loader from '../../Common/Loader/Loader';
+import Meta from '../../Common/Meta/Meta';
 
 const CreateRecipe = ({
     edit
@@ -89,6 +90,14 @@ const [loading, setLoading] = useState(false);
     };
 
     return (
+        <>
+
+        <Meta
+        title={`Cook Book | ${user && user.firstName} ${
+          user && user.lastName
+        }`}
+      />
+
         <section className={styles.profile__content}>
             <p className={styles.profile__content__text}>Create recipe</p>
             <div className={styles.create}>
@@ -139,9 +148,7 @@ const [loading, setLoading] = useState(false);
                 </button>
             </div>
         </section>
-
-
-
+        </>
     );
 };
 

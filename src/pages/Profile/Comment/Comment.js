@@ -12,6 +12,7 @@ import ImageHeader from '../../../components/Profile/ImageHeader/ImageHeader';
 import NoData from '../../../components/Common/No-data/NoData';
 import SkeletonComment from '../../../components/Common/skeletons/SkeletonComment/SkeletonComment'; 
 import styles from './Comment.module.css';
+import Meta from '../../../components/Common/Meta/Meta';
 
 
 function Comment() {
@@ -36,6 +37,11 @@ const skeletonArr = [1,2,3,4,5,6];
 
     return (
         <>
+        <Meta
+        title={`Cook Book | ${user && user.firstName} ${
+          user && user.lastName
+        }`}
+      />
             <Header>
                 <Nav />
             </Header>

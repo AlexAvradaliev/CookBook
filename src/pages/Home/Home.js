@@ -12,6 +12,7 @@ import Nav from '../../components/Nav/Nav';
 import RecipeList from '../../components/Recipe/Recipe-list/RecipeList';
 import Skeleton from '../../components/Common/skeletons/Skeleton/Skeleton';
 import SkeletonRecipe from '../../components/Common/skeletons/SkeletonRecipe/SkeletonRecipe';
+import Meta from '../../components/Common/Meta/Meta';
 
 import styles from './Home.module.css';
 
@@ -39,6 +40,7 @@ const Home = () => {
 
     return (
         <>
+        <Meta />
             <HomeHeader>
                 <Nav homeStyles={true} />
                 <HomeSearch />

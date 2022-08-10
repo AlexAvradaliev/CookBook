@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import * as recipeService from '../../../servces/recipeService';
+import Meta from '../../Common/Meta/Meta';
 
 import styles from './Details.module.css';
 
@@ -24,6 +25,12 @@ const Details = () => {
     
     return (
         <>
+        <Meta
+              title={`${recipe.title} by ${
+                recipe.user && recipe.user.firstName
+              } ${recipe.user && recipe.user.lastName} `}
+            />
+
             <section className={styles.recipe__details__generic}>
                 <article>
                     <header>

@@ -12,6 +12,7 @@ import RecipeList from '../../../components/Recipe/Recipe-list/RecipeList';
 import NoData from '../../../components/Common/No-data/NoData';
 import SkeletonRecipe from '../../../components/Common/skeletons/SkeletonRecipe/SkeletonRecipe';
 import styles from './MyRecipe.module.css';
+import Meta from '../../../components/Common/Meta/Meta';
 
 function MyRecipe() {
 
@@ -43,6 +44,11 @@ function MyRecipe() {
 
     return (
         <>
+        <Meta
+        title={`Cook Book | ${user && user.firstName} ${
+          user && user.lastName
+        }`}
+      />
             <Header>
                 <Nav />
             </Header>

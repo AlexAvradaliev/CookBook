@@ -6,6 +6,7 @@ import * as authService from '../../../../../servces/authService';
 
 import ErrorMessage from '../../../../Common/Error-message/ErrorMessage';
 import styles from './DataForm.module.css';
+import Meta from '../../../../Common/Meta/Meta';
 
 const DataForm = () => {
     const { user, changeUserData } = useAuthContext();
@@ -55,6 +56,12 @@ const DataForm = () => {
     };
 
     return (
+        <>
+        <Meta
+        title={`Cook Book | ${user && user.firstName} ${
+          user && user.lastName
+        }`}
+      />
         <form
             method='POST'
             onSubmit={submitHandler}
@@ -131,6 +138,7 @@ const DataForm = () => {
 
             <button className={styles.button}>Update details</button>
         </form>
+        </>
     );
 };
 
