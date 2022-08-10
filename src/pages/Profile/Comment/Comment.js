@@ -10,19 +10,22 @@ import Header from '../../../components/Headers/Header/Header';
 import Nav from '../../../components/Nav/Nav';
 import ImageHeader from '../../../components/Profile/ImageHeader/ImageHeader';
 import styles from './Comment.module.css';
+import NoData from '../../../components/Common/No-data/NoData';
 
 
 function Comment() {
 
-    const {user} = useAuthContext(); 
+    const { user } = useAuthContext();
 
     const [comments, setComments] = useState([]);
     useEffect(() => {
         commentService.getAllOwner(user.accessToken)
-        .then(result =>{
-            setComments(result)
-        });
+            .then(result => {
+                setComments(result)
+            });
     }, [user]);
+
+    
 
     return (
         <>
@@ -38,13 +41,18 @@ function Comment() {
 
                     <section className={styles.profile__content}>
                         <p className={styles.profile__content__text}>comments</p>
+                        {comments.length > 0 &&
                         <div className={styles.profile__content__container}>
 
-                        {comments.map((comment) => (
-                      <CommentCard comment={comment} key={comment._id} />
-                    ))}
-
+                            {comments.map((comment) =>
+                                <CommentCard comment={comment} key={comment._id} />
+                                )}
                         </div>
+                            }
+
+                        {comments.length == 0 &&
+                                (<NoData active={'noComments'} />)
+                            }
                     </section>
 
                 </section>

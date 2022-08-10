@@ -10,6 +10,7 @@ import RecipeList from '../../components/Recipe/Recipe-list/RecipeList';
 
 import styles from './Search.module.css'
 import Paginate from '../../components/Paginate/Paginate';
+import NoData from '../../components/Common/No-data/NoData';
 
 function Search() {
     const navigate = useNavigate();
@@ -113,10 +114,13 @@ function Search() {
                             {activeTerm} <i className='fas fa-times'></i>
                         </button>
                     )}
-                    <div className={styles.recipes}>
-                        <div onClick={closeSearch}>
-                            <RecipeList recipes={recipes} />
-                        </div>
+                    <div onClick={closeSearch} className={styles.recipes}>
+                        
+                            {recipes.length > 0
+                            ? (<div><RecipeList recipes={recipes} /></div>)
+                            : <NoData active={'noFind'} />
+                            }
+                            
                     </div>
                     <Paginate
                         pages={pages}

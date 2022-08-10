@@ -10,6 +10,7 @@ import Nav from '../../../components/Nav/Nav';
 import ImageHeader from '../../../components/Profile/ImageHeader/ImageHeader';
 import RecipeList from '../../../components/Recipe/Recipe-list/RecipeList';
 import styles from './MyRecipe.module.css';
+import NoData from '../../../components/Common/No-data/NoData';
 
 function MyRecipe() {
 
@@ -49,9 +50,15 @@ function MyRecipe() {
 
                     <section className={styles.profile__content}>
                         <p className={styles.profile__content__text}>recipes</p>
-                        <div className={styles.profile__content__container}>
-                            <RecipeList recipes={recipes} deleteHandler={deleteHandler} />
-                        </div>
+                        {recipes.length > 0
+                            ? 
+                                <div className={styles.profile__content__container}>
+                                    <RecipeList recipes={recipes} deleteHandler={deleteHandler} />
+                                </div>
+                            
+                            : <NoData active={'noRecipe'} />
+                        }
+
                     </section>
 
                 </section>
