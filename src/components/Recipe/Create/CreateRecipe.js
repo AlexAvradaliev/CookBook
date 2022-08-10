@@ -46,7 +46,7 @@ const CreateRecipe = ({
             };
             changeState(data);
         }
-    }, [edit]);
+    }, [edit, changeState]);
 
     const {recipeId} = useParams();
     const { user } = useAuthContext();

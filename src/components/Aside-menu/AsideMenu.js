@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import {useAuthContext} from '../../context/AuthContext'
-
 import styles from './AsideMenu.module.css';
 
 const AsideMenu = () => {
     const location = useLocation();
-
-    const { user } = useAuthContext();
 
     const [active, setActive] = useState('');
     const includes = (name) => location.pathname.includes(name)
@@ -26,7 +22,7 @@ const AsideMenu = () => {
            } else if(includes('profile')){
                setActive('recipes')
            }
-    }, [includes]);
+    }, [includes, setActive]);
 
     return (
         <aside className={styles.profile__aside}>

@@ -1,7 +1,7 @@
 import isEmail from 'validator/lib/isEmail';
 
 const mimeType = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'];
-const isValid = (type) => !!mimeType.find(x => x == type);
+const isValid = (type) => !!mimeType.find(x => x === type);
 
 const title = {
     firstName: 'First name',
@@ -71,8 +71,8 @@ export const confirmPassword = (name, value, password) => {
     if (value.length === 0) {
         return { [name]: ["Required"] };
 
-    } else if (value != password) {
-        return { [name]: [`The Passwords don\'t match`] };
+    } else if (value !== password) {
+        return { [name]: [`The Passwords don't match`] };
     }
 };
 
@@ -108,9 +108,9 @@ export const arrayField = (name, value) => {
 
 export const imagesField = (value) => {
     if (value > maxLength['images']) {
-        return { ['images']: [`The ${title['images']} can be maximum ${maxLength['images']} images`] };
-    } else if( value == 0) {
-        return { ['images']: ["Required"] };
+        return { 'images': [`The ${title['images']} can be maximum ${maxLength['images']} images`] };
+    } else if( value === 0) {
+        return { 'images': ["Required"] };
     }
 };
 

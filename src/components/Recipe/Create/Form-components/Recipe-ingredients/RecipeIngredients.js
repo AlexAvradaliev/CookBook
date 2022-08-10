@@ -13,7 +13,6 @@ const RecipeIngredients = () => {
         errors,
         recipe,
         changeRecipe,
-        checkData,
     } = useRecipeContext();
 
     const changeIngredient = (e) => {

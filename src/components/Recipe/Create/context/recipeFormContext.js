@@ -55,7 +55,7 @@ export const RecipeProvider = ({ children }) => {
 
     const checkData = (name, value) => {
 
-        if (name == 'images' || name == 'previewImage') {
+        if (name === 'images' || name === 'previewImage') {
            
             const result = imagesField(Number(previewImage.length) + Number(recipe.images.length));
 
@@ -65,7 +65,7 @@ export const RecipeProvider = ({ children }) => {
             
                 return result;
 
-        } else if (name == 'prepTime' || name == 'cookTime') {
+        } else if (name === 'prepTime' || name === 'cookTime') {
             const result = inputNumber(name, value);
 
             result
@@ -112,6 +112,7 @@ export const RecipeProvider = ({ children }) => {
             if (result) {
                 isValid = true;
             };
+            return  null;
         });
 
        return !isValid

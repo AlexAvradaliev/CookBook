@@ -30,7 +30,7 @@ const DataForm = () => {
             lastName,
             email,
         });
-    }, [ user]);
+    }, [ user, getData]);
 
     const changeHandler = (e) => {
         userChange(e.target.name, e.target.value, 'user');

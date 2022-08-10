@@ -45,7 +45,7 @@ const RecipeImages = () => {
     const deletePreviewImage = (e) => {
         setLoading(true);
         const id = e.target.id;
-        const filtred = previewImage.filter(x => x.url != id);
+        const filtred = previewImage.filter(x => x.url !== id);
         removePreviewImage(filtred);
         setLoading(false);
     };
@@ -56,7 +56,7 @@ const RecipeImages = () => {
         const image = recipe.images.filter(x => x.url === id);
         uploadService.removeImage({ id: image[0].id, url: image[0].url }, recipeId, user.accessToken)
             .then(() => {
-                const filtred = recipe.images.filter(x => x.url != id);
+                const filtred = recipe.images.filter(x => x.url !== id);
                 changeRecipe('images', filtred);
                 setLoading(false);
             })

@@ -19,7 +19,7 @@ const CreateComment = () => {
         if(update){
             changeText(update.text)
         }
-    },[update])
+    },[update, changeText])
 
     const changeHandler = (e) => {
         changeText(e.target.value);
@@ -33,9 +33,10 @@ const CreateComment = () => {
             .then(res=>{
                 const commentsCopy = [...comments];
                 commentsCopy.map((com, i) => {
-                    if(com._id == res._id){
+                    if(com._id === res._id){
                       commentsCopy.splice(i,1,res);
                     };
+                    return null;
             })
             .catch((err) => {
 

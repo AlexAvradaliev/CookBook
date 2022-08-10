@@ -20,7 +20,7 @@ const Feedback = () => {
     }, [recipeId, user]);
 
     const changeRageting = (e) => {
-        if (rating.value == 0) {
+        if (rating.value === 0) {
             feedbackService.create(e.target.value, recipeId, user.accessToken)
                 .then(res => {
                     setRating({ value: Number(res.value), ratingId: res._id });
@@ -48,7 +48,7 @@ const Feedback = () => {
                         id="rating-5"
                         value={5}
                         onChange={changeRageting}
-                        checked={rating.value == 5}
+                        checked={rating.value === 5}
                     />
                     <label htmlFor="rating-5"></label>
                     <input
@@ -57,7 +57,7 @@ const Feedback = () => {
                         id="rating-4"
                         value={4}
                         onChange={changeRageting}
-                        checked={rating.value == 4}
+                        checked={rating.value === 4}
                     />
                     <label htmlFor="rating-4"></label>
                     <input
@@ -66,7 +66,7 @@ const Feedback = () => {
                         id="rating-3"
                         value={3}
                         onChange={changeRageting}
-                        checked={rating.value == 3}
+                        checked={rating.value === 3}
                     />
                     <label htmlFor="rating-3"></label>
                     <input
@@ -75,7 +75,7 @@ const Feedback = () => {
                         id="rating-2"
                         value={2}
                         onChange={changeRageting}
-                        checked={rating.value == 2}
+                        checked={rating.value === 2}
                     />
                     <label htmlFor="rating-2"></label>
                     <input
@@ -84,7 +84,7 @@ const Feedback = () => {
                         id="rating-1"
                         value={1}
                         onChange={changeRageting}
-                        checked={rating.value == 1}
+                        checked={rating.value === 1}
                     />
                     <label htmlFor="rating-1"></label>
                 </div>

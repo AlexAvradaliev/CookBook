@@ -22,11 +22,11 @@ const RecipeCommentCard = () => {
             .catch(err => {
                 console.log(err);
             });
-    }, [ recipeId, user.accessToken]);
+    }, [addComments, recipeId, user.accessToken]);
 
     const updateHandler = (e) => {
         const id = e.target.id;
-        const comment = comments.filter(x => x._id == id);
+        const comment = comments.filter(x => x._id === id);
         changeUpdate(comment[0])
         window.scrollTo({
             top: 700,
@@ -37,7 +37,7 @@ const RecipeCommentCard = () => {
     const deleteHandler = (id) => {
         commentService.remove(id, user.accessToken)
         .then(() => {
-            const filtred = comments.filter(x => x._id != id);
+            const filtred = comments.filter(x => x._id !== id);
             addComments(filtred);
         })
     };

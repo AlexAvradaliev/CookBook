@@ -36,7 +36,7 @@ export const RegisterProvider = ({ children }) => {
     };
 
     const checkData = (name, value) => {
-        if (name == 'email') {
+        if (name === 'email') {
 
             const result = inputEmail(name, value);
 
@@ -45,7 +45,7 @@ export const RegisterProvider = ({ children }) => {
                 : setErrors(state => removeErrorProperties(state, name));
             return result;
 
-        } else if (name == "repassword") {
+        } else if (name === "repassword") {
 
             const result = confirmPassword(name, value, user?.password);
 
@@ -76,6 +76,7 @@ export const RegisterProvider = ({ children }) => {
             if (result) {
                 isValid = true;
             };
+            return null;
         });
 
         if (isValid || errorsServer) {

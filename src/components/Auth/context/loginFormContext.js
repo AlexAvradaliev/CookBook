@@ -33,7 +33,7 @@ export const LoginProvider = ({ children }) => {
     };
 
     const checkData = (name, value) => {
-        if (name == 'email') {
+        if (name === 'email') {
 
             const result = inputEmail(name, value);
 
@@ -42,7 +42,7 @@ export const LoginProvider = ({ children }) => {
                 : setErrors(state => removeErrorProperties(state, name));
             return result;
 
-        } else if (name == "password") {
+        } else if (name === "password") {
 
             const result = inputText(name, value);
 
@@ -64,6 +64,7 @@ export const LoginProvider = ({ children }) => {
             if (result) {
                 isValid = true;
             };
+            return null;
         });
 
         if (isValid || errorsServer) {

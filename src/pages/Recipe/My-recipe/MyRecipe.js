@@ -10,7 +10,6 @@ import Nav from '../../../components/Nav/Nav';
 import ImageHeader from '../../../components/Profile/ImageHeader/ImageHeader';
 import RecipeList from '../../../components/Recipe/Recipe-list/RecipeList';
 import NoData from '../../../components/Common/No-data/NoData';
-import Skeleton from '../../../components/Common/skeletons/Skeleton/Skeleton';
 import SkeletonRecipe from '../../../components/Common/skeletons/SkeletonRecipe/SkeletonRecipe';
 import styles from './MyRecipe.module.css';
 
@@ -36,7 +35,7 @@ function MyRecipe() {
     const deleteHandler = (id) => {
         recipeService.removeRecipe(id, user.accessToken)
             .then(() => {
-                setRecipes(state => [...state.filter(x => x._id != id)]);
+                setRecipes(state => [...state.filter(x => x._id !== id)]);
             })
     };
 

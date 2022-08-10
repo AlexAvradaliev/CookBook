@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 import { inputEmail, inputText, confirmPassword } from '../../../../utils/validation/validation';
 import { addErrorProperties, removeErrorProperties } from '../../../../utils/contextFunctions/contextFunctions';
@@ -27,7 +27,7 @@ export const EditProfileProvider = ({ children }) => {
     };
 
     const userChange = (name, value, type) => {
-        if (type == 'user') {
+        if (type === 'user') {
             setUserData(state => ({
                 ...state,
                 [name]: value
@@ -43,8 +43,8 @@ export const EditProfileProvider = ({ children }) => {
     };
 
     const checkData = (name, value, type) => {
-        if (type == 'user') {
-            if (name == 'email') {
+        if (type === 'user') {
+            if (name === 'email') {
                 const result = inputEmail(name, value);
                 result
                     ? setErrors(state => addErrorProperties(state, name, result))
@@ -58,7 +58,7 @@ export const EditProfileProvider = ({ children }) => {
                 return result;
             };
         } else {
-             if (name == 'confirmPassword') {
+             if (name === 'confirmPassword') {
                 const result = confirmPassword(name, value, passwords.newPassword);
                 result
                     ? setErrorsPasswords(state => addErrorProperties(state, name, result))
@@ -77,15 +77,17 @@ export const EditProfileProvider = ({ children }) => {
 
     const isFormValid = (type) => {
         let isValid = false;
-        if (type == 'user') {
+        if (type === 'user') {
             Object.entries(userData).map(x => {
                 const name = x[0];
                 const value = x[1];
 
                 const result = checkData(name, value, type);
+
                 if (result) {
                     isValid = true;
                 };
+                return null;
             });
         } else {
 
@@ -97,6 +99,7 @@ export const EditProfileProvider = ({ children }) => {
                 if (result) {
                     isValid = true;
                 };
+                return null;
             });
         }
 
@@ -109,7 +112,7 @@ export const EditProfileProvider = ({ children }) => {
 
     const addErrorServer = (err, type) => {
         console.log(err)
-        type == 'user'
+        type === 'user'
         ? setErrorsServer(err)
         : setErrorsServerPasswords(err)
     };

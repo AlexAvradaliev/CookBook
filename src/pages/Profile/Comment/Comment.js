@@ -11,7 +11,6 @@ import Nav from '../../../components/Nav/Nav';
 import ImageHeader from '../../../components/Profile/ImageHeader/ImageHeader';
 import NoData from '../../../components/Common/No-data/NoData';
 import SkeletonComment from '../../../components/Common/skeletons/SkeletonComment/SkeletonComment'; 
-import Skeleton from '../../../components/Common/skeletons/Skeleton/Skeleton'; 
 import styles from './Comment.module.css';
 
 

@@ -47,7 +47,9 @@ const ImageHeader = () => {
                 </label>
                     <i className="fas fa-camera fa-2x"></i>
             </article>
+            {loading &&
             <Loader type='medium' />
+            }
                 <p>{user?.firstName}{' '} {user?.lastName} </p>
         </section>
     );
