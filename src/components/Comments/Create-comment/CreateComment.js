@@ -80,7 +80,9 @@ const CreateComment = () => {
                         htmlFor="createComment"
                         className={styles.createComment__wrapper__label}
                     >
+                        {loading &&
                         <Loader />
+                        }
                         {update
                         ? 'Update a comment'
                         : 'Give it a comment'
