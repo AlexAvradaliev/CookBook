@@ -30,6 +30,7 @@ const CreateRecipe = ({
         previewImage,
         recipe,
         isFormValid,
+        removePreviewImage,
     } = useRecipeContext();
 
     const { recipeId } = useParams();
@@ -50,6 +51,7 @@ const CreateRecipe = ({
                 recipeService.update(data, recipeId, user.accessToken)
                     .then(() => {
                         navigate('/profile');
+                        removePreviewImage([]);
                     })
                     .catch((err) => {
                         if (err.status === 401) {
@@ -67,6 +69,7 @@ const CreateRecipe = ({
                 recipeService.create(data, user.accessToken)
                     .then(() => {
                         navigate('/profile');
+                        removePreviewImage([])
                     })
                     .catch((err) => {
                         if (err.status === 401) {

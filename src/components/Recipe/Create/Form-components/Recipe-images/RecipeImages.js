@@ -41,8 +41,8 @@ const RecipeImages = () => {
 
                 changePreviewImage({ url: reader.result, mimeType: newImage.type });
             };
-            setLoading(false);
         };
+        setLoading(false);
     };
 
     const deletePreviewImage = (e) => {

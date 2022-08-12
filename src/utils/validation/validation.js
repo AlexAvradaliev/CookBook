@@ -1,4 +1,5 @@
 import isEmail from 'validator/lib/isEmail';
+import trim from 'validator/lib/trim';
 
 const mimeType = ['image/png', 'image/jpeg', 'image/jpg', 'image/gif'];
 const isValid = (type) => !!mimeType.find(x => x === type);
@@ -42,8 +43,7 @@ const maxLength = {
 };
 
 export const inputText = (name, value) => {
-
-    value = value.trim();
+    value = trim(value);
     if (value.length === 0) {
         return { [name]: ["Required"] };
 

@@ -80,9 +80,10 @@ export const RecipeProvider = ({ children }) => {
                 ? setErrors(state => addErrorProperties(state, name, result))
                 : setErrors(state => removeErrorProperties(state, name));
             return result;
-        } else {
+        } else if(value === 'string') {
 
             const result = inputText(name, value);
+
 
             result
                 ? setErrors(state => addErrorProperties(state, name, result))
