@@ -28,7 +28,7 @@ export const getOwner = async (
     recipeId,
     token
 ) => {
-
+    if(recipeId.length === 24){
     let response = await fetch(`${BASE_URL}/api/feedback/user/${recipeId}`, {
         headers: {
             'x-authorization': token
@@ -42,6 +42,7 @@ export const getOwner = async (
         let errors = {jsonRes, 'status': response.status};
         throw errors;
     };
+};
 };
 
 export const update = async (data, token, recipeId) => {
@@ -61,5 +62,17 @@ export const update = async (data, token, recipeId) => {
         let errors = {jsonRes, 'status': response.status};
         throw errors;
     };
+};
 
+export const get = async ( recipeId) => {
+    if(recipeId.length === 24){
+    let response = await fetch(`${BASE_URL}/api/feedback/${recipeId}`);
+    let jsonRes = await response.json();
+    if (response.ok) {
+        return jsonRes;
+    } else {
+        let errors = {jsonRes, 'status': response.status};
+        throw errors;
+    };
+};
 };

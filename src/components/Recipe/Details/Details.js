@@ -5,6 +5,7 @@ import { useErrorsContext } from '../../../context/ErrorsContext';
 
 import * as recipeService from '../../../servces/recipeService';
 import Meta from '../../Common/Meta/Meta';
+import Rating from '../../Common/Rating/Rating';
 
 import styles from './Details.module.css';
 
@@ -48,14 +49,15 @@ const Details = () => {
                     <header>
                         <h1 className={styles.recipe__details__generic__text}>{recipe?.title}</h1>
                         <div className={styles.recipe__details__generic__rating}>
-                            <span>
+                            {/* <span>
                                 <i className="fas fa-star"></i>
                                 <i className="fas fa-star"></i>
                                 <i className="fas fa-star"></i>
                                 <i className="fas fa-star"></i>
                                 <i className="fas fa-star"></i>
-                            </span>
-                            <span>(1) </span>
+                            </span> */}
+                            {/* <span>(1) </span> */}
+                            <Rating />
                         </div>
                     </header>
                     <section className={styles.recipe__details__generic__owner}>
