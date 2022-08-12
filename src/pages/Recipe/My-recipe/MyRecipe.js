@@ -31,7 +31,7 @@ function MyRecipe() {
                 setRecipes(result);
             })
             .catch(err => {
-                if (err.status == 401) {
+                if (err.status === 401) {
                     logout();
                     navigate('/');
                 } else {
@@ -42,7 +42,7 @@ function MyRecipe() {
             .finally(()=> {
                 setLoading(false);
             });
-    }, [user.accessToken]);
+    }, [user.accessToken, logout, navigate, addErrors]);
 
     const deleteHandler = (id) => {
         recipeService.removeRecipe(id, user.accessToken)
@@ -50,7 +50,7 @@ function MyRecipe() {
                 setRecipes(state => [...state.filter(x => x._id !== id)]);
             })
             .catch((err) => {
-                if (err.status == 401) {
+                if (err.status === 401) {
                     logout();
                     navigate('/');
                 } else {

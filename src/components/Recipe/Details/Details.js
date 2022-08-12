@@ -24,7 +24,7 @@ const Details = () => {
                 setRecipe(result);
             })
             .catch(err => {
-                if (err.status == 401) {
+                if (err.status === 401) {
                     logout();
                     navigate('/');
                 } else {
@@ -33,7 +33,7 @@ const Details = () => {
                     navigate('/404')
                 };
             });
-    }, [recipeId]);
+    }, [recipeId, addErrors, navigate, logout]);
     
     return (
         <>

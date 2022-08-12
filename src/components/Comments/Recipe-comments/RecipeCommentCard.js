@@ -23,7 +23,7 @@ const RecipeCommentCard = () => {
                 addComments(res || []);
             })
             .catch((err) => {
-                if (err.status == 401) {
+                if (err.status === 401) {
                     logout();
                     navigate('/');
                 } else {
@@ -31,7 +31,7 @@ const RecipeCommentCard = () => {
                     navigate('/404')
                 };
             });
-    }, [ recipeId, user.accessToken]);
+    }, [ recipeId, user.accessToken, addErrors, navigate, logout]);
 
     const updateHandler = (e) => {
         const id = e.target.id;
@@ -50,7 +50,7 @@ const RecipeCommentCard = () => {
             addComments(filtred);
         })
         .catch((err) => {
-            if (err.status == 401) {
+            if (err.status === 401) {
                 logout();
                 navigate('/');
             } else {

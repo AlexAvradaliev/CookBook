@@ -64,7 +64,7 @@ const RecipeImages = () => {
                 setLoading(false);
             })
             .catch((err) => {
-                if(err.status == 401){
+                if(err.status === 401){
                     logout();
                     navigate('/');
                 } else {

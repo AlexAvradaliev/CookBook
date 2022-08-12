@@ -29,7 +29,9 @@ export const getAll = async (term = '', page = '', category) => {
 export const getOneById = async (id) => {
 
     if(id.length !== 24){
-        throw { 'status': 404, 'jsonRes': ['Page not found']};
+
+        const error = { 'status': 404, 'jsonRes': ['Page not found']};
+        throw error;
     }else {
         
         const response = await fetch(`${BASE_URL}/api/recipe/${id}`);
@@ -95,7 +97,8 @@ export const update = async (
 ) => {
 
     if(recipeId.length !== 24){
-        throw { 'status': 404, 'jsonRes': ['Page not found']};
+        const error = { 'status': 404, 'jsonRes': ['Page not found']};
+        throw error;
     }else {
         const response = await fetch(`${BASE_URL}/api/recipe/${recipeId}`, {
             method: 'PUT',
@@ -119,7 +122,8 @@ export const update = async (
 export const removeRecipe = async (recipeId, token) => {
 
     if(recipeId.length !== 24){
-        throw { 'status': 404, 'jsonRes': ['Page not found']};
+        const error = { 'status': 404, 'jsonRes': ['Page not found']};
+        throw error;
     } else {
         const response = await fetch(`${BASE_URL}/api/recipe/${recipeId}`, {
             method: 'DELETE',

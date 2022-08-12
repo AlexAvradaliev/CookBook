@@ -22,7 +22,7 @@ const Feedback = () => {
                 setRating({ value: Number(res.value) || 0, ratingId: res._id })
             })
             .catch((err) => {
-                if (err.status == 401) {
+                if (err.status === 401) {
                     logout();
                     navigate('/');
                 } else {
@@ -30,7 +30,7 @@ const Feedback = () => {
                     navigate('/404')
                 };
             });
-    }, [recipeId, user]);
+    }, [recipeId, user, addErrors, navigate, logout]);
 
     const changeRageting = (e) => {
         if (rating.value === 0) {
@@ -38,7 +38,7 @@ const Feedback = () => {
                 .then(res => {
                     setRating({ value: Number(res.value), ratingId: res._id });
                 }).catch((err) => {
-                    if (err.status == 401) {
+                    if (err.status === 401) {
                         logout();
                         navigate('/');
                     } else {
@@ -52,7 +52,7 @@ const Feedback = () => {
                     setRating({ value: Number(res.value), ratingId: res._id })
                 })
                 .catch((err) => {
-                    if (err.status == 401) {
+                    if (err.status === 401) {
                         logout();
                         navigate('/');
                     } else {

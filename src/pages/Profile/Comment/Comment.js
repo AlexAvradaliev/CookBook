@@ -12,7 +12,7 @@ import Header from '../../../components/Headers/Header/Header';
 import Nav from '../../../components/Nav/Nav';
 import ImageHeader from '../../../components/Profile/ImageHeader/ImageHeader';
 import NoData from '../../../components/Common/No-data/NoData';
-import SkeletonComment from '../../../components/Common/skeletons/SkeletonComment/SkeletonComment'; 
+import SkeletonComment from '../../../components/Common/skeletons/SkeletonComment/SkeletonComment';
 import styles from './Comment.module.css';
 import Meta from '../../../components/Common/Meta/Meta';
 
@@ -20,7 +20,7 @@ import Meta from '../../../components/Common/Meta/Meta';
 function Comment() {
 
     const { user, logout } = useAuthContext();
-    const {addErrors} = useErrorsContext();
+    const { addErrors } = useErrorsContext();
     const navigate = useNavigate();
 
     const [comments, setComments] = useState([]);
@@ -33,7 +33,7 @@ function Comment() {
                 setLoading(false);
             })
             .catch((err) => {
-                if (err.status == 401) {
+                if (err.status === 401) {
                     logout();
                     navigate('/');
                 } else {
@@ -41,17 +41,16 @@ function Comment() {
                     navigate('/404')
                 };
             });
-    }, [user]);
+    }, [user, addErrors, logout, navigate]);
 
-const skeletonArr = [1,2,3,4,5,6];
+    const skeletonArr = [1, 2, 3, 4, 5, 6];
 
     return (
         <>
-        <Meta
-        title={`Cook Book | ${user && user.firstName} ${
-          user && user.lastName
-        }`}
-      />
+            <Meta
+                title={`Cook Book | ${user && user.firstName} ${user && user.lastName
+                    }`}
+            />
             <Header>
                 <Nav />
             </Header>
@@ -66,26 +65,26 @@ const skeletonArr = [1,2,3,4,5,6];
                         <p className={styles.profile__content__text}>comments</p>
 
                         {loading
-                        ?  <div className={styles.wrapper}>
-                        {skeletonArr.map((i) => (
-                          <SkeletonComment key={i} />
-                        ))}
-                      </div>
+                            ? <div className={styles.wrapper}>
+                                {skeletonArr.map((i) => (
+                                    <SkeletonComment key={i} />
+                                ))}
+                            </div>
 
-                        :<>
-                         {comments.length > 0
-                            
-                               ? <div className={styles.profile__content__container}>
-                                    {comments.map((comment) =>
-                                        <CommentCard comment={comment} key={comment._id} />
-                                    )}
-                                </div>
-                            : <NoData active={'noComments'} />
+                            : <>
+                                {comments.length > 0
+
+                                    ? <div className={styles.profile__content__container}>
+                                        {comments.map((comment) =>
+                                            <CommentCard comment={comment} key={comment._id} />
+                                        )}
+                                    </div>
+                                    : <NoData active={'noComments'} />
+                                }
+                            </>
                         }
-                        </>
-}
-                      
-                            
+
+
                     </section>
 
                 </section>

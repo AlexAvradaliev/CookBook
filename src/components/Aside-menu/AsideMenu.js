@@ -5,25 +5,25 @@ import styles from './AsideMenu.module.css';
 
 const AsideMenu = () => {
     const location = useLocation();
+    
 
     const [active, setActive] = useState('');
-    const includes = (name) => location.pathname.includes(name)
-
+   
     useEffect(() => {
-        if (includes('edit')) {
+        if (location.pathname.includes('edit')) {
             setActive('editProfile')
 
-           } else if(includes('comments')){
+           } else if(location.pathname.includes('comments')){
                setActive('comments')
 
-           } else if(includes('create-recipe')){
+           } else if(location.pathname.includes('create-recipe')){
                setActive('createRecipe')
 
-           } else if(includes('profile')){
+           } else if(location.pathname.includes('profile')){
                setActive('recipes')
            }
-    }, [includes, setActive]);
-
+    }, [location]);
+ 
     return (
         <aside className={styles.profile__aside}>
             <ul>

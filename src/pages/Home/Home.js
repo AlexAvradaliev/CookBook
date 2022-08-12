@@ -35,7 +35,7 @@ const Home = () => {
                 setRecipes(res.recipes);
             })
             .catch(err => {
-                if (err.status == 401) {
+                if (err.status === 401) {
                     logout();
                     navigate('/');
                 } else {
@@ -46,7 +46,7 @@ const Home = () => {
             .finally(() => {
                 setLoading(false);
             });
-    }, []);
+    }, [addErrors, logout, navigate ]);
 
     const skeletonArr = [1, 2, 3, 4, 5, 6, 7, 8];
 

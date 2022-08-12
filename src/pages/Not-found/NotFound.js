@@ -1,16 +1,13 @@
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Header from '../../components/Headers/Header/Header';
 import Nav from '../../components/Nav/Nav';
 import { useErrorsContext } from '../../context/ErrorsContext';
 import styles from './NotFound.module.css';
 
 const NotFound = () => {
-    const { errors, addErrors } = useErrorsContext();
-    const navigate = useNavigate();
-    const onClickHome = () => {
-        navigate('/');
-        addErrors(null)
-    };
+    const { errors } = useErrorsContext();
+  
+  
     let errorMsg = []
    
     if (errors) {
