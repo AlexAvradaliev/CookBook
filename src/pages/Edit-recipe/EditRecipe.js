@@ -15,29 +15,7 @@ import styles from './EditRecipe.module.css';
 
 const EditRecipe = () => {
 
-    const {recipe, changeState} = useRecipeContext();
-    const {logout} = useAuthContext();
-    const {addErrors} = useErrorsContext();
-    const navigate = useNavigate();
-
-    const { recipeId } = useParams();
-
-    useEffect(() => {
-        recipeService.getOneById(recipeId)
-            .then((result) => {
-                changeState(result);
-            })
-            .catch((err) => {
-                if (err.status === 401) {
-                    logout();
-                    navigate('/');
-                } else {
-                    addErrors(err.jsonRes)
-                    navigate('/404')
-                };
-            });
-
-    }, [recipeId ,addErrors, logout, navigate]);
+    const {recipe } = useRecipeContext();
 
     return (
         <>

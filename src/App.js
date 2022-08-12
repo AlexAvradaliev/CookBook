@@ -19,36 +19,44 @@ import GuestGuard from './components/Common/Guards/GuestGuard';
 import { ErrorsProvider } from './context/ErrorsContext';
 import NotFound from './pages/Not-found/NotFound';
 import { RecipeProvider } from './components/Recipe/Create/context/recipeFormContext';
+import OwnerGuard from './components/Common/Guards/OwnerGuard';
+import FetchOwner from './components/Common/Guards/FetchOwner';
 
 function App() {
   return (
     <ErrorsProvider>
       <AuthProvider>
         <RecipeProvider>
-          
-        <Routes>
 
-          <Route element={<PrivateGuard />}>
-            <Route path='/profile/' element={<MyRecipe />} />
-            <Route path='/profile/comments' element={<Comment />} />
-            <Route path='/profile/edit' element={<EditProfile />} />
-            <Route path='/profile/create-recipe' element={<Create />} />
-            <Route path='/recipe/:recipeId/edit' element={<EditRecipe />} />
-          </Route>
+          <Routes>
 
-          <Route element={<GuestGuard />}>
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-          </Route>
+            <Route element={<PrivateGuard />}>
+              <Route path='/profile/' element={<MyRecipe />} />
+              <Route path='/profile/comments' element={<Comment />} />
+              <Route path='/profile/edit' element={<EditProfile />} />
+              <Route path='/profile/create-recipe' element={<Create />} />
 
-          <Route path='/' element={<Home />} />
-          <Route path='/recipe/:recipeId' element={<RecipeDetails />} />
-          <Route path='/search' element={<Search />} />
-          <Route path='*' element={<NotFound />} />
+              <Route element={<FetchOwner />}>
+                <Route element={<OwnerGuard />}>
+                  <Route path='/recipe/:recipeId/edit' element={<EditRecipe />} />
+                </Route>
+              </Route>
 
-        </Routes>
+            </Route>
 
-        <Footer />
+            <Route element={<GuestGuard />}>
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+            </Route>
+
+            <Route path='/' element={<Home />} />
+            <Route path='/recipe/:recipeId' element={<RecipeDetails />} />
+            <Route path='/search' element={<Search />} />
+            <Route path='*' element={<NotFound />} />
+
+          </Routes>
+
+          <Footer />
 
         </RecipeProvider>
       </AuthProvider>
