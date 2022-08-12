@@ -18,12 +18,14 @@ import PrivateGuard from './components/Common/Guards/PrivateGuard';
 import GuestGuard from './components/Common/Guards/GuestGuard';
 import { ErrorsProvider } from './context/ErrorsContext';
 import NotFound from './pages/Not-found/NotFound';
+import { RecipeProvider } from './components/Recipe/Create/context/recipeFormContext';
 
 function App() {
   return (
     <ErrorsProvider>
       <AuthProvider>
-
+        <RecipeProvider>
+          
         <Routes>
 
           <Route element={<PrivateGuard />}>
@@ -48,6 +50,7 @@ function App() {
 
         <Footer />
 
+        </RecipeProvider>
       </AuthProvider>
     </ErrorsProvider>
 

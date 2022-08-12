@@ -16,8 +16,8 @@ import { useErrorsContext } from '../../context/ErrorsContext';
 
 function Search() {
     const navigate = useNavigate();
-    const {logout} = useAuthContext();
-    const {addErrors} = useErrorsContext();
+    const { logout } = useAuthContext();
+    const { addErrors } = useErrorsContext();
 
     const [search] = useSearchParams();
     const typeCategory = search.get('category');
@@ -45,6 +45,19 @@ function Search() {
         };
     };
 
+    const onSubmitSearch = (e) => {
+        e.preventDefault();
+        const {search} = Object.fromEntries(new FormData(e.currentTarget));
+        setActiveTerm(search);
+        setTermVal(search);
+        setShowSearchBox(false)
+        if (category) {
+            navigate(`/search/?name=${search}&category=${typeCategory}&${typeCategory}=${category}&page=1`);
+        } else {
+            navigate(`/search/?name=${search}&page=1`);
+        };
+    };
+
     const hanldeInput = (e) => {
         setActiveTerm(e.target.value);
         setTermVal(e.target.value);
@@ -67,7 +80,7 @@ function Search() {
                     window.scrollTo(0, 0);
                 })
                 .catch((err) => {
-                    if (err.status == 401) {
+                    if (err.status === 401) {
                         logout();
                         navigate('/');
                     } else {
@@ -88,7 +101,7 @@ function Search() {
                     setLoading(false);
                 })
                 .catch((err) => {
-                    if (err.status == 401) {
+                    if (err.status === 401) {
                         logout();
                         navigate('/');
                     } else {
@@ -100,7 +113,7 @@ function Search() {
                     setLoading(false);
                 });
         };
-    }, [activeTerm, page, pageURL, sendCategory, typeCategory]);
+    }, [activeTerm, page, pageURL, sendCategory, typeCategory, navigate, logout, addErrors]);
 
     const showBox = () => {
         setShowSearchBox(true)
@@ -110,7 +123,7 @@ function Search() {
         setShowSearchBox(false);
     };
 
-    const skeletonArr =[1,2,3,4,5,6,7,8]
+    const skeletonArr = [1, 2, 3, 4, 5, 6, 7, 8]
     return (
         <>
             <Header>
@@ -120,17 +133,22 @@ function Search() {
                 <div className={styles.search__page}>
 
                     {showSearchBox && (
-                        <div className={styles.input__box}>
-                            <div className={styles.input__box__container}>
-                                <input
-                                    type='text'
-                                    placeholder='Search recipes...'
-                                    defaultValue={termVal}
-                                    onBlur={hanldeInput}
-                                    autoFocus
+                        <form onSubmit={onSubmitSearch}>
+                            <div className={styles.input__box}>
+                                <div className={styles.input__box__container}>
+                                    <input
+                                        type='text'
+                                        name= "search"
+                                        placeholder='Search recipes...'
+                                        defaultValue={termVal}
+                                        onBlur={hanldeInput}
+
+                                        autoFocus
                                     />
+                                    <button></button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     )}
                     {!showSearchBox && (
                         <div className={styles.search__box}>
@@ -148,16 +166,16 @@ function Search() {
                     )}
                     <div onClick={closeSearch} className={styles.recipes}>
                         {loading
-                        ?<div className={styles.wrapper}>
-                        {skeletonArr.map((i) => (
-                            <SkeletonRecipe key={i} />
-                        ))}
-                    </div>
-                    : <>
-                            {recipes.length > 0
-                                ? (<div><RecipeList recipes={recipes} /></div>)
-                                : <NoData active={'noFind'} />
-                            }
+                            ? <div className={styles.wrapper}>
+                                {skeletonArr.map((i) => (
+                                    <SkeletonRecipe key={i} />
+                                ))}
+                            </div>
+                            : <>
+                                {recipes.length > 0
+                                    ? (<div><RecipeList recipes={recipes} /></div>)
+                                    : <NoData active={'noFind'} />
+                                }
                             </>
                         }
                     </div>

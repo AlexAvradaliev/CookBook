@@ -30,26 +30,7 @@ const CreateRecipe = ({
         previewImage,
         recipe,
         isFormValid,
-        changeState,
     } = useRecipeContext();
-
-    useEffect(() => {
-        if (edit) {
-            const data = {
-                title: edit.title || '',
-                description: edit.description || '',
-                level: edit.level || 'Easy',
-                cuisine: edit.cuisine || 'Moroccan',
-                prepTime: edit.prepTime || '',
-                cookTime: edit.cookTime || '',
-                groups: edit.groups || [],
-                images: edit.images || [],
-                steps: edit.steps || [],
-                ingredients: edit.ingredients || [],
-            };
-            changeState(data);
-        }
-    }, [edit]);
 
     const { recipeId } = useParams();
     const { user, logout } = useAuthContext();
@@ -71,7 +52,7 @@ const CreateRecipe = ({
                         navigate('/profile');
                     })
                     .catch((err) => {
-                        if (err.status == 401) {
+                        if (err.status === 401) {
                             logout();
                             navigate('/');
                         } else {
@@ -88,7 +69,7 @@ const CreateRecipe = ({
                         navigate('/profile');
                     })
                     .catch((err) => {
-                        if (err.status == 401) {
+                        if (err.status === 401) {
                             logout();
                             navigate('/');
                         } else {

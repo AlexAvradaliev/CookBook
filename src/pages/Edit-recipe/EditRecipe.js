@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { RecipeProvider } from '../../components/Recipe/Create/context/recipeFormContext';
+import { useRecipeContext } from '../../components/Recipe/Create/context/recipeFormContext';
 import * as recipeService from '../../servces/recipeService';
 import { useErrorsContext } from '../../context/ErrorsContext';
 import { useAuthContext } from '../../context/AuthContext';
@@ -15,7 +15,7 @@ import styles from './EditRecipe.module.css';
 
 const EditRecipe = () => {
 
-    const [recipe, setRecipe] = useState({});
+    const {recipe, changeState} = useRecipeContext();
     const {logout} = useAuthContext();
     const {addErrors} = useErrorsContext();
     const navigate = useNavigate();
@@ -25,10 +25,10 @@ const EditRecipe = () => {
     useEffect(() => {
         recipeService.getOneById(recipeId)
             .then((result) => {
-                setRecipe(result)
+                changeState(result);
             })
             .catch((err) => {
-                if (err.status == 401) {
+                if (err.status === 401) {
                     logout();
                     navigate('/');
                 } else {
@@ -37,7 +37,7 @@ const EditRecipe = () => {
                 };
             });
 
-    }, [recipeId]);
+    }, [recipeId ,addErrors, logout, navigate]);
 
     return (
         <>
@@ -46,9 +46,7 @@ const EditRecipe = () => {
             </Header>
             <Main>
                 <h2 className={styles.title}>Edit Recipe #{recipe?.title} </h2>
-                <RecipeProvider>
-                    <CreateRecipe edit={recipe} />
-                </RecipeProvider>
+                    <CreateRecipe edit={true}/>
             </Main>
         </>
     );
