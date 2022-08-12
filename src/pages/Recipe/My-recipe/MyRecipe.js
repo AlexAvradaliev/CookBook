@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useAuthContext } from '../../../context/AuthContext';
+import { useErrorsContext } from '../../../context/ErrorsContext';
 import * as recipeService from '../../../servces/recipeService';
 
 import AsideMenu from '../../../components/Aside-menu/AsideMenu';
@@ -16,7 +18,9 @@ import Meta from '../../../components/Common/Meta/Meta';
 
 function MyRecipe() {
 
-    const { user } = useAuthContext();
+    const { user, logout } = useAuthContext();
+    const {addErrors} = useErrorsContext();
+    const navigate = useNavigate();
 
     const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(true)
@@ -25,11 +29,18 @@ function MyRecipe() {
         recipeService.getAllOwner(user.accessToken)
             .then(result => {
                 setRecipes(result);
-                setLoading(false);
             })
             .catch(err => {
+                if (err.status == 401) {
+                    logout();
+                    navigate('/');
+                } else {
+                    addErrors(err.jsonRes)
+                    navigate('/404')
+                };
+            })
+            .finally(()=> {
                 setLoading(false);
-                console.log(err);
             });
     }, [user.accessToken]);
 
@@ -38,17 +49,26 @@ function MyRecipe() {
             .then(() => {
                 setRecipes(state => [...state.filter(x => x._id !== id)]);
             })
+            .catch((err) => {
+                if (err.status == 401) {
+                    logout();
+                    navigate('/');
+                } else {
+                    addErrors(err.jsonRes)
+                    navigate('/404')
+                };
+            })
     };
 
     const skeletonArr = [1, 2, 3, 4, 5, 6]
 
     return (
         <>
-        <Meta
+        {/* <Meta
         title={`Cook Book | ${user && user.firstName} ${
           user && user.lastName
         }`}
-      />
+      /> */}
             <Header>
                 <Nav />
             </Header>

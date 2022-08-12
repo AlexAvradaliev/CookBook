@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAuthContext } from '../../../../../context/AuthContext';
 import { useRecipeContext } from '../../context/recipeFormContext';
@@ -10,6 +10,7 @@ import newFile from './assets/newFile.png'
 import ErrorMessage from '../../../../Common/Error-message/ErrorMessage';
 import Loader from '../../../../Common/Loader/Loader';
 import styles from './RecipeImages.module.css';
+import { useErrorsContext } from '../../../../../context/ErrorsContext';
 
 const RecipeImages = () => {
 
@@ -24,7 +25,9 @@ const RecipeImages = () => {
     } = useRecipeContext();
 
     const { recipeId } = useParams();
-    const { user } = useAuthContext();
+    const { user, logout } = useAuthContext();
+    const {addErrors} = useErrorsContext();
+    const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false)
 
@@ -61,7 +64,13 @@ const RecipeImages = () => {
                 setLoading(false);
             })
             .catch((err) => {
-
+                if(err.status == 401){
+                    logout();
+                    navigate('/');
+                } else {
+                    addErrors(err.jsonRes)
+                    navigate('/404')
+                };
             })
             .finally(() => {
                 setLoading(false);

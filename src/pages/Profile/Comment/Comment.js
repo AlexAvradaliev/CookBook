@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useAuthContext } from '../../../context/AuthContext';
+import { useErrorsContext } from '../../../context/ErrorsContext';
 import * as commentService from '../../../servces/commentService';
 
 import AsideMenu from '../../../components/Aside-menu/AsideMenu';
@@ -17,7 +19,9 @@ import Meta from '../../../components/Common/Meta/Meta';
 
 function Comment() {
 
-    const { user } = useAuthContext();
+    const { user, logout } = useAuthContext();
+    const {addErrors} = useErrorsContext();
+    const navigate = useNavigate();
 
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true)
@@ -29,19 +33,25 @@ function Comment() {
                 setLoading(false);
             })
             .catch((err) => {
-                setLoading(false);
-            })
+                if (err.status == 401) {
+                    logout();
+                    navigate('/');
+                } else {
+                    addErrors(err.jsonRes)
+                    navigate('/404')
+                };
+            });
     }, [user]);
 
 const skeletonArr = [1,2,3,4,5,6];
 
     return (
         <>
-        <Meta
+        {/* <Meta
         title={`Cook Book | ${user && user.firstName} ${
           user && user.lastName
-        }`}
-      />
+        }`} */}
+      {/* /> */}
             <Header>
                 <Nav />
             </Header>

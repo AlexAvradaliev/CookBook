@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAuthContext } from '../../../context/AuthContext';
 import { useCommentContext } from '../context/commentContext';
@@ -10,10 +10,11 @@ import Loader from '../../Common/Loader/Loader';
 
 const CreateComment = () => {
 
-    const { user } = useAuthContext();
+    const { user, logout } = useAuthContext();
     const { update, text, changeText, changeComments, comments, changeUpdate, addComments } = useCommentContext();
     const { recipeId } = useParams();
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(update){
@@ -39,7 +40,10 @@ const CreateComment = () => {
                     return null;
             })
             .catch((err) => {
-
+                if (err.status == 401) {
+                    logout();
+                    navigate('/');
+                };
             })
             .finally(() => {
                 setLoading(false);
@@ -56,8 +60,11 @@ const CreateComment = () => {
                 changeComments(res);
                 changeText('')
             })
-            .catch(err => {
-                console.log(err);
+            .catch((err) => {
+                if (err.status == 401) {
+                    logout();
+                    navigate('/');
+                };
             })
             .finally(() => {
                 setLoading(false);

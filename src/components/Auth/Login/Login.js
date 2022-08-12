@@ -53,7 +53,7 @@ const Login = () => {
                     setLoading(false);
                 })
                 .catch((err) => {
-                    addErrorServer(err);
+                    addErrorServer(err.jsonRes);
                     setLoading(false);
                 });
         };

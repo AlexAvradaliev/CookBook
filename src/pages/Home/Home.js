@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import * as recipeService from '../../servces/recipeService';
+import { useErrorsContext } from '../../context/ErrorsContext';
+import { useAuthContext } from '../../context/AuthContext';
 
 import Cuisines from '../../components/Common/Cuisines/Cuisines';
 import Groups from '../../components/Common/Groups/Groups';
@@ -21,18 +23,28 @@ const maxRecipes = 8;
 const Home = () => {
 
     const [recipes, setRecipes] = useState([]);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
+    const {logout} = useAuthContext();
+    const {addErrors} = useErrorsContext();
+    const navigate = useNavigate();
 
     useEffect(() => {
 
         recipeService.getAll('', 1)
             .then(res => {
                 setRecipes(res.recipes);
-                setLoading(false);
             })
             .catch(err => {
+                if (err.status == 401) {
+                    logout();
+                    navigate('/');
+                } else {
+                    addErrors(err.jsonRes)
+                    navigate('/404')
+                };
+            })
+            .finally(() =>{
                 setLoading(false);
-                console.log(err);
             });
     }, []);
 
@@ -40,7 +52,7 @@ const Home = () => {
 
     return (
         <>
-        <Meta />
+        {/* <Meta /> */}
             <HomeHeader>
                 <Nav homeStyles={true} />
                 <HomeSearch />

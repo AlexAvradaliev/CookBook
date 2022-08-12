@@ -53,7 +53,7 @@ const Register = () => {
                     setLoading(false);
                 })
                 .catch((err) => {
-                    addErrorServer(err);
+                    addErrorServer(err.json);
                     setLoading(false);
                 });
         };

@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAuthContext } from '../../../context/AuthContext';
+import { useErrorsContext } from '../../../context/ErrorsContext';
 
 import * as recipeService from '../../../servces/recipeService';
 import Meta from '../../Common/Meta/Meta';
@@ -9,6 +11,9 @@ import styles from './Details.module.css';
 const Details = () => {
 
     const { recipeId } = useParams();
+    const {logout} = useAuthContext();
+    const {addErrors} = useErrorsContext();
+    const navigate = useNavigate();
 
     const [recipe, setRecipe] = useState({});
     const [activeImage, setActiveImage] = useState(0);
@@ -19,17 +24,24 @@ const Details = () => {
                 setRecipe(result);
             })
             .catch(err => {
-                console.log(err);
+                if (err.status == 401) {
+                    logout();
+                    navigate('/');
+                } else {
+                    addErrors(err.jsonRes)
+                    console.log(err)
+                    navigate('/404')
+                };
             });
     }, [recipeId]);
     
     return (
         <>
-        <Meta
+        {/* <Meta
               title={`${recipe.title} by ${
                 recipe.user && recipe.user.firstName
               } ${recipe.user && recipe.user.lastName} `}
-            />
+            /> */}
 
             <section className={styles.recipe__details__generic}>
                 <article>

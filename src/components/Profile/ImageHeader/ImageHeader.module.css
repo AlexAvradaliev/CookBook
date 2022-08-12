@@ -42,15 +42,15 @@
 
 .profile__image label {
     cursor: pointer;
-    position: absolute;
+    position: relative;
     /* right: 8%; */
-    top: 3%;
-    left: 13%;
+    /* top: 3%;
+    left: 13%; */
 }
 
 .profile__image i {
     color: #ed5a6b;
-    left: 5.5rem;
+    right: 0.5rem;
     position: absolute;
 }
 

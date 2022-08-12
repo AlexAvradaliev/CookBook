@@ -3,51 +3,73 @@ import { BASE_URL } from './config';
 export const getAll = async (term = '', page = '', category) => {
     if (category) {
 
-        let result = await fetch(`${BASE_URL}/api/recipe/${category}&search=${term}&page=${page}`);
-        let jsonResult = await result.json();
-        return jsonResult;
+        const response = await fetch(`${BASE_URL}/api/recipe/${category}&search=${term}&page=${page}`);
+        const jsonRes = await response.json();
+        if (response.ok) {
+            return jsonRes;
+        } else {
+            let errors = { jsonRes, 'status': response.status };
+            throw errors;
+        };
 
     } else {
 
-        let result = await fetch(`${BASE_URL}/api/recipe/?search=${term}&page=${page}`);
-        let jsonResult = await result.json();
-        return jsonResult;
+        const response = await fetch(`${BASE_URL}/api/recipe/?search=${term}&page=${page}`);
+        const jsonRes = await response.json();
+        if (response.ok) {
+            return jsonRes;
+        } else {
+            let errors = { jsonRes, 'status': response.status };
+            throw errors;
+        };
     };
 
 };
 
 export const getOneById = async (id) => {
-    try {
-        let result = await fetch(`${BASE_URL}/api/recipe/${id}`);
-    let jsonResult = await result.json();
-    
-    return jsonResult;
-    } catch (err) {
-        console.log(err);
+
+    if(id.length !== 24){
+        throw { 'status': 404, 'jsonRes': ['Page not found']};
+    }else {
+        
+        const response = await fetch(`${BASE_URL}/api/recipe/${id}`);
+        const jsonRes = await response.json();
+        
+        if (response.ok) {
+            return jsonRes;
+        } else {
+            let errors = { jsonRes, 'status': response.status };
+            throw errors;
+        };
     };
 };
 
 export const getAllOwner = async (token) => {
 
-    let response = await fetch(`${BASE_URL}/api/recipe/owner`,{
+    const response = await fetch(`${BASE_URL}/api/recipe/owner`, {
         headers: {
             'content-type': 'application/json',
             'x-authorization': token
         },
     });
 
-    let recipes = await response.json();
-   
-    let result = Object.values(recipes);
+    const recipes = await response.json();
 
-    return result;
+    const jsonRes = Object.values(recipes);
+
+    if (response.ok) {
+        return jsonRes;
+    } else {
+        let errors = { jsonRes, 'status': response.status };
+        throw errors;
+    };
 };
 
-export const create = async ( 
+export const create = async (
     data,
     token
-     ) => {
-   
+) => {
+
     const response = await fetch(`${BASE_URL}/api/recipe`, {
         method: 'POST',
         headers: {
@@ -57,45 +79,60 @@ export const create = async (
         body: JSON.stringify(data)
     });
     const jsonRes = await response.json();
-    
-    if(response.ok){
+
+    if (response.ok) {
         return jsonRes;
-    } else{
-        throw jsonRes;
-    };  
+    } else {
+        let errors = { jsonRes, 'status': response.status };
+        throw errors;
+    };
 };
 
-export const update = async ( 
+export const update = async (
     data,
     recipeId,
     token
-     ) => {
-   
-    const result = await fetch(`${BASE_URL}/api/recipe/${recipeId}`, {
-        method: 'PUT',
-        headers: {
-            'content-type': 'application/json',
-            'x-authorization': token
-        },
-        body: JSON.stringify(data)
-    });
-    const jsonRes = await result.json();
+) => {
+
+    if(recipeId.length !== 24){
+        throw { 'status': 404, 'jsonRes': ['Page not found']};
+    }else {
+        const response = await fetch(`${BASE_URL}/api/recipe/${recipeId}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                'x-authorization': token
+            },
+            body: JSON.stringify(data)
+        });
+        const jsonRes = await response.json();
     
-    if(result.ok){
-        return jsonRes;
-    } else{
-        throw jsonRes.message;
-    };  
+        if (response.ok) {
+            return jsonRes;
+        } else {
+            let errors = { jsonRes, 'status': response.status };
+            throw errors;
+        };
+    };
 };
 
 export const removeRecipe = async (recipeId, token) => {
 
-    let response = await fetch(`${BASE_URL}/api/recipe/${recipeId}`,{
-        method: 'DELETE',
-        headers: {
-            'x-authorization': token
-        },
-    });
-    const jsonRes = await response.json();
-    return jsonRes;
+    if(recipeId.length !== 24){
+        throw { 'status': 404, 'jsonRes': ['Page not found']};
+    } else {
+        const response = await fetch(`${BASE_URL}/api/recipe/${recipeId}`, {
+            method: 'DELETE',
+            headers: {
+                'x-authorization': token
+            },
+        });
+        const jsonRes = await response.json();
+        if (response.ok) {
+            return jsonRes;
+        } else {
+            let errors = { jsonRes, 'status': response.status };
+            throw errors;
+        };
+    };
 };

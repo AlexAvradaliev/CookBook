@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
+import { useErrorsContext } from '../../../context/ErrorsContext';
 import { useRecipeContext } from './context/recipeFormContext';
 import { useAuthContext } from '../../../context/AuthContext';
 import * as recipeService from '../../../servces/recipeService';
@@ -23,13 +24,14 @@ const CreateRecipe = ({
     edit
 }) => {
 
+    const { addErrors } = useErrorsContext()
+
     const {
         previewImage,
         recipe,
         isFormValid,
         changeState,
     } = useRecipeContext();
-
 
     useEffect(() => {
         if (edit) {
@@ -47,12 +49,12 @@ const CreateRecipe = ({
             };
             changeState(data);
         }
-    }, [edit, changeState]);
+    }, [edit]);
 
-    const {recipeId} = useParams();
-    const { user } = useAuthContext();
+    const { recipeId } = useParams();
+    const { user, logout } = useAuthContext();
     const navigate = useNavigate();
-const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const submitData = () => {
 
@@ -63,28 +65,40 @@ const [loading, setLoading] = useState(false);
                 data = { ...recipe, previewImage }
             };
             setLoading(true);
-            if(edit){
-            recipeService.update(data, recipeId, user.accessToken)
-                .then(() => {
-                    navigate('/profile');
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-                .finally(() => {
-                setLoading(false);
-                });
+            if (edit) {
+                recipeService.update(data, recipeId, user.accessToken)
+                    .then(() => {
+                        navigate('/profile');
+                    })
+                    .catch((err) => {
+                        if (err.status == 401) {
+                            logout();
+                            navigate('/');
+                        } else {
+                            addErrors(err.jsonRes)
+                            navigate('/404')
+                        };
+                    })
+                    .finally(() => {
+                        setLoading(false);
+                    });
             } else {
                 recipeService.create(data, user.accessToken)
-                .then(() => {
-                    navigate('/profile');
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-                .finally(() => {
-                setLoading(false);
-                }); 
+                    .then(() => {
+                        navigate('/profile');
+                    })
+                    .catch((err) => {
+                        if (err.status == 401) {
+                            logout();
+                            navigate('/');
+                        } else {
+                            addErrors(err.jsonRes)
+                            navigate('/404')
+                        };
+                    })
+                    .finally(() => {
+                        setLoading(false);
+                    });
             };
         };
     };
@@ -92,62 +106,62 @@ const [loading, setLoading] = useState(false);
     return (
         <>
 
-        <Meta
+            {/* <Meta
         title={`Cook Book | ${user && user.firstName} ${
           user && user.lastName
         }`}
-      />
+      /> */}
 
-        <section className={styles.profile__content}>
-            <p className={styles.profile__content__text}>Create recipe</p>
-            <div className={styles.create}>
-                <section>
-                    <form>
-                        <fieldset>
+            <section className={styles.profile__content}>
+                <p className={styles.profile__content__text}>Create recipe</p>
+                <div className={styles.create}>
+                    <section>
+                        <form>
+                            <fieldset>
 
-                            <RecipeTitle />
-                            <RecipeDescription />
+                                <RecipeTitle />
+                                <RecipeDescription />
 
-                        </fieldset>
+                            </fieldset>
 
-                        <fieldset className={styles.create__selects}>
+                            <fieldset className={styles.create__selects}>
 
-                            <RecipeLevel />
-                            <RecipeCuisine />
+                                <RecipeLevel />
+                                <RecipeCuisine />
 
-                        </fieldset>
+                            </fieldset>
 
-                        <fieldset className={styles.create__time}>
+                            <fieldset className={styles.create__time}>
 
-                            <RecipePrepTime />
-                            <RecipeCookTime />
+                                <RecipePrepTime />
+                                <RecipeCookTime />
 
-                        </fieldset>
+                            </fieldset>
 
-                        <RecipeGroups />
-                        <RecipeImages />
+                            <RecipeGroups />
+                            <RecipeImages />
 
-                    </form>
-                </section>
-                <section className={styles.create__steps}>
+                        </form>
+                    </section>
+                    <section className={styles.create__steps}>
 
-                    <RecipeSteps />
-                    <RecipeIngredients />
+                        <RecipeSteps />
+                        <RecipeIngredients />
 
-                </section>
+                    </section>
 
-                {loading &&
-                <Loader />
-                }
-
-                <button onClick={submitData} className={`${styles.button} ${styles.btn__primary}`}>
-                    {edit
-                        ? 'Update Recipe'
-                        : 'Create Recipe'
+                    {loading &&
+                        <Loader />
                     }
-                </button>
-            </div>
-        </section>
+
+                    <button onClick={submitData} className={`${styles.button} ${styles.btn__primary}`}>
+                        {edit
+                            ? 'Update Recipe'
+                            : 'Create Recipe'
+                        }
+                    </button>
+                </div>
+            </section>
         </>
     );
 };

@@ -5,6 +5,7 @@ export const create = async (
     recipeId,
     token
 ) => {
+  
     const response = await fetch(`${BASE_URL}/api/feedback/${recipeId}`, {
         method: 'POST',
         headers: {
@@ -18,7 +19,8 @@ export const create = async (
     if (response.ok) {
         return jsonRes;
     } else {
-        throw jsonRes.message;
+        let errors = {jsonRes, 'status': response.status};
+        throw errors;
     };
 };
 
@@ -26,18 +28,25 @@ export const getOwner = async (
     recipeId,
     token
 ) => {
-    let result = await fetch(`${BASE_URL}/api/feedback/user/${recipeId}`, {
+
+    let response = await fetch(`${BASE_URL}/api/feedback/user/${recipeId}`, {
         headers: {
             'x-authorization': token
         }
     });
 
-    let jsonResult = await result.json();
-    return jsonResult;
+    let jsonRes = await response.json();
+    if (response.ok) {
+        return jsonRes;
+    } else {
+        let errors = {jsonRes, 'status': response.status};
+        throw errors;
+    };
 };
 
 export const update = async (data, token, recipeId) => {
-    let result = await fetch(`${BASE_URL}/api/feedback/${recipeId}`, {
+
+    let response = await fetch(`${BASE_URL}/api/feedback/${recipeId}`, {
             method: 'PUT',
         headers: {
             'content-type': 'application/json',
@@ -45,6 +54,12 @@ export const update = async (data, token, recipeId) => {
         },
         body: JSON.stringify(data)
     });
-    let jsonResult = await result.json();
-    return jsonResult;
+    let jsonRes = await response.json();
+    if (response.ok) {
+        return jsonRes;
+    } else {
+        let errors = {jsonRes, 'status': response.status};
+        throw errors;
+    };
+
 };

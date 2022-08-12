@@ -1,0 +1,44 @@
+.not__found {
+    margin-top: 100px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+    .not__found {
+        padding-top: 48px;
+        padding-bottom: 48px;
+    }
+}
+
+.not__found img {
+    width: 100px;
+    height: 100px;
+    vertical-align: middle;
+    border: 0;
+}
+
+.not__found h1 {
+    color: inherit;
+    font-size: 36px;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    margin: 0.67em 0;
+}
+
+@media screen and (min-width: 768px){
+    .not__found h1 {
+        font-size: 63px;
+    }
+}
+
+.not__found p {
+    margin-bottom: 15px;
+    font-size: 21px;
+    font-weight: 200;
+    margin: 0 0 10px;
+}

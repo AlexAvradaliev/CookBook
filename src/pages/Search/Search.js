@@ -11,9 +11,13 @@ import Paginate from '../../components/Paginate/Paginate';
 import NoData from '../../components/Common/No-data/NoData';
 import SkeletonRecipe from '../../components/Common/skeletons/SkeletonRecipe/SkeletonRecipe';
 import styles from './Search.module.css'
+import { useAuthContext } from '../../context/AuthContext';
+import { useErrorsContext } from '../../context/ErrorsContext';
 
 function Search() {
     const navigate = useNavigate();
+    const {logout} = useAuthContext();
+    const {addErrors} = useErrorsContext();
 
     const [search] = useSearchParams();
     const typeCategory = search.get('category');
@@ -61,11 +65,19 @@ function Search() {
                     setPage(Number(pageURL));
                     setPages(Number(result.pagination.pages));
                     window.scrollTo(0, 0);
-                    setLoading(false);
                 })
                 .catch((err) => {
-                    setLoading(false);
+                    if (err.status == 401) {
+                        logout();
+                        navigate('/');
+                    } else {
+                        addErrors(err.jsonRes)
+                        navigate('/404')
+                    };
                 })
+                .finally(() => {
+                    setLoading(false);
+                });
         } else {
             recipeService.getAll(activeTerm, page)
                 .then(result => {
@@ -76,9 +88,18 @@ function Search() {
                     setLoading(false);
                 })
                 .catch((err) => {
-                    setLoading(false);
+                    if (err.status == 401) {
+                        logout();
+                        navigate('/');
+                    } else {
+                        addErrors(err.jsonRes)
+                        navigate('/404')
+                    };
                 })
-        }
+                .finally(() => {
+                    setLoading(false);
+                });
+        };
     }, [activeTerm, page, pageURL, sendCategory, typeCategory]);
 
     const showBox = () => {

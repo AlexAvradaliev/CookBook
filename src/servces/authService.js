@@ -13,7 +13,8 @@ export const login = async (userData) => {
     if (response.ok) {
         return jsonRes;
     } else {
-        throw jsonRes;
+          let errors = {jsonRes, 'status': response.status};
+        throw errors;
     };
 };
 
@@ -43,7 +44,8 @@ export const register = async (userData) => {
     if (response.ok) {
         return jsonRes;
     } else {
-        throw jsonRes;
+          let errors = {jsonRes, 'status': response.status};
+        throw errors;
     };
 };
 
@@ -61,7 +63,8 @@ export const changeUserData = async (userData, token) => {
     if (response.ok) {
         return jsonRes;
     } else {
-        throw jsonRes;
+          let errors = {jsonRes, 'status': response.status};
+        throw errors;
     };
 };
 
@@ -79,6 +82,7 @@ export const changePassword = async (data, token) => {
     if (response.ok) {
         return jsonRes;
     } else {
-        throw jsonRes;
+          let errors = {jsonRes, 'status': response.status};
+        throw errors;
     };
 };

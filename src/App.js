@@ -16,31 +16,40 @@ import EditRecipe from './pages/Edit-recipe/EditRecipe';
 import Search from './pages/Search/Search';
 import PrivateGuard from './components/Common/Guards/PrivateGuard';
 import GuestGuard from './components/Common/Guards/GuestGuard';
+import { ErrorsProvider } from './context/ErrorsContext';
+import NotFound from './pages/Not-found/NotFound';
 
 function App() {
   return (
-    <AuthProvider>
-      <Routes>
+    <ErrorsProvider>
+      <AuthProvider>
 
-        <Route element={<PrivateGuard />}>
-          <Route path='/profile/' element={<MyRecipe />} />
-          <Route path='/profile/comments' element={<Comment />} />
-          <Route path='/profile/edit' element={<EditProfile />} />
-          <Route path='/profile/create-recipe' element={<Create />} />
-              <Route path='/recipe/:recipeId/edit' element={<EditRecipe />} />
-        </Route>
+        <Routes>
 
-        <Route element={<GuestGuard />}>
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-        </Route>
+          <Route element={<PrivateGuard />}>
+            <Route path='/profile/' element={<MyRecipe />} />
+            <Route path='/profile/comments' element={<Comment />} />
+            <Route path='/profile/edit' element={<EditProfile />} />
+            <Route path='/profile/create-recipe' element={<Create />} />
+            <Route path='/recipe/:recipeId/edit' element={<EditRecipe />} />
+          </Route>
 
-        <Route path='/' element={<Home />} />
-        <Route path='/recipe/:recipeId' element={<RecipeDetails />} />
-        <Route path='/search' element={<Search />} />
-      </Routes>
-      <Footer />
-    </AuthProvider>
+          <Route element={<GuestGuard />}>
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+          </Route>
+
+          <Route path='/' element={<Home />} />
+          <Route path='/recipe/:recipeId' element={<RecipeDetails />} />
+          <Route path='/search' element={<Search />} />
+          <Route path='*' element={<NotFound />} />
+
+        </Routes>
+
+        <Footer />
+
+      </AuthProvider>
+    </ErrorsProvider>
 
   );
 }

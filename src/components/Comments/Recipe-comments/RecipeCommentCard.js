@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment';
 
 import { useAuthContext } from '../../../context/AuthContext';
@@ -7,22 +7,31 @@ import { useCommentContext } from '../context/commentContext';
 import * as commentService from '../../../servces/commentService';
 
 import styles from './RecipeCommentCard.module.css';
+import { useErrorsContext } from '../../../context/ErrorsContext';
 
 const RecipeCommentCard = () => {
 
-    const { user } = useAuthContext();
+    const { user, logout } = useAuthContext();
+    const {addErrors} = useErrorsContext();
     const { comments, addComments, changeUpdate } = useCommentContext();
     const { recipeId } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         commentService.getAllByRecipe(recipeId, user?.accessToken)
             .then(res => {
-                addComments(res);
+                addComments(res || []);
             })
-            .catch(err => {
-                console.log(err);
+            .catch((err) => {
+                if (err.status == 401) {
+                    logout();
+                    navigate('/');
+                } else {
+                    addErrors(err.jsonRes)
+                    navigate('/404')
+                };
             });
-    }, [addComments, recipeId, user.accessToken]);
+    }, [ recipeId, user.accessToken]);
 
     const updateHandler = (e) => {
         const id = e.target.id;
@@ -40,6 +49,15 @@ const RecipeCommentCard = () => {
             const filtred = comments.filter(x => x._id !== id);
             addComments(filtred);
         })
+        .catch((err) => {
+            if (err.status == 401) {
+                logout();
+                navigate('/');
+            } else {
+                addErrors(err.jsonRes)
+                navigate('/404')
+            };
+        });
     };
 
     return (

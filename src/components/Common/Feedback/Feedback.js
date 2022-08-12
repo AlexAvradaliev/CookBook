@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAuthContext } from '../../../context/AuthContext';
+import { useErrorsContext } from '../../../context/ErrorsContext';
 import * as feedbackService from '../../../servces/feedbackServices';
+
 import styles from './Feedback.module.css';
 
 const Feedback = () => {
 
     const { recipeId } = useParams();
-    const { user } = useAuthContext();
+    const { user, logout } = useAuthContext();
+    const {addErrors} = useErrorsContext();
+    const navigate = useNavigate();
 
     const [rating, setRating] = useState({ value: 0 });
 
@@ -17,6 +21,15 @@ const Feedback = () => {
             .then(res => {
                 setRating({ value: Number(res.value) || 0, ratingId: res._id })
             })
+            .catch((err) => {
+                if (err.status == 401) {
+                    logout();
+                    navigate('/');
+                } else {
+                    addErrors(err.jsonRes)
+                    navigate('/404')
+                };
+            });
     }, [recipeId, user]);
 
     const changeRageting = (e) => {
@@ -24,14 +37,28 @@ const Feedback = () => {
             feedbackService.create(e.target.value, recipeId, user.accessToken)
                 .then(res => {
                     setRating({ value: Number(res.value), ratingId: res._id });
-                })
+                }).catch((err) => {
+                    if (err.status == 401) {
+                        logout();
+                        navigate('/');
+                    } else {
+                        addErrors(err.jsonRes)
+                        navigate('/404')
+                    };
+                });
         } else {
             feedbackService.update({ rating: e.target.value }, user.accessToken, recipeId)
                 .then(res => {
                     setRating({ value: Number(res.value), ratingId: res._id })
                 })
-                .catch(err => {
-                    console.log(err)
+                .catch((err) => {
+                    if (err.status == 401) {
+                        logout();
+                        navigate('/');
+                    } else {
+                        addErrors(err.jsonRes)
+                        navigate('/404')
+                    };
                 });
         };
     };
