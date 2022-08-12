@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Header from '../../components/Headers/Header/Header';
 import Nav from '../../components/Nav/Nav';
 import { useErrorsContext } from '../../context/ErrorsContext';
@@ -32,7 +32,9 @@ const NotFound = () => {
                     : <p>This page isn't available. Sorry about that.</p>
 
                 }
-                <button onClick={onClickHome} className="btn btn-primary ">Home</button>
+                <Link className={`${styles.btn} ${styles.btn__primary}`} to="/">
+                    Home
+                </Link>
             </div>
         </>
     )
