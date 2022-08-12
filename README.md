@@ -5,7 +5,7 @@
 CookBook is a web application where users can create/read/update/delete recipes and check/save others, with a fullscreen recipe version to use while cooking or in the supermarket. Also, users can create and save grocery lists.
 
 #### Technologies and third-party services used:
-
+- **Server:**  [Link](https://github.com/AlexAvradaliev/server-CookBook)
 - **FrontEnd:**  React
 - **CSS:**  CSS Modules
 
@@ -23,7 +23,7 @@ pass: 123456
 acc: mads@example.com
 pass: 123456
 
-### Mockups: [Link](https://balsamiq.cloud/svyqg1u/p83jzmk/rAD9C)
+### Live Demo: : [Link](https://cook--book.web.app/)
 
 ---
 
@@ -31,4 +31,23 @@ pass: 123456
 
 #### Home
 ![Home-1](https://res.cloudinary.com/dbsz8lxsm/image/upload/v1660317248/Screen/home1_ldougg.jpg "Home-1") 
-<!-- ![login-page](https://github.com/tatsOre/cookbook/blob/master/public/readme_assets/05_Login_Page.jpg "Login Page") -->
+![Home-2](https://res.cloudinary.com/dbsz8lxsm/image/upload/v1660329487/Screen/home2_e04tjl.jpg "Home-2")
+
+#### Login
+![Login](https://res.cloudinary.com/dbsz8lxsm/image/upload/v1660317011/Screen/login_jrvwtz.jpg "Login") 
+
+#### Register
+![Register](https://res.cloudinary.com/dbsz8lxsm/image/upload/v1660317012/Screen/register_dqbs88.jpg "Register") 
+
+#### My Recipe
+![My Recipe](https://res.cloudinary.com/dbsz8lxsm/image/upload/v1660317011/Screen/MyRecipe_duefca.jpg "My Recipe") 
+
+#### New comment
+![New comment](https://res.cloudinary.com/dbsz8lxsm/image/upload/v1660317011/Screen/newComments_dwd1lp.jpg "New comment") 
+
+#### Create recipe
+![Create recipe 1](https://res.cloudinary.com/dbsz8lxsm/image/upload/v1660317011/Screen/create1_raxnqt.jpg "Create recipe 1") 
+![Create recipe 2](https://res.cloudinary.com/dbsz8lxsm/image/upload/v1660317011/Screen/create2_hrstn0.jpg "Create recipe 2") 
+
+#### Edit profile
+![Edit profile](https://res.cloudinary.com/dbsz8lxsm/image/upload/v1660317011/Screen/changeData_rjcal5.jpg "Edit profile") 
