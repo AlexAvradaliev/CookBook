@@ -64,11 +64,11 @@ function MyRecipe() {
 
     return (
         <>
-        {/* <Meta
+        <Meta
         title={`Cook Book | ${user && user.firstName} ${
           user && user.lastName
         }`}
-      /> */}
+      />
             <Header>
                 <Nav />
             </Header>

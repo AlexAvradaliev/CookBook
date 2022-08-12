@@ -47,11 +47,11 @@ const skeletonArr = [1,2,3,4,5,6];
 
     return (
         <>
-        {/* <Meta
+        <Meta
         title={`Cook Book | ${user && user.firstName} ${
           user && user.lastName
-        }`} */}
-      {/* /> */}
+        }`}
+      />
             <Header>
                 <Nav />
             </Header>

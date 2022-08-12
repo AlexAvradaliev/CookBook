@@ -37,11 +37,11 @@ const Details = () => {
     
     return (
         <>
-        {/* <Meta
+        <Meta
               title={`${recipe.title} by ${
-                recipe.user && recipe.user.firstName
-              } ${recipe.user && recipe.user.lastName} `}
-            /> */}
+                recipe._ownerId && recipe._ownerId.firstName
+              } ${recipe._ownerId && recipe._ownerId.lastName} `}
+            />
 
             <section className={styles.recipe__details__generic}>
                 <article>

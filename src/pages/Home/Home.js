@@ -24,8 +24,8 @@ const Home = () => {
 
     const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(true);
-    const {logout} = useAuthContext();
-    const {addErrors} = useErrorsContext();
+    const { logout } = useAuthContext();
+    const { addErrors } = useErrorsContext();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -43,7 +43,7 @@ const Home = () => {
                     navigate('/404')
                 };
             })
-            .finally(() =>{
+            .finally(() => {
                 setLoading(false);
             });
     }, []);
@@ -52,7 +52,13 @@ const Home = () => {
 
     return (
         <>
-        {/* <Meta /> */}
+       
+            <Meta
+                title='Cook Book: Food, Recipe inspiration and Search'
+                description='Discover, learn, and share recipes'
+                keywords=
+                'recipes, cooking, share food, foods, vegan recipes, international cuisines'
+            />
             <HomeHeader>
                 <Nav homeStyles={true} />
                 <HomeSearch />
@@ -70,12 +76,12 @@ const Home = () => {
                                 ))}
                             </div>
                         </>
-                        :      <>
-                         <h1 className={styles.recipes__text}>Latest recipes</h1> 
-                                 <div> 
-                           <RecipeList recipes={recipes} maxRecipes={maxRecipes} /> 
-                    </div>
-                    </>
+                        : <>
+                            <h1 className={styles.recipes__text}>Latest recipes</h1>
+                            <div>
+                                <RecipeList recipes={recipes} maxRecipes={maxRecipes} />
+                            </div>
+                        </>
                     }
                 </section>
                 <section className={styles.see__more}>

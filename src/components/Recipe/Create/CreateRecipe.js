@@ -87,11 +87,11 @@ const CreateRecipe = ({
     return (
         <>
 
-            {/* <Meta
+            <Meta
         title={`Cook Book | ${user && user.firstName} ${
           user && user.lastName
         }`}
-      /> */}
+      />
 
             <section className={styles.profile__content}>
                 <p className={styles.profile__content__text}>Create recipe</p>

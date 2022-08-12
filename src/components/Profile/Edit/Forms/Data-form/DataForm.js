@@ -57,11 +57,11 @@ const DataForm = () => {
 
     return (
         <>
-        {/* <Meta
+        <Meta
         title={`Cook Book | ${user && user.firstName} ${
           user && user.lastName
-        }`} */}
-      {/* /> */}
+        }`} 
+      /> 
         <form
             method='POST'
             onSubmit={submitHandler}
