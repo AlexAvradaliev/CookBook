@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import moment from 'moment';
 
@@ -8,6 +8,7 @@ import * as commentService from '../../../servces/commentService';
 
 import styles from './RecipeCommentCard.module.css';
 import { useErrorsContext } from '../../../context/ErrorsContext';
+import ConfirmModal from '../../Common/Confirm-modal/ConfirmModal';
 
 const RecipeCommentCard = () => {
 
@@ -16,6 +17,9 @@ const RecipeCommentCard = () => {
     const { comments, addComments, changeUpdate } = useCommentContext();
     const { recipeId } = useParams();
     const navigate = useNavigate();
+
+    const [open, setOpen] = useState(false);
+    const [id, setId] = useState('');
 
     useEffect(() => {
         commentService.getAllByRecipe(recipeId, user?.accessToken)
@@ -44,7 +48,13 @@ const RecipeCommentCard = () => {
     };
 
     const deleteHandler = (id) => {
-        commentService.remove(id, user.accessToken)
+        setOpen(true)
+        setId(id)
+        
+    };
+    const remove = (choise) => {
+        if (choise) {
+            commentService.remove(id, user.accessToken)
         .then(() => {
             const filtred = comments.filter(x => x._id !== id);
             addComments(filtred);
@@ -58,10 +68,17 @@ const RecipeCommentCard = () => {
                 navigate('/404')
             };
         });
+            setOpen(false);
+        } else {
+            setOpen(false);
+        };
     };
 
     return (
         <>
+        {open &&
+        <ConfirmModal remove={remove} text='comment'/>
+        }
             {comments.map(x =>
             (
                 <section key={x._id} className={styles.comment__card__wrapper}>

@@ -41,7 +41,7 @@ const Recipe = ({
     return (
         <>
             {open &&
-                <ConfirmModal remove={remove}/>
+                <ConfirmModal remove={remove} text='recipe'/>
             }
             <article className={styles.recipe}>
                 <Link to={`/recipe/${recipeInfo._id}`}>
