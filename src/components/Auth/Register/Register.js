@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import * as authService from '../../../servces/authService';
@@ -29,19 +29,19 @@ const Register = () => {
     const [toggle, setToggle] = useState(true);
     const [loading, setLoading] = useState(false);
 
-    const onToggleClick = () => {
+    const onToggleClick = useCallback(() => {
         setToggle(state => !state);
-    };
+    }, []);
 
-    const changeHandler = (e) => {
+    const changeHandler = useCallback((e) => {
         userChange(e.target.name, e.target.value);
-    };
+    }, [userChange]);
 
-    const verifyField = (e) => {
+    const verifyField = useCallback((e) => {
         checkData(e.target.name, e.target.value);
-    };
+    }, [checkData]);
 
-    const submitHandler = (e) => {
+    const submitHandler = useCallback((e) => {
         e.preventDefault();
         setLoading(true);
 
@@ -57,7 +57,7 @@ const Register = () => {
                     setLoading(false);
                 });
         };
-    };
+    }, [addErrorServer, isFormValid, navigate, authService, user]);
 
     return (
         <main className={styles.main}>
