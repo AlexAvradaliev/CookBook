@@ -9,13 +9,13 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter>
     <HelmetProvider>
       <App />
     </HelmetProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  //  </React.StrictMode> 
 );
 
 reportWebVitals();
