@@ -1,4 +1,3 @@
-import RecipeList from '../../Recipe/Recipe-list/RecipeList';
 import bin from './assets/images/bin.png';
 import styles from './ConfirmModal.module.css';
 
@@ -13,7 +12,7 @@ const ConfirmModal = ({
         <section className={styles.modal__content} >
           <header className={styles.modal__header}>
             <div className={styles.modal__header__container}>
-              <img src={bin} />
+              <img src={bin} alt="bin" />
               <h5 >{`Delete the ${text}?`}</h5>
             </div>
             <button className={styles.modal__close}>
