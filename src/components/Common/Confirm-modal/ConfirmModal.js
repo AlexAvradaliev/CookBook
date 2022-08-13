@@ -2,34 +2,29 @@ import RecipeList from '../../Recipe/Recipe-list/RecipeList';
 import bin from './assets/images/bin.png';
 import styles from './ConfirmModal.module.css';
 
-const ConfirmModal = () => {
-
-  const closeModal =() => {
-    return false;
-  }
-  const removeItem = () => {
-    return true;
-  }
+const ConfirmModal = ({
+  remove,
+}) => {
 
     return (
     <>
         <div className={styles.modal}>
-        <section className={styles.modal__content} ariaHidden="true">
+        <section className={styles.modal__content} >
           <header className={styles.modal__header}>
             <div className={styles.modal__header__container}>
               <img src={bin} />
               <h5 >Delete the recipe?</h5>
             </div>
             <button className={styles.modal__close}>
-              <span onClick={closeModal}>×</span>
+              <span onClick={() => remove(false)}>×</span>
             </button>
           </header>
           <section className={styles.modal__body}>
             <p>If you delete the recipe will be gone forever. Are you sure you want to proceed?</p>
           </section>
           <footer className={styles.modal__footer}>
-            <button onClick={closeModal} className={`${styles.btn} ${styles.btn__light}`}>Cancel</button>
-            <button onClick={removeItem} className={`${styles.btn} ${styles.btn__danger}`}>Delete</button>
+            <button onClick={() => remove(false)} className={`${styles.btn} ${styles.btn__light}`}>Cancel</button>
+            <button onClick={() => remove(true)} className={`${styles.btn} ${styles.btn__danger}`}>Delete</button>
           </footer>
         </section>
         <section className={styles.modal__backdrop}></section>

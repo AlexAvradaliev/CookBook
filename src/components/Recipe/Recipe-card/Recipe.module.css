@@ -16,7 +16,7 @@
     width: 100%;
 }
 
-.recipe:hover .recipe__image {
+.recipe .recipe__image:hover {
     transform: scale(1.03);
 }
 

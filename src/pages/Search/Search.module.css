@@ -16,7 +16,7 @@
     position: fixed;
     right: 10%;
     top: 18%;
-    z-index: 5
+    z-index: 1
 }
 
 .search__page .search__box i:hover {
@@ -30,13 +30,13 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1
+    z-index: 0
 }
 
 .search__page .input__box__container {
     background-color: #fff;
     padding: 4rem 1rem;
-    z-index: 20
+    z-index: 0
 }
 
 .search__page .input__box__container>* {
