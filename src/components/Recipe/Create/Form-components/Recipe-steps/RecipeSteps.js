@@ -22,8 +22,10 @@ const RecipeSteps = () => {
 
     const addSteps = (e) => {
         e.preventDefault();
+        if(step.trim().length > 0){
         changeRecipe('steps', [...recipe.steps, step]);
         setStep('');
+        };
     };
 
     const removeSteps = (step) => {

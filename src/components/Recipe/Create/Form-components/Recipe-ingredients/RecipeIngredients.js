@@ -21,8 +21,10 @@ const RecipeIngredients = () => {
 
     const addIngredients = (e) => {
         e.preventDefault();
-        changeRecipe('ingredients', [...recipe.ingredients, ingredient]);
-        setIngredient('');
+        if(ingredient.trim().length > 0){
+            changeRecipe('ingredients', [...recipe.ingredients, ingredient]);
+            setIngredient('');
+        };
     };
 
     const removeIngredients = (ing) => {
