@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../../context/AuthContext';
 import { useErrorsContext } from '../../../context/ErrorsContext';
@@ -148,4 +148,4 @@ const Details = () => {
     );
 };
 
-export default Details;
+export default memo(Details);

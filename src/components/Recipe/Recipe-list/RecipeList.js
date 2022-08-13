@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import Recipe from '../Recipe-card/Recipe';
 
 const RecipeList = ({
@@ -16,4 +17,4 @@ const RecipeList = ({
     );
 };
 
-export default RecipeList;
+export default memo(RecipeList);

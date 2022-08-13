@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styles from './Header.module.css';
 
 const Header = (props) => {
@@ -9,4 +10,4 @@ const Header = (props) => {
     );
 };
 
-export default Header;
+export default memo(Header);

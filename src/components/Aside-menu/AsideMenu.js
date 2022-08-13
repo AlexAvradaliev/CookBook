@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import styles from './AsideMenu.module.css';
@@ -47,4 +47,4 @@ const AsideMenu = () => {
     );
 };
 
-export default AsideMenu;
+export default memo(AsideMenu);

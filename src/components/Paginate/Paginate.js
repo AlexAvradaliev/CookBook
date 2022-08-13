@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Paginate.module.css'
 
@@ -29,4 +30,4 @@ export const Paginate = ({ pages, page, term = '', typeCategory = '',  category 
 	);
 };
 
-export default Paginate;
+export default memo(Paginate);

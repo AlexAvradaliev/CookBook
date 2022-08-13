@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useAuthContext } from '../../context/AuthContext';
@@ -33,4 +34,4 @@ const Nav = ({
     );
 };
 
-export default Nav;
+export default memo(Nav);

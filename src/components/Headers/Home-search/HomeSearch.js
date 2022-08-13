@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './HomeSearch.module.css';
 
@@ -39,4 +39,4 @@ const HomeSearch = () => {
         );
     };
 
-    export default HomeSearch;
+    export default memo(HomeSearch);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import * as authService from '../../../servces/authService';
@@ -152,4 +152,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default memo(Login);

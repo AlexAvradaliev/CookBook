@@ -2,6 +2,7 @@ import {Link} from 'react-router-dom';
 import moment from 'moment';
 
 import styles from './CommentCard.module.css';
+import { memo } from 'react';
 
 const CommentCard = ({
     comment,
@@ -27,4 +28,4 @@ const CommentCard = ({
     );
 };
 
-export default CommentCard;
+export default memo(CommentCard);

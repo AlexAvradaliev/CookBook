@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useAuthContext } from '../../../context/AuthContext';
@@ -111,4 +111,4 @@ const CreateComment = () => {
     );
 };
 
-export default CreateComment;
+export default memo(CreateComment);

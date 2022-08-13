@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Helmet } from 'react-helmet-async'
 
 const Meta = ({ title, description, keywords }) => {
@@ -17,4 +18,4 @@ Meta.defaultProps = {
 		'recipes, cooking, share food, foods, vegan recipes, international cuisines',
 };
 
-export default Meta;
+export default memo(Meta);

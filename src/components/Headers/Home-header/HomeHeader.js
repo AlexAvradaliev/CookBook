@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import styles from './HomeHeader.module.css';
 
 const HomeHeader = (props) => {
@@ -11,4 +12,4 @@ const HomeHeader = (props) => {
     );
 };
 
-export default HomeHeader;
+export default memo(HomeHeader);
